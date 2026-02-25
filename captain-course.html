@@ -573,7 +573,7 @@
             // Send email via mailto
             const subject = 'Заявка на курс: Капитан гражданского судна';
             const body = `Имя и фамилия: ${data.fullName}\n\nБэкграунд:\n${data.background}\n\nКурс: ${data.course}`;
-            const mailtoLink = `mailto:info@tymur.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            const mailtoLink = `mailto:broker@capt-tymur.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
             window.location.href = mailtoLink;
 
