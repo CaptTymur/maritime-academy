@@ -161,6 +161,9 @@
         <div style="margin: 2rem 0 3rem; padding-bottom: 2rem; border-bottom: 1px solid #1e293b;">
             <div style="background: #f59e0b; color: #0a0e17; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; display: inline-block; margin-bottom: 1rem;">⏳ Набор открыт — старт 15 мая 2026</div>
             <h1 style="font-size: 2.5rem; margin: 1rem 0;">Палубный офицер</h1>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+                <span style="background: #3b82f6; color: white; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.875rem; font-weight: 700;">Группа H (Hotel)</span>
+            </div>
         </div>
 
         <div style="background: #1a2236; border: 2px solid #3b82f6; border-radius: 12px; padding: 2rem; margin: 2rem 0; text-align: center;">
@@ -263,12 +266,13 @@
             const data = {
                 fullName: formData.get('fullName'),
                 background: formData.get('background'),
-                course: 'Палубный офицер'
+                course: 'Палубный офицер',
+                groupId: 'H (Hotel)'
             };
 
             // Send email via mailto
-            const subject = 'Заявка на курс: Палубный офицер';
-            const body = `Имя и фамилия: ${data.fullName}\n\nБэкграунд:\n${data.background}\n\nКурс: ${data.course}`;
+            const subject = 'Заявка на курс: Группа H (Hotel) - Палубный офицер';
+            const body = `Группа: H (Hotel)\nКурс: ${data.course}\n\nИмя и фамилия: ${data.fullName}\n\nБэкграунд:\n${data.background}`;
             const mailtoLink = `mailto:broker@capt-tymur.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
             window.location.href = mailtoLink;

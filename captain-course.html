@@ -389,6 +389,7 @@
         <div class="course-header">
             <h1>Капитан гражданского судна</h1>
             <div class="course-meta">
+                <span class="meta-tag" style="background: var(--accent); color: white; font-weight: 700;">Группа G (Golf)</span>
                 <span class="meta-tag">Старт 15 апреля</span>
                 <span class="meta-tag">8 занятий</span>
                 <span class="meta-tag">Zoom онлайн</span>
@@ -567,12 +568,13 @@
             const data = {
                 fullName: formData.get('fullName'),
                 background: formData.get('background'),
-                course: 'Капитан гражданского судна'
+                course: 'Капитан гражданского судна',
+                groupId: 'G (Golf)'
             };
 
             // Send email via mailto
-            const subject = 'Заявка на курс: Капитан гражданского судна';
-            const body = `Имя и фамилия: ${data.fullName}\n\nБэкграунд:\n${data.background}\n\nКурс: ${data.course}`;
+            const subject = 'Заявка на курс: Группа G (Golf) - Капитан гражданского судна';
+            const body = `Группа: G (Golf)\nКурс: ${data.course}\n\nИмя и фамилия: ${data.fullName}\n\nБэкграунд:\n${data.background}`;
             const mailtoLink = `mailto:broker@capt-tymur.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
             window.location.href = mailtoLink;
