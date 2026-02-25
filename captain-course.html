@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курс "Капитан гражданского судна" | Captain Tymur Academy</title>
+    <meta name="description" content="Комплексная программа подготовки к должности капитана. 8 занятий, онлайн-формат, практические кейсы.">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --bg-card: #1a2236;
+            --text-primary: #e8edf5;
+            --text-secondary: #8b95a8;
+            --accent: #3b82f6;
+            --accent-dim: rgba(59, 130, 246, 0.15);
+            --border: #1e293b;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 23, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 0 2rem;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        nav .logo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        nav .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .course-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .course-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-tag {
+            background: var(--accent-dim);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+        }
+
+        .price-box {
+            background: var(--bg-card);
+            border: 2px solid var(--success);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .price-box .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-box .note {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 1rem;
+            transition: background 0.2s;
+        }
+
+        .cta-button:hover {
+            background: #2563eb;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin: 1.5rem 0 0.75rem;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .program-table {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .program-item {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .program-item:last-child {
+            border-bottom: none;
+        }
+
+        .program-item h3 {
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+
+        .program-item .lesson-number {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box {
+            background: var(--accent-dim);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+        }
+
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container" style="max-width: 1200px;">
+            <a href="index.html" class="logo">Captain <span>Tymur</span> Academy</a>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="courses.html">Курсы</a></li>
+                <li><a href="contact.html">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <a href="index.html" class="back-link">← Назад к курсам</a>
+
+        <div class="course-header">
+            <h1>Капитан гражданского судна</h1>
+            <div class="course-meta">
+                <span class="meta-tag">8 занятий</span>
+                <span class="meta-tag">Zoom онлайн</span>
+                <span class="meta-tag">Группа 8-10 человек</span>
+                <span class="meta-tag">Русский язык</span>
+            </div>
+        </div>
+
+        <div class="price-box">
+            <div class="price">$1,070</div>
+            <p class="note">Полная стоимость курса. Возможна предоплата $300.</p>
+            <a href="contact.html" class="cta-button">Записаться на курс</a>
+        </div>
+
+        <section>
+            <h2>О курсе</h2>
+            <p>Комплексная программа подготовки к должности капитана гражданского судна. Курс основан на 15+ летнем практическом опыте работы на различных типах судов и охватывает все ключевые аспекты работы капитана.</p>
+
+            <div class="highlight-box">
+                <strong>Особенность курса:</strong> Фокус на реальные кейсы и практические ситуации. Вы научитесь принимать решения в сложных условиях, работать с экипажем и управлять всеми аспектами судовой жизни.
+            </div>
+        </section>
+
+        <section>
+            <h2>Программа курса</h2>
+            <div class="program-table">
+                <div class="program-item">
+                    <div class="lesson-number">Занятие 1</div>
+                    <h3>Коммуникация</h3>
+                    <p>Эффективная коммуникация капитана с экипажем, офисом компании, портовыми службами. Работа с почтовым клиентом и документооборотом.</p>
+                </div>
+
+                <div class="program-item">
+                    <div class="lesson-number">Занятие 2</div>
+                    <h3>Коммерческий менеджмент</h3>
+                    <p>Портовые документы, взаимодействие с агентами, чартерные партии, коммерческие аспекты работы судна.</p>
+                </div>
+
+                <div class="program-item">
+                    <div class="lesson-number">Занятие 3</div>
+                    <h3>Технический менеджмент</h3>
+                    <p>Управление техническим состоянием судна, планирование ремонтов, работа с классификационными обществами.</p>
+                </div>
+
+                <div class="program-item">
+                    <div class="lesson-number">Занятие 4</div>
+                    <h3>Администрирование судна</h3>
+                    <p>Административные функции капитана, документооборот, управление экипажем, дисциплина.</p>
+                </div>
+
+                <div class="program-item">
+                    <div class="lesson-number">Занятие 5</div>
+                    <h3>Принятие решений и оценка рисков</h3>
+                    <p>Методология принятия решений в сложных ситуациях, оценка рисков, работа в условиях неопределённости.</p>
+                </div>
+
+                <div class="program-item">
+                    <div class="lesson-number">Занятие 6</div>
+                    <h3>Операции</h3>
+                    <p>Грузовые операции, балластные операции, бункеровка, работа в портах.</p>
+                </div>
+
+                <div class="program-item">
+                    <div class="lesson-number">Занятие 7</div>
+                    <h3>Аварийные и нештатные ситуации</h3>
+                    <p>Действия капитана при авариях, пожарах, медицинских чрезвычайных ситуациях. Капитанский аккаунтинг.</p>
+                </div>
+
+                <div class="program-item">
+                    <div class="lesson-number">Занятие 8</div>
+                    <h3>Приём дел и начало работы</h3>
+                    <p>Вступление в должность капитана, приём дел от предыдущего капитана, оперативный план первых недель работы.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Для кого этот курс</h2>
+            <ul>
+                <li>Старшие помощники капитана, готовящиеся к повышению</li>
+                <li>Начинающие капитаны, желающие систематизировать знания</li>
+                <li>Моряки, планирующие карьеру на должности капитана</li>
+                <li>Специалисты береговых служб, работающие с судами</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Что вы получите</h2>
+            <ul>
+                <li>Структурированные знания о работе капитана</li>
+                <li>Практические навыки принятия решений</li>
+                <li>Реальные кейсы и разбор ситуаций</li>
+                <li>Доступ к закрытым учебным материалам</li>
+                <li>Сертификат о прохождении курса</li>
+                <li>Закрытое комьюнити выпускников</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Формат обучения</h2>
+            <ul>
+                <li><strong>Длительность:</strong> 8 занятий по 2 часа</li>
+                <li><strong>Расписание:</strong> 2 раза в неделю</li>
+                <li><strong>Платформа:</strong> Zoom (живые занятия)</li>
+                <li><strong>Размер группы:</strong> 8-10 человек</li>
+                <li><strong>Язык:</strong> Русский</li>
+            </ul>
+        </section>
+
+        <div class="price-box">
+            <div class="price">$1,070</div>
+            <p class="note">Инвестиция в вашу карьеру</p>
+            <a href="contact.html" class="cta-button">Записаться на курс</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Captain Tymur's Maritime Academy</p>
+    </footer>
+</body>
+</html>
