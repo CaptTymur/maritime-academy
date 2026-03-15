@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Персональные консультации | Мореходные классы</title>
+    <meta name="description" content="Индивидуальные консультации с капитаном. Карьера, операции, подготовка к повышению, технический менеджмент.">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --bg-card: #1a2236;
+            --text-primary: #e8edf5;
+            --text-secondary: #8b95a8;
+            --accent: #3b82f6;
+            --accent-dim: rgba(59, 130, 246, 0.15);
+            --border: #1e293b;
+            --success: #10b981;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .lang-toggle {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .lang-toggle button {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .lang-toggle button.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent);
+            position: relative;
+        }
+
+        .pricing-card.featured::before {
+            content: attr(data-badge);
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-card .duration {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-card .price {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 0.25rem;
+        }
+
+        .pricing-card .price-note {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .pricing-card ul li {
+            color: var(--text-secondary);
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .pricing-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .pricing-card .btn {
+            display: block;
+            text-align: center;
+            padding: 0.875rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: auto;
+        }
+
+        .pricing-card .btn:hover {
+            background: #2563eb;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.25rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .topic-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+
+        .topic-item h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .topic-item p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            line-height: 1;
+        }
+        .modal-close:hover { color: var(--text-primary); }
+        .modal h2 { margin-bottom: 1.5rem; color: var(--accent); }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .form-group textarea { min-height: 80px; resize: vertical; }
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .submit-btn:hover { background: #2563eb; }
+
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav style="position: fixed; top: 0; width: 100%; background: rgba(10, 14, 23, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 100; padding: 0 2rem;">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 0;">
+            <a href="index.html" style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary); text-decoration: none;">Мореходные <span style="color: var(--accent);">классы</span></a>
+            <ul style="display: flex; list-style: none; gap: 2rem; margin: 0; padding: 0;">
+                <li><a href="index.html" style="color: var(--text-secondary); text-decoration: none;" data-i18n="nav_home">Главная</a></li>
+                <li><a href="schedule.html" style="color: var(--text-secondary); text-decoration: none;" data-i18n="nav_schedule">Расписание</a></li>
+                <li><a href="contact.html" style="color: var(--text-secondary); text-decoration: none;" data-i18n="nav_contact">Контакты</a></li>
+            </ul>
+            <div class="lang-toggle">
+                <button class="active" data-lang="ru">RU</button>
+                <button data-lang="en">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <div style="max-width: 1000px; margin: 0 auto; padding: 6rem 2rem 4rem;">
+        <a href="index.html" style="color: var(--accent); text-decoration: none;" data-i18n="back_link">← Назад к курсам</a>
+
+        <div style="text-align: center; margin: 3rem 0;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" data-i18n="page_title">Персональные консультации</h1>
+            <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto; font-size: 1.1rem;" data-i18n="page_subtitle">Индивидуальная работа с действующим капитаном. Карьера, операции, подготовка к повышению, переход на берег.</p>
+        </div>
+
+        <!-- About -->
+        <section style="margin-bottom: 3rem;">
+            <div style="background: var(--accent-dim); border-left: 4px solid var(--accent); padding: 1.5rem; border-radius: 6px;">
+                <p style="color: var(--text-secondary);" data-i18n="about_text">Капитан с 2013 года, 3 года опыта в техническом менеджменте судоходной компании. Работал на судах различных типов и размеров. Консультации проводятся через Zoom — вы получаете прямой доступ к практическому опыту и честной обратной связи.</p>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section style="margin-bottom: 3rem;">
+            <h2 style="font-size: 1.75rem; margin-bottom: 2rem; text-align: center; color: var(--accent);" data-i18n="pricing_title">Тарифы</h2>
+            <div class="pricing-grid">
+                <!-- Quick -->
+                <div class="pricing-card">
+                    <h3 data-i18n="tier1_title">Быстрая консультация</h3>
+                    <div class="duration" data-i18n="tier1_duration">30 минут / Zoom</div>
+                    <div class="price">$75</div>
+                    <div class="price-note" data-i18n="tier1_note">разовая сессия</div>
+                    <ul>
+                        <li data-i18n="tier1_f1">Один конкретный вопрос или тема</li>
+                        <li data-i18n="tier1_f2">Карьерный совет</li>
+                        <li data-i18n="tier1_f3">Разбор ситуации на борту</li>
+                        <li data-i18n="tier1_f4">Стратегия подготовки к экзамену</li>
+                    </ul>
+                    <button class="btn" onclick="openModal('quick')" data-i18n="book_btn">Записаться</button>
+                </div>
+
+                <!-- Standard -->
+                <div class="pricing-card featured" data-badge="Популярный">
+                    <h3 data-i18n="tier2_title">Стандартная сессия</h3>
+                    <div class="duration" data-i18n="tier2_duration">60 минут / Zoom</div>
+                    <div class="price">$150</div>
+                    <div class="price-note" data-i18n="tier2_note">разовая сессия</div>
+                    <ul>
+                        <li data-i18n="tier2_f1">Глубокий разбор темы</li>
+                        <li data-i18n="tier2_f2">Карьерный план и стратегия</li>
+                        <li data-i18n="tier2_f3">Операционные вопросы</li>
+                        <li data-i18n="tier2_f4">Подготовка к повышению</li>
+                        <li data-i18n="tier2_f5">Краткое follow-up письмо после сессии</li>
+                    </ul>
+                    <button class="btn" onclick="openModal('standard')" data-i18n="book_btn">Записаться</button>
+                </div>
+
+                <!-- Mentoring -->
+                <div class="pricing-card">
+                    <h3 data-i18n="tier3_title">Менторинг-пакет</h3>
+                    <div class="duration" data-i18n="tier3_duration">4 сессии в месяц / Zoom</div>
+                    <div class="price">$400<span style="font-size: 1rem; color: var(--text-secondary);" data-i18n="tier3_per">/мес</span></div>
+                    <div class="price-note" data-i18n="tier3_note">$100 за сессию</div>
+                    <ul>
+                        <li data-i18n="tier3_f1">4 сессии по 45-60 минут</li>
+                        <li data-i18n="tier3_f2">Персональный план развития</li>
+                        <li data-i18n="tier3_f3">Доступ между сессиями (email)</li>
+                        <li data-i18n="tier3_f4">Отслеживание прогресса</li>
+                        <li data-i18n="tier3_f5">Приоритетное планирование</li>
+                    </ul>
+                    <button class="btn" onclick="openModal('mentoring')" data-i18n="book_btn">Записаться</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topics -->
+        <section style="margin-bottom: 3rem;">
+            <h2 style="font-size: 1.75rem; margin-bottom: 2rem; text-align: center; color: var(--accent);" data-i18n="topics_title">Темы консультаций</h2>
+            <div class="topics-grid">
+                <div class="topic-item">
+                    <h4 data-i18n="topic1_title">Карьера и повышение</h4>
+                    <p data-i18n="topic1_desc">Подготовка к должности старпома или капитана. Стратегия карьерного роста. Смена типа судов.</p>
+                </div>
+                <div class="topic-item">
+                    <h4 data-i18n="topic2_title">Операции на борту</h4>
+                    <p data-i18n="topic2_desc">Грузовые операции, навигация, швартовка, аварийные ситуации. Разбор конкретных кейсов.</p>
+                </div>
+                <div class="topic-item">
+                    <h4 data-i18n="topic3_title">Менеджмент и лидерство</h4>
+                    <p data-i18n="topic3_desc">Управление экипажем, Bridge Resource Management, конфликты, мотивация.</p>
+                </div>
+                <div class="topic-item">
+                    <h4 data-i18n="topic4_title">Переход на берег</h4>
+                    <p data-i18n="topic4_desc">Карьера в технмчическом менеджменте, судоходных компаниях, инспекции, сюрвей.</p>
+                </div>
+                <div class="topic-item">
+                    <h4 data-i18n="topic5_title">Подготовка к экзаменам</h4>
+                    <p data-i18n="topic5_desc">Стратегия подготовки, ключевые темы, практические советы по сдаче квалификационных экзаменов.</p>
+                </div>
+                <div class="topic-item">
+                    <h4 data-i18n="topic6_title">Коммерческие аспекты</h4>
+                    <p data-i18n="topic6_desc">Чартеры, фрахт, демередж, лейтайм. Как капитану понимать коммерческую сторону рейса.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How it works -->
+        <section style="margin-bottom: 3rem;">
+            <h2 style="font-size: 1.75rem; margin-bottom: 2rem; text-align: center; color: var(--accent);" data-i18n="how_title">Как это работает</h2>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
+                    <div style="background: var(--accent); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">1</div>
+                    <div>
+                        <strong data-i18n="step1_title">Оставляете заявку</strong>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;" data-i18n="step1_desc">Выбираете формат, описываете тему и вопросы</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
+                    <div style="background: var(--accent); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">2</div>
+                    <div>
+                        <strong data-i18n="step2_title">Согласовываем время</strong>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;" data-i18n="step2_desc">Подбираем удобное время для Zoom-сессии</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                    <div style="background: var(--accent); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">3</div>
+                    <div>
+                        <strong data-i18n="step3_title">Проводим сессию</strong>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;" data-i18n="step3_desc">Работаем над вашим вопросом. После сессии — краткое резюме на email.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer style="background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 2rem; text-align: center; color: var(--text-secondary); margin-top: 4rem;">
+        <p>&copy; 2026 Captain Tymur's Maritime Academy</p>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2 data-i18n="modal_title">Записаться на консультацию</h2>
+            <form id="bookingForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="fullName" data-i18n="form_name">Имя и фамилия</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="format" data-i18n="form_format">Формат</label>
+                    <select id="format" name="format">
+                        <option value="quick" data-i18n-opt="opt_quick">Быстрая консультация (30 мин) — $75</option>
+                        <option value="standard" data-i18n-opt="opt_standard">Стандартная сессия (60 мин) — $150</option>
+                        <option value="mentoring" data-i18n-opt="opt_mentoring">Менторинг-пакет (4 сессии/мес) — $400/мес</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="topic" data-i18n="form_topic">Тема / вопросы</label>
+                    <textarea id="topic" name="topic" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="email" data-i18n="form_email">Ваш email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <button type="submit" class="submit-btn" data-i18n="form_submit">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            ru: {
+                nav_home: 'Главная', nav_schedule: 'Расписание', nav_contact: 'Контакты',
+                back_link: '← Назад к курсам',
+                page_title: 'Персональные консультации',
+                page_subtitle: 'Индивидуальная работа с действующим капитаном. Карьера, операции, подготовка к повышению, переход на берег.',
+                about_text: 'Капитан с 2013 года, 3 года опыта в техническом менеджменте судоходной компании. Работал на судах различных типов и размеров. Консультации проводятся через Zoom — вы получаете прямой доступ к практическому опыту и честной обратной связи.',
+                pricing_title: 'Тарифы',
+                tier1_title: 'Быстрая консультация', tier1_duration: '30 минут / Zoom', tier1_note: 'разовая сессия',
+                tier1_f1: 'Один конкретный вопрос или тема', tier1_f2: 'Карьерный совет', tier1_f3: 'Разбор ситуации на борту', tier1_f4: 'Стратегия подготовки к экзамену',
+                tier2_title: 'Стандартная сессия', tier2_duration: '60 минут / Zoom', tier2_note: 'разовая сессия',
+                tier2_f1: 'Глубокий разбор темы', tier2_f2: 'Карьерный план и стратегия', tier2_f3: 'Операционные вопросы', tier2_f4: 'Подготовка к повышению', tier2_f5: 'Краткое follow-up письмо после сессии',
+                tier3_title: 'Менторинг-пакет', tier3_duration: '4 сессии в месяц / Zoom', tier3_per: '/мес', tier3_note: '$100 за сессию',
+                tier3_f1: '4 сессии по 45-60 минут', tier3_f2: 'Персональный план развития', tier3_f3: 'Доступ между сессиями (email)', tier3_f4: 'Отслеживание прогресса', tier3_f5: 'Приоритетное планирование',
+                book_btn: 'Записаться',
+                topics_title: 'Темы консультаций',
+                topic1_title: 'Карьера и повышение', topic1_desc: 'Подготовка к должности старпома или капитана. Стратегия карьерного роста. Смена типа судов.',
+                topic2_title: 'Операции на борту', topic2_desc: 'Грузовые операции, навигация, швартовка, аварийные ситуации. Разбор конкретных кейсов.',
+                topic3_title: 'Менеджмент и лидерство', topic3_desc: 'Управление экипажем, Bridge Resource Management, конфликты, мотивация.',
+                topic4_title: 'Переход на берег', topic4_desc: 'Карьера в техническом менеджменте, судоходных компаниях, инспекции, сюрвей.',
+                topic5_title: 'Подготовка к экзаменам', topic5_desc: 'Стратегия подготовки, ключевые темы, практические советы по сдаче квалификационных экзаменов.',
+                topic6_title: 'Коммерческие аспекты', topic6_desc: 'Чартеры, фрахт, демередж, лейтайм. Как капитану понимать коммерческую сторону рейса.',
+                how_title: 'Как это работает',
+                step1_title: 'Оставляете заявку', step1_desc: 'Выбираете формат, описываете тему и вопросы',
+                step2_title: 'Согласовываем время', step2_desc: 'Подбираем удобное время для Zoom-сессии',
+                step3_title: 'Проводим сессию', step3_desc: 'Работаем над вашим вопросом. После сессии — краткое резюме на email.',
+                modal_title: 'Записаться на консультацию',
+                form_name: 'Имя и фамилия', form_format: 'Формат', form_topic: 'Тема / вопросы', form_email: 'Ваш email', form_submit: 'Отправить заявку',
+                opt_quick: 'Быстрая консультация (30 мин) — $75',
+                opt_standard: 'Стандартная сессия (60 мин) — $150',
+                opt_mentoring: 'Менторинг-пакет (4 сессии/мес) — $400/мес'
+            },
+            en: {
+                nav_home: 'Home', nav_schedule: 'Schedule', nav_contact: 'Contact',
+                back_link: '← Back to courses',
+                page_title: 'Personal Consultations',
+                page_subtitle: 'One-on-one sessions with an experienced Captain. Career, operations, promotion preparation, shore-side transition.',
+                about_text: 'Captain since 2013, 3 years of experience in shipping company technical management. Worked on various vessel types and sizes. Consultations are conducted via Zoom — you get direct access to practical experience and honest feedback.',
+                pricing_title: 'Pricing',
+                tier1_title: 'Quick Consultation', tier1_duration: '30 minutes / Zoom', tier1_note: 'single session',
+                tier1_f1: 'One specific question or topic', tier1_f2: 'Career advice', tier1_f3: 'Onboard situation analysis', tier1_f4: 'Exam preparation strategy',
+                tier2_title: 'Standard Session', tier2_duration: '60 minutes / Zoom', tier2_note: 'single session',
+                tier2_f1: 'Deep dive into a topic', tier2_f2: 'Career plan and strategy', tier2_f3: 'Operational questions', tier2_f4: 'Promotion preparation', tier2_f5: 'Brief follow-up email after session',
+                tier3_title: 'Mentoring Package', tier3_duration: '4 sessions per month / Zoom', tier3_per: '/mo', tier3_note: '$100 per session',
+                tier3_f1: '4 sessions of 45-60 minutes', tier3_f2: 'Personal development plan', tier3_f3: 'Access between sessions (email)', tier3_f4: 'Progress tracking', tier3_f5: 'Priority scheduling',
+                book_btn: 'Book now',
+                topics_title: 'Consultation Topics',
+                topic1_title: 'Career & Promotion', topic1_desc: 'Preparing for Chief Officer or Master position. Career growth strategy. Changing vessel types.',
+                topic2_title: 'Onboard Operations', topic2_desc: 'Cargo operations, navigation, mooring, emergency situations. Real case analysis.',
+                topic3_title: 'Management & Leadership', topic3_desc: 'Crew management, Bridge Resource Management, conflicts, motivation.',
+                topic4_title: 'Shore-side Transition', topic4_desc: 'Career in technical management, shipping companies, inspections, survey.',
+                topic5_title: 'Exam Preparation', topic5_desc: 'Preparation strategy, key topics, practical tips for qualification exams.',
+                topic6_title: 'Commercial Aspects', topic6_desc: 'Charters, freight, demurrage, laytime. Understanding the commercial side of a voyage.',
+                how_title: 'How it works',
+                step1_title: 'Submit application', step1_desc: 'Choose format, describe your topic and questions',
+                step2_title: 'Schedule', step2_desc: 'We find a convenient time for a Zoom session',
+                step3_title: 'Session', step3_desc: 'We work on your question. After the session — a brief summary to your email.',
+                modal_title: 'Book a consultation',
+                form_name: 'Full name', form_format: 'Format', form_topic: 'Topic / questions', form_email: 'Your email', form_submit: 'Submit application',
+                opt_quick: 'Quick Consultation (30 min) — $75',
+                opt_standard: 'Standard Session (60 min) — $150',
+                opt_mentoring: 'Mentoring Package (4 sessions/mo) — $400/mo'
+            }
+        };
+
+        let currentLang = localStorage.getItem('language') || 'ru';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('language', lang);
+            document.querySelectorAll('[data-i18n]').forEach(elem => {
+                const key = elem.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    if (elem.tagName === 'INPUT' || elem.tagName === 'TEXTAREA') {
+                        elem.placeholder = translations[lang][key];
+                    } else {
+                        elem.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+            // Update select options
+            document.querySelectorAll('[data-i18n-opt]').forEach(elem => {
+                const key = elem.getAttribute('data-i18n-opt');
+                if (translations[lang][key]) elem.textContent = translations[lang][key];
+            });
+            // Update featured badge
+            const featured = document.querySelector('.pricing-card.featured');
+            if (featured) featured.setAttribute('data-badge', lang === 'en' ? 'Popular' : 'Популярный');
+            // Update active button
+            document.querySelectorAll('.lang-toggle button').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+        }
+
+        let selectedFormat = 'standard';
+
+        function openModal(format) {
+            selectedFormat = format || 'standard';
+            document.getElementById('format').value = selectedFormat;
+            document.getElementById('bookingModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('bookingModal').classList.remove('active');
+            document.body.style.overflow = '';
+            document.getElementById('bookingForm').reset();
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const fd = new FormData(event.target);
+            const format = fd.get('format');
+            const formatLabels = {
+                quick: currentLang === 'en' ? 'Quick Consultation (30 min) — $75' : 'Быстрая консультация (30 мин) — $75',
+                standard: currentLang === 'en' ? 'Standard Session (60 min) — $150' : 'Стандартная сессия (60 мин) — $150',
+                mentoring: currentLang === 'en' ? 'Mentoring Package (4 sessions/mo) — $400/mo' : 'Менторинг-пакет (4 сессии/мес) — $400/мес'
+            };
+            const subject = currentLang === 'en'
+                ? `Consultation request: ${formatLabels[format]}`
+                : `Заявка на консультацию: ${formatLabels[format]}`;
+            const body = currentLang === 'en'
+                ? `Format: ${formatLabels[format]}\n\nName: ${fd.get('fullName')}\nEmail: ${fd.get('email')}\n\nTopic / questions:\n${fd.get('topic')}`
+                : `Формат: ${formatLabels[format]}\n\nИмя: ${fd.get('fullName')}\nEmail: ${fd.get('email')}\n\nТема / вопросы:\n${fd.get('topic')}`;
+            window.location.href = `mailto:broker@capt-tymur.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            setTimeout(() => closeModal(), 500);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage(currentLang);
+            document.querySelectorAll('.lang-toggle button').forEach(btn => {
+                btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang')));
+            });
+        });
+
+        document.getElementById('bookingModal').addEventListener('click', (e) => {
+            if (e.target.id === 'bookingModal') closeModal();
+        });
+    </script>
+</body>
+</html>
