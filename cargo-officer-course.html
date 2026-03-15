@@ -3,196 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Курс "Грузовой офицер балкер/сухогруз" | Мореходные классы</title>
-    <meta name="description" content="Практический курс грузовых операций на балкерах и сухогрузах. Погрузка, выгрузка, остойчивость, драфт-сюрвей, документация.">
+    <title>Курс "Грузовой офицер на балкере и сухогрузе" | Мореходные классы</title>
+    <meta name="description" content="Прикладной курс грузовых операций на балкерах и сухогрузах. 10 занятий, полный грузовой цикл рейса.">
     <style>
         /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: #1a2236;
-            border: 1px solid #1e293b;
-            border-radius: 12px;
-            padding: 2rem;
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: transparent;
-            border: none;
-            color: #8b95a8;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            line-height: 1;
-        }
-
-        .modal-close:hover {
-            color: #e8edf5;
-        }
-
-        .modal h2 {
-            margin-bottom: 1.5rem;
-            color: #3b82f6;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #e8edf5;
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            background: #0a0e17;
-            border: 1px solid #1e293b;
-            border-radius: 6px;
-            color: #e8edf5;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #3b82f6;
-        }
-
-        .form-group textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .file-upload {
-            position: relative;
-        }
-
-        .file-upload input[type="file"] {
-            display: none;
-        }
-
-        .file-upload-btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: #0a0e17;
-            border: 1px solid #1e293b;
-            border-radius: 6px;
-            color: #e8edf5;
-            cursor: pointer;
-            transition: border-color 0.2s;
-        }
-
-        .file-upload-btn:hover {
-            border-color: #3b82f6;
-        }
-
-        .file-name {
-            display: inline-block;
-            margin-left: 1rem;
-            color: #8b95a8;
-            font-size: 0.875rem;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1rem;
-            background: #3b82f6;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .submit-btn:hover {
-            background: #2563eb;
-        }
-
-        .submit-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .lang-toggle {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-
-        .lang-toggle button {
-            background: transparent;
-            border: 1px solid #1e293b;
-            color: #8b95a8;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .lang-toggle button.active {
-            background: #3b82f6;
-            color: white;
-            border-color: #3b82f6;
-        }
-
-        .curriculum-item {
-            background: #111827;
-            border: 1px solid #1e293b;
-            border-radius: 8px;
-            padding: 1.25rem 1.5rem;
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .curriculum-item .num {
-            background: #3b82f6;
-            color: white;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .curriculum-item .text {
-            color: #8b95a8;
-            font-size: 0.95rem;
-        }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; justify-content: center; align-items: center; }
+        .modal.active { display: flex; }
+        .modal-content { background: #1a2236; border: 1px solid #1e293b; border-radius: 12px; padding: 2rem; max-width: 500px; width: 90%; position: relative; }
+        .modal-close { position: absolute; top: 1rem; right: 1rem; background: transparent; border: none; color: #8b95a8; font-size: 1.5rem; cursor: pointer; padding: 0.5rem; line-height: 1; }
+        .modal-close:hover { color: #e8edf5; }
+        .modal h2 { margin-bottom: 1.5rem; color: #3b82f6; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; color: #e8edf5; font-weight: 600; }
+        .form-group input, .form-group textarea { width: 100%; padding: 0.75rem; background: #0a0e17; border: 1px solid #1e293b; border-radius: 6px; color: #e8edf5; font-family: inherit; font-size: 1rem; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #3b82f6; }
+        .form-group textarea { min-height: 100px; resize: vertical; }
+        .file-upload { position: relative; }
+        .file-upload input[type="file"] { display: none; }
+        .file-upload-btn { display: inline-block; padding: 0.75rem 1.5rem; background: #0a0e17; border: 1px solid #1e293b; border-radius: 6px; color: #e8edf5; cursor: pointer; transition: border-color 0.2s; }
+        .file-upload-btn:hover { border-color: #3b82f6; }
+        .file-name { display: inline-block; margin-left: 1rem; color: #8b95a8; font-size: 0.875rem; }
+        .submit-btn { width: 100%; padding: 1rem; background: #3b82f6; color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
+        .submit-btn:hover { background: #2563eb; }
+        .lang-toggle { display: flex; gap: 0.5rem; align-items: center; }
+        .lang-toggle button { background: transparent; border: 1px solid #1e293b; color: #8b95a8; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; transition: all 0.2s; }
+        .lang-toggle button.active { background: #3b82f6; color: white; border-color: #3b82f6; }
+        .curriculum-item { background: #111827; border: 1px solid #1e293b; border-radius: 8px; padding: 1.25rem 1.5rem; margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 1rem; }
+        .curriculum-item .num { background: #3b82f6; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
+        .curriculum-item .text { color: #8b95a8; font-size: 0.95rem; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
+        .pricing-option { background: #111827; border: 1px solid #1e293b; border-radius: 10px; padding: 1.5rem; text-align: center; }
+        .pricing-option.featured { border-color: #3b82f6; }
+        .pricing-option .price { font-size: 2rem; font-weight: 700; color: #10b981; }
+        .pricing-option .label { color: #8b95a8; font-size: 0.85rem; margin-top: 0.25rem; }
+        @media (max-width: 768px) { nav ul { display: none; } }
     </style>
 </head>
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0e17; color: #e8edf5; margin: 0; line-height: 1.6;">
@@ -215,86 +59,117 @@
         <a href="index.html" style="color: #3b82f6; text-decoration: none;" data-i18n="back_link">← Назад к курсам</a>
 
         <div style="margin: 2rem 0 3rem; padding-bottom: 2rem; border-bottom: 1px solid #1e293b;">
-            <div style="background: #10b981; color: white; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; display: inline-block; margin-bottom: 1rem;" data-i18n="status_badge">Программа готова — запуск по запросу</div>
-            <h1 style="font-size: 2.5rem; margin: 1rem 0;" data-i18n="page_title">Грузовой офицер балкер/сухогруз</h1>
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
-                <span style="background: #3b82f6; color: white; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.875rem; font-weight: 700;" data-i18n="group_label">Индивидуально / малая группа</span>
+            <div style="background: #10b981; color: white; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; display: inline-block; margin-bottom: 1rem;" data-i18n="status_badge">Программа готова — идёт набор группы</div>
+            <h1 style="font-size: 2.5rem; margin: 1rem 0;" data-i18n="page_title">Грузовой офицер на балкере и сухогрузе</h1>
+            <p style="color: #8b95a8; font-size: 1.1rem; margin-top: 0.5rem;" data-i18n="page_sub">Прикладной курс для палубных офицеров и будущих старших помощников, которым нужно собрать грузовую работу в одну рабочую систему</p>
+        </div>
+
+        <!-- Format block -->
+        <div style="background: #1a2236; border: 2px solid #3b82f6; border-radius: 12px; padding: 2rem; margin: 2rem 0; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem; text-align: center;">
+            <div>
+                <div style="font-size: 2rem; font-weight: 700; color: #3b82f6;" data-i18n="fmt_lessons">10 занятий</div>
+                <p style="color: #8b95a8; font-size: 0.875rem;" data-i18n="fmt_lessons_sub">по 90 минут</p>
+            </div>
+            <div>
+                <div style="font-size: 2rem; font-weight: 700; color: #3b82f6;" data-i18n="fmt_freq">2 раза</div>
+                <p style="color: #8b95a8; font-size: 0.875rem;" data-i18n="fmt_freq_sub">в неделю</p>
+            </div>
+            <div>
+                <div style="font-size: 2rem; font-weight: 700; color: #3b82f6;" data-i18n="fmt_group">4-6</div>
+                <p style="color: #8b95a8; font-size: 0.875rem;" data-i18n="fmt_group_sub">человек в группе</p>
             </div>
         </div>
 
-        <div style="background: #1a2236; border: 2px solid #3b82f6; border-radius: 12px; padding: 2rem; margin: 2rem 0; text-align: center;">
-            <div style="font-size: 2rem; font-weight: 700; color: #3b82f6; margin-bottom: 0.5rem;" data-i18n="start_info">По запросу</div>
-            <p style="color: #8b95a8; font-size: 0.875rem;" data-i18n="start_sub">Курс запускается при наличии заявок. Оставьте заявку — мы свяжемся с вами.</p>
-        </div>
-
+        <!-- About -->
         <section style="margin-bottom: 3rem;">
             <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem; color: #3b82f6;" data-i18n="about_title">О курсе</h2>
-            <p style="color: #8b95a8;" data-i18n="about_text">Специализированный курс по грузовым операциям на балкерах и сухогрузах. Полный цикл: от подготовки трюмов и планирования погрузки до драфт-сюрвея и оформления грузовых документов. Курс построен на практическом опыте работы на балкерах различного размера — от костеров до кейпсайзов.</p>
+            <p style="color: #8b95a8;" data-i18n="about_text">Курс собран вокруг одного полного грузового цикла рейса. Каждая тема привязана к реальному ходу работы грузового офицера: оценить загрузку, подготовить трюмы, собрать грузовой план, превратить его в рабочую последовательность погрузки, пройти драфт-сюрвей, довести груз до порта выгрузки и закрыть рейс без хаоса в документах и спорах.</p>
 
             <div style="background: rgba(59, 130, 246, 0.15); border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 6px; margin: 1.5rem 0;">
-                <strong data-i18n="note_label">Важно:</strong> <span data-i18n="note_text">Курс ориентирован на практические навыки грузовых операций на навалочных судах. Теория подкреплена реальными кейсами и документами.</span>
+                <strong data-i18n="note_label">Честная граница:</strong> <span data-i18n="note_text">Курс не заменяет судовой loading manual, company SMS и реальный ввод в должность на конкретном судне. Но даёт сильную рабочую рамку роли грузового офицера.</span>
             </div>
         </section>
 
+        <!-- Curriculum -->
         <section style="margin-bottom: 3rem;">
             <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem; color: #3b82f6;" data-i18n="curriculum_title">Программа курса</h2>
-            <div class="curriculum-item">
-                <div class="num">1</div>
-                <div class="text" data-i18n="topic1">Типы навалочных грузов. IMSBC Code. Свойства грузов: угол естественного откоса, влагосодержание, TML. Опасные навалочные грузы (группы A, B, C).</div>
-            </div>
-            <div class="curriculum-item">
-                <div class="num">2</div>
-                <div class="text" data-i18n="topic2">Подготовка трюмов. Grain-clean vs shovel-clean. Осмотры и сюрвей трюмов. Люковые закрытия: типы, обслуживание, тест на герметичность.</div>
-            </div>
-            <div class="curriculum-item">
-                <div class="num">3</div>
-                <div class="text" data-i18n="topic3">Планирование погрузки. Грузовой план. Расчёт остойчивости и прочности. Работа с судовым компьютером загрузки. Секвенс погрузки/выгрузки.</div>
-            </div>
-            <div class="curriculum-item">
-                <div class="num">4</div>
-                <div class="text" data-i18n="topic4">Погрузка зерна. Grain stability criteria. Shifting boards, strapping, bundling. Документ об авторизации на перевозку зерна.</div>
-            </div>
-            <div class="curriculum-item">
-                <div class="num">5</div>
-                <div class="text" data-i18n="topic5">Драфт-сюрвей. Принцип расчёта, таблицы гидростатики, поправки на плотность воды, дифферент, деформацию. Практическое выполнение.</div>
-            </div>
-            <div class="curriculum-item">
-                <div class="num">6</div>
-                <div class="text" data-i18n="topic6">Балластные операции. Балластировка во время грузовых операций. Ballast Water Management Plan. Конвенция BWM.</div>
-            </div>
-            <div class="curriculum-item">
-                <div class="num">7</div>
-                <div class="text" data-i18n="topic7">Грузовая документация. Bill of Lading, Mate's Receipt, Statement of Facts, NOR, Letter of Protest. Оговорки и ремарки.</div>
-            </div>
-            <div class="curriculum-item">
-                <div class="num">8</div>
-                <div class="text" data-i18n="topic8">Безопасность грузовых операций. Enclosed space entry. Работа с портовыми терминалами. Коммерческие аспекты: demurrage, despatch, laytime.</div>
-            </div>
+            <div class="curriculum-item"><div class="num">1</div><div class="text" data-i18n="topic1">Грузовой офицер как роль и полный грузовой цикл сухогруза. Связь между документами на груз, ограничениями судна, трюмами, балластом, планированием, грузовыми операциями, драфт-сюрвеем, рейсом и выгрузкой.</div></div>
+            <div class="curriculum-item"><div class="num">2</div><div class="text" data-i18n="topic2">Грузоподъёмность, дедвейт-брикдаун и первичная оценка возможности погрузки. Лимитирующие факторы по осадке и кубатуре, зона опасных допущений.</div></div>
+            <div class="curriculum-item"><div class="num">3</div><div class="text" data-i18n="topic3">Подготовка грузовых помещений и готовность трюмов. Grain-clean vs shovel-clean. Инспекция трюмов, дефекты, люковые закрытия.</div></div>
+            <div class="curriculum-item"><div class="num">4</div><div class="text" data-i18n="topic4">Предварительный грузовой план: распределение по трюмам, ограничения по прочности и объёму, prestow.</div></div>
+            <div class="curriculum-item"><div class="num">5</div><div class="text" data-i18n="topic5">Балластные операции и последовательность погрузки. Как увязать грузовой план с дебалластировкой, дифферентом и запасом безопасности.</div></div>
+            <div class="curriculum-item"><div class="num">6</div><div class="text" data-i18n="topic6">Погрузка в реальном времени: контроль терминала, записи, повреждения и stop-work. Штурманская расписка, оговорки, SOF, фотолог, протестный след.</div></div>
+            <div class="curriculum-item"><div class="num">7</div><div class="text" data-i18n="topic7">Драфт-сюрвей на погрузке: чтение осадок, плотность, константа, гидростатика, пределы точности, типовые ошибки, основания для протеста.</div></div>
+            <div class="curriculum-item"><div class="num">8</div><div class="text" data-i18n="topic8">Финальный грузовой план, отход и уход за грузом в рейсе: вентиляция, льяла, инспекции, погодные меры.</div></div>
+            <div class="curriculum-item"><div class="num">9</div><div class="text" data-i18n="topic9">Специфика грузов: зерно, навалочные, генеральные и лесные грузы. Различия в планировании, подготовке, погрузке и уходе.</div></div>
+            <div class="curriculum-item"><div class="num">10</div><div class="text" data-i18n="topic10">Порт выгрузки: план выгрузки, дебалластировка, итоговый драфт-сюрвей, претензии по недостаче, фиксация повреждений, грузовые споры.</div></div>
         </section>
 
+        <!-- Audience -->
         <section style="margin-bottom: 3rem;">
             <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem; color: #3b82f6;" data-i18n="audience_title">Для кого этот курс</h2>
             <ul style="color: #8b95a8; margin-left: 1.5rem;">
-                <li style="margin-bottom: 0.5rem;" data-i18n="aud1">Палубные офицеры, переходящие на балкеры с других типов судов</li>
-                <li style="margin-bottom: 0.5rem;" data-i18n="aud2">Третьи и вторые помощники капитана на балкерах, желающие углубить знания грузовых операций</li>
-                <li style="margin-bottom: 0.5rem;" data-i18n="aud3">Старшие помощники, готовящиеся к самостоятельной работе на навалочных судах</li>
-                <li style="margin-bottom: 0.5rem;" data-i18n="aud4">Курсанты и выпускники, планирующие карьеру на балкерах</li>
+                <li style="margin-bottom: 0.5rem;" data-i18n="aud1">Палубные офицеры, которые идут на балкер или сухогруз и хотят собрать грузовую роль целиком</li>
+                <li style="margin-bottom: 0.5rem;" data-i18n="aud2">Будущие старшие помощники, которым нужна именно грузовая линия, а не общий management layer старпома</li>
+                <li style="margin-bottom: 0.5rem;" data-i18n="aud3">Те, кто уже видел погрузку и выгрузку, но пока не держит весь цикл в голове как систему</li>
+                <li style="margin-bottom: 0.5rem;" data-i18n="aud4">Те, кто хочет войти в следующий контракт с более сильной и спокойной рабочей рамкой</li>
             </ul>
-        </section>
 
-        <section style="margin-bottom: 3rem;">
-            <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem; color: #3b82f6;" data-i18n="format_title">Формат обучения</h2>
+            <h3 style="font-size: 1.25rem; margin: 1.5rem 0 1rem; color: #e8edf5;" data-i18n="not_for_title">Кому курс не подходит</h3>
             <ul style="color: #8b95a8; margin-left: 1.5rem;">
-                <li style="margin-bottom: 0.5rem;"><strong data-i18n="format_start_label">Старт:</strong> <span data-i18n="format_start">по запросу</span></li>
-                <li style="margin-bottom: 0.5rem;"><strong data-i18n="format_platform_label">Платформа:</strong> <span data-i18n="format_platform">Zoom (живые занятия)</span></li>
-                <li style="margin-bottom: 0.5rem;"><strong data-i18n="format_size_label">Формат:</strong> <span data-i18n="format_size">индивидуально или малая группа (до 5 человек)</span></li>
-                <li style="margin-bottom: 0.5rem;"><strong data-i18n="format_price_label">Стоимость:</strong> <span data-i18n="format_price">$1 500 (индивидуально), скидка при групповом наборе</span></li>
+                <li style="margin-bottom: 0.5rem;" data-i18n="not1">Тем, кто ищет быструю шпаргалку без мышления и расчётной дисциплины</li>
+                <li style="margin-bottom: 0.5rem;" data-i18n="not2">Тем, кому нужен общий курс палубного офицера или курс старпома</li>
+                <li style="margin-bottom: 0.5rem;" data-i18n="not3">Тем, кому нужна танкерная, контейнерная или иная типоспецифическая грузовая технология</li>
             </ul>
         </section>
 
+        <!-- Pricing -->
+        <section style="margin-bottom: 3rem;">
+            <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem; color: #3b82f6;" data-i18n="pricing_title">Стоимость</h2>
+            <div class="pricing-grid">
+                <div class="pricing-option">
+                    <div class="price">$690</div>
+                    <div class="label" data-i18n="price_early">Ранний набор</div>
+                </div>
+                <div class="pricing-option featured">
+                    <div class="price">$790</div>
+                    <div class="label" data-i18n="price_standard">Стандартная цена</div>
+                </div>
+                <div class="pricing-option">
+                    <div class="price">$980</div>
+                    <div class="label" data-i18n="price_enhanced">Группа + персональный разбор</div>
+                </div>
+            </div>
+            <p style="color: #8b95a8; font-size: 0.85rem; margin-top: 1rem;" data-i18n="price_note">Бронь места — 30% от стоимости. Остаток — после подтверждения старта группы.</p>
+        </section>
+
+        <!-- What you get -->
+        <section style="margin-bottom: 3rem;">
+            <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem; color: #3b82f6;" data-i18n="get_title">Что получает слушатель</h2>
+            <ul style="color: #8b95a8; margin-left: 1.5rem;">
+                <li style="margin-bottom: 0.5rem;" data-i18n="get1">10 живых занятий по 90 минут через Zoom</li>
+                <li style="margin-bottom: 0.5rem;" data-i18n="get2">10 PDF-опорных карт к каждой теме</li>
+                <li style="margin-bottom: 0.5rem;" data-i18n="get3">Доступ в рабочий чат группы</li>
+                <li style="margin-bottom: 0.5rem;" data-i18n="get4">Пошаговая логика полного грузового цикла рейса</li>
+                <li style="margin-bottom: 0.5rem;" data-i18n="get5">Разбор скрытых правил, типовых ошибок и практических кейсов</li>
+            </ul>
+        </section>
+
+        <!-- Format -->
+        <section style="margin-bottom: 3rem;">
+            <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem; color: #3b82f6;" data-i18n="format_title">Формат</h2>
+            <ul style="color: #8b95a8; margin-left: 1.5rem;">
+                <li style="margin-bottom: 0.5rem;"><strong data-i18n="format_start_label">Старт:</strong> <span data-i18n="format_start">по набору группы (минимум 4 человека)</span></li>
+                <li style="margin-bottom: 0.5rem;"><strong data-i18n="format_platform_label">Платформа:</strong> <span data-i18n="format_platform">Zoom (живые занятия)</span></li>
+                <li style="margin-bottom: 0.5rem;"><strong data-i18n="format_schedule_label">Расписание:</strong> <span data-i18n="format_schedule">2 раза в неделю по 90 минут, 5 недель</span></li>
+                <li style="margin-bottom: 0.5rem;"><strong data-i18n="format_size_label">Группа:</strong> <span data-i18n="format_size">4-6 человек</span></li>
+            </ul>
+        </section>
+
+        <!-- CTA -->
         <div style="background: #1a2236; border: 2px solid #3b82f6; border-radius: 12px; padding: 2rem; text-align: center;">
             <div style="font-size: 2rem; font-weight: 700; color: #3b82f6;" data-i18n="cta_title">Оставить заявку</div>
-            <p style="color: #8b95a8; font-size: 0.875rem; margin: 0.5rem 0 1rem;" data-i18n="cta_sub">Курс запускается при наличии заявок</p>
+            <p style="color: #8b95a8; font-size: 0.875rem; margin: 0.5rem 0 1rem;" data-i18n="cta_sub">Группа запускается при наборе от 4 человек. Бронь — 30%.</p>
             <a href="javascript:void(0)" onclick="openModal()" style="display: block; width: 100%; padding: 1rem; background: #3b82f6; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;" data-i18n="cta_btn">Записаться на курс</a>
         </div>
     </div>
@@ -315,7 +190,7 @@
                 </div>
                 <div class="form-group">
                     <label for="background" data-i18n="form_bg">Бэкграунд</label>
-                    <textarea id="background" name="background" placeholder="Расскажите о вашем опыте работы в море, на каких судах работали" required></textarea>
+                    <textarea id="background" name="background" placeholder="Должность, опыт на балкерах/сухогрузах, контакт с погрузкой/выгрузкой" required></textarea>
                 </div>
                 <div class="form-group file-upload">
                     <label data-i18n="form_cv">Прикрепить CV</label>
@@ -331,98 +206,90 @@
     <script>
         const translations = {
             ru: {
-                nav_home: 'Главная',
-                nav_schedule: 'Расписание',
-                nav_contact: 'Контакты',
+                nav_home: 'Главная', nav_schedule: 'Расписание', nav_contact: 'Контакты',
                 back_link: '← Назад к курсам',
-                status_badge: 'Программа готова — запуск по запросу',
-                page_title: 'Грузовой офицер балкер/сухогруз',
-                group_label: 'Индивидуально / малая группа',
-                start_info: 'По запросу',
-                start_sub: 'Курс запускается при наличии заявок. Оставьте заявку — мы свяжемся с вами.',
+                status_badge: 'Программа готова — идёт набор группы',
+                page_title: 'Грузовой офицер на балкере и сухогрузе',
+                page_sub: 'Прикладной курс для палубных офицеров и будущих старших помощников, которым нужно собрать грузовую работу в одну рабочую систему',
+                fmt_lessons: '10 занятий', fmt_lessons_sub: 'по 90 минут', fmt_freq: '2 раза', fmt_freq_sub: 'в неделю', fmt_group: '4-6', fmt_group_sub: 'человек в группе',
                 about_title: 'О курсе',
-                about_text: 'Специализированный курс по грузовым операциям на балкерах и сухогрузах. Полный цикл: от подготовки трюмов и планирования погрузки до драфт-сюрвея и оформления грузовых документов. Курс построен на практическом опыте работы на балкерах различного размера — от костеров до кейпсайзов.',
-                note_label: 'Важно:',
-                note_text: 'Курс ориентирован на практические навыки грузовых операций на навалочных судах. Теория подкреплена реальными кейсами и документами.',
+                about_text: 'Курс собран вокруг одного полного грузового цикла рейса. Каждая тема привязана к реальному ходу работы грузового офицера: оценить загрузку, подготовить трюмы, собрать грузовой план, превратить его в рабочую последовательность погрузки, пройти драфт-сюрвей, довести груз до порта выгрузки и закрыть рейс без хаоса в документах и спорах.',
+                note_label: 'Честная граница:', note_text: 'Курс не заменяет судовой loading manual, company SMS и реальный ввод в должность на конкретном судне. Но даёт сильную рабочую рамку роли грузового офицера.',
                 curriculum_title: 'Программа курса',
-                topic1: 'Типы навалочных грузов. IMSBC Code. Свойства грузов: угол естественного откоса, влагосодержание, TML. Опасные навалочные грузы (группы A, B, C).',
-                topic2: 'Подготовка трюмов. Grain-clean vs shovel-clean. Осмотры и сюрвей трюмов. Люковые закрытия: типы, обслуживание, тест на герметичность.',
-                topic3: 'Планирование погрузки. Грузовой план. Расчёт остойчивости и прочности. Работа с судовым компьютером загрузки. Секвенс погрузки/выгрузки.',
-                topic4: 'Погрузка зерна. Grain stability criteria. Shifting boards, strapping, bundling. Документ об авторизации на перевозку зерна.',
-                topic5: 'Драфт-сюрвей. Принцип расчёта, таблицы гидростатики, поправки на плотность воды, дифферент, деформацию. Практическое выполнение.',
-                topic6: 'Балластные операции. Балластировка во время грузовых операций. Ballast Water Management Plan. Конвенция BWM.',
-                topic7: 'Грузовая документация. Bill of Lading, Mate\'s Receipt, Statement of Facts, NOR, Letter of Protest. Оговорки и ремарки.',
-                topic8: 'Безопасность грузовых операций. Enclosed space entry. Работа с портовыми терминалами. Коммерческие аспекты: demurrage, despatch, laytime.',
+                topic1: 'Грузовой офицер как роль и полный грузовой цикл сухогруза. Связь между документами на груз, ограничениями судна, трюмами, балластом, планированием, грузовыми операциями, драфт-сюрвеем, рейсом и выгрузкой.',
+                topic2: 'Грузоподъёмность, дедвейт-брикдаун и первичная оценка возможности погрузки. Лимитирующие факторы по осадке и кубатуре, зона опасных допущений.',
+                topic3: 'Подготовка грузовых помещений и готовность трюмов. Grain-clean vs shovel-clean. Инспекция трюмов, дефекты, люковые закрытия.',
+                topic4: 'Предварительный грузовой план: распределение по трюмам, ограничения по прочности и объёму, prestow.',
+                topic5: 'Балластные операции и последовательность погрузки. Как увязать грузовой план с дебалластировкой, дифферентом и запасом безопасности.',
+                topic6: 'Погрузка в реальном времени: контроль терминала, записи, повреждения и stop-work. Штурманская расписка, оговорки, SOF, фотолог, протестный след.',
+                topic7: 'Драфт-сюрвей на погрузке: чтение осадок, плотность, константа, гидростатика, пределы точности, типовые ошибки, основания для протеста.',
+                topic8: 'Финальный грузовой план, отход и уход за грузом в рейсе: вентиляция, льяла, инспекции, погодные меры.',
+                topic9: 'Специфика грузов: зерно, навалочные, генеральные и лесные грузы. Различия в планировании, подготовке, погрузке и уходе.',
+                topic10: 'Порт выгрузки: план выгрузки, дебалластировка, итоговый драфт-сюрвей, претензии по недостаче, фиксация повреждений, грузовые споры.',
                 audience_title: 'Для кого этот курс',
-                aud1: 'Палубные офицеры, переходящие на балкеры с других типов судов',
-                aud2: 'Третьи и вторые помощники капитана на балкерах, желающие углубить знания грузовых операций',
-                aud3: 'Старшие помощники, готовящиеся к самостоятельной работе на навалочных судах',
-                aud4: 'Курсанты и выпускники, планирующие карьеру на балкерах',
-                format_title: 'Формат обучения',
-                format_start_label: 'Старт:',
-                format_start: 'по запросу',
-                format_platform_label: 'Платформа:',
-                format_platform: 'Zoom (живые занятия)',
-                format_size_label: 'Формат:',
-                format_size: 'индивидуально или малая группа (до 5 человек)',
-                format_price_label: 'Стоимость:',
-                format_price: '$1 500 (индивидуально), скидка при групповом наборе',
-                cta_title: 'Оставить заявку',
-                cta_sub: 'Курс запускается при наличии заявок',
-                cta_btn: 'Записаться на курс',
-                modal_title: 'Записаться на курс',
-                form_name: 'Имя и фамилия',
-                form_bg: 'Бэкграунд',
-                form_cv: 'Прикрепить CV',
-                form_choose: 'Выбрать файл',
-                form_submit: 'Отправить заявку'
+                aud1: 'Палубные офицеры, которые идут на балкер или сухогруз и хотят собрать грузовую роль целиком',
+                aud2: 'Будущие старшие помощники, которым нужна именно грузовая линия, а не общий management layer старпома',
+                aud3: 'Те, кто уже видел погрузку и выгрузку, но пока не держит весь цикл в голове как систему',
+                aud4: 'Те, кто хочет войти в следующий контракт с более сильной и спокойной рабочей рамкой',
+                not_for_title: 'Кому курс не подходит',
+                not1: 'Тем, кто ищет быструю шпаргалку без мышления и расчётной дисциплины',
+                not2: 'Тем, кому нужен общий курс палубного офицера или курс старпома',
+                not3: 'Тем, кому нужна танкерная, контейнерная или иная типоспецифическая грузовая технология',
+                pricing_title: 'Стоимость',
+                price_early: 'Ранний набор', price_standard: 'Стандартная цена', price_enhanced: 'Группа + персональный разбор',
+                price_note: 'Бронь места — 30% от стоимости. Остаток — после подтверждения старта группы.',
+                get_title: 'Что получает слушатель',
+                get1: '10 живых занятий по 90 минут через Zoom', get2: '10 PDF-опорных карт к каждой теме', get3: 'Доступ в рабочий чат группы', get4: 'Пошаговая логика полного грузового цикла рейса', get5: 'Разбор скрытых правил, типовых ошибок и практических кейсов',
+                format_title: 'Формат',
+                format_start_label: 'Старт:', format_start: 'по набору группы (минимум 4 человека)',
+                format_platform_label: 'Платформа:', format_platform: 'Zoom (живые занятия)',
+                format_schedule_label: 'Расписание:', format_schedule: '2 раза в неделю по 90 минут, 5 недель',
+                format_size_label: 'Группа:', format_size: '4-6 человек',
+                cta_title: 'Оставить заявку', cta_sub: 'Группа запускается при наборе от 4 человек. Бронь — 30%.', cta_btn: 'Записаться на курс',
+                modal_title: 'Записаться на курс', form_name: 'Имя и фамилия', form_bg: 'Бэкграунд', form_cv: 'Прикрепить CV', form_choose: 'Выбрать файл', form_submit: 'Отправить заявку'
             },
             en: {
-                nav_home: 'Home',
-                nav_schedule: 'Schedule',
-                nav_contact: 'Contact',
+                nav_home: 'Home', nav_schedule: 'Schedule', nav_contact: 'Contact',
                 back_link: '← Back to courses',
-                status_badge: 'Program ready — launch on demand',
-                page_title: 'Cargo Officer Bulk Carrier',
-                group_label: 'Individual / small group',
-                start_info: 'On demand',
-                start_sub: 'Course launches when applications are received. Submit your application — we will contact you.',
+                status_badge: 'Program ready — enrollment open',
+                page_title: 'Cargo Officer on Bulk Carriers and Dry Cargo Vessels',
+                page_sub: 'Applied course for deck officers and future chief officers who need to build cargo operations into one working system',
+                fmt_lessons: '10 lessons', fmt_lessons_sub: '90 min each', fmt_freq: '2 times', fmt_freq_sub: 'per week', fmt_group: '4-6', fmt_group_sub: 'students per group',
                 about_title: 'About the course',
-                about_text: 'Specialized course on cargo operations aboard bulk carriers and dry cargo vessels. Full cycle: from hold preparation and loading planning to draft survey and cargo documentation. The course is built on practical experience working on bulk carriers of various sizes — from coasters to capesize.',
-                note_label: 'Important:',
-                note_text: 'The course focuses on practical cargo operation skills on bulk vessels. Theory is supported by real cases and documents.',
+                about_text: 'The course is built around one complete cargo cycle of a voyage. Each topic is tied to the real workflow of a cargo officer: assess loading capacity, prepare holds, build a cargo plan, convert it into a loading sequence, conduct a draft survey, deliver cargo to the discharge port, and close the voyage without chaos in documentation and disputes.',
+                note_label: 'Honest boundary:', note_text: 'The course does not replace the vessel\'s loading manual, company SMS, or actual onboard familiarization. But it provides a strong working framework for the cargo officer role.',
                 curriculum_title: 'Curriculum',
-                topic1: 'Types of bulk cargoes. IMSBC Code. Cargo properties: angle of repose, moisture content, TML. Dangerous bulk cargoes (groups A, B, C).',
-                topic2: 'Hold preparation. Grain-clean vs shovel-clean. Hold inspections and surveys. Hatch covers: types, maintenance, weathertightness testing.',
-                topic3: 'Loading planning. Cargo plan. Stability and strength calculations. Working with loading computer. Loading/discharging sequence.',
-                topic4: 'Grain loading. Grain stability criteria. Shifting boards, strapping, bundling. Document of Authorization for grain carriage.',
-                topic5: 'Draft survey. Calculation principles, hydrostatic tables, corrections for water density, trim, deflection. Practical execution.',
-                topic6: 'Ballast operations. Ballasting during cargo operations. Ballast Water Management Plan. BWM Convention.',
-                topic7: 'Cargo documentation. Bill of Lading, Mate\'s Receipt, Statement of Facts, NOR, Letter of Protest. Clauses and remarks.',
-                topic8: 'Cargo operations safety. Enclosed space entry. Working with port terminals. Commercial aspects: demurrage, despatch, laytime.',
+                topic1: 'Cargo officer as a role and the complete cargo cycle of a dry cargo voyage. Connection between cargo documents, vessel limitations, holds, ballast, planning, cargo operations, draft survey, voyage and discharge.',
+                topic2: 'Carrying capacity, deadweight breakdown and initial loading assessment. Limiting factors by draft and cubic capacity, danger zone of assumptions.',
+                topic3: 'Hold preparation and readiness. Grain-clean vs shovel-clean. Hold inspection, defects, hatch covers.',
+                topic4: 'Preliminary cargo plan: distribution across holds, strength and volume limitations, prestow.',
+                topic5: 'Ballast operations and loading sequence. How to align the cargo plan with deballasting, trim and safety margins.',
+                topic6: 'Loading in real time: terminal control, records, damage and stop-work. Mate\'s receipt, clauses, SOF, photo log, protest trail.',
+                topic7: 'Draft survey at loading: reading drafts, density, constant, hydrostatics, precision limits, common errors, grounds for protest.',
+                topic8: 'Final cargo plan, departure and cargo care during voyage: ventilation, bilges, inspections, weather measures.',
+                topic9: 'Cargo specifics: grain, bulk, general and timber cargoes. Differences in planning, preparation, loading and care.',
+                topic10: 'Discharge port: discharge plan, deballasting, final draft survey, shortage claims, damage recording, cargo disputes.',
                 audience_title: 'Who is this course for',
-                aud1: 'Deck officers transitioning to bulk carriers from other vessel types',
-                aud2: 'Third and second officers on bulk carriers looking to deepen cargo operations knowledge',
-                aud3: 'Chief officers preparing for independent work on bulk vessels',
-                aud4: 'Cadets and graduates planning a career on bulk carriers',
-                format_title: 'Training format',
-                format_start_label: 'Start:',
-                format_start: 'on demand',
-                format_platform_label: 'Platform:',
-                format_platform: 'Zoom (live sessions)',
-                format_size_label: 'Format:',
-                format_size: 'individual or small group (up to 5 people)',
-                format_price_label: 'Price:',
-                format_price: '$1,500 (individual), discount for group enrollment',
-                cta_title: 'Submit application',
-                cta_sub: 'Course launches when applications are received',
-                cta_btn: 'Enroll',
-                modal_title: 'Course enrollment',
-                form_name: 'Full name',
-                form_bg: 'Background',
-                form_cv: 'Attach CV',
-                form_choose: 'Choose file',
-                form_submit: 'Submit application'
+                aud1: 'Deck officers going to bulk carriers or dry cargo vessels who want to build the cargo role as a complete system',
+                aud2: 'Future chief officers who need the cargo operations line specifically, not general chief officer management',
+                aud3: 'Those who have seen loading and discharging but don\'t yet hold the entire cycle as a system',
+                aud4: 'Those who want to enter the next contract with a stronger and calmer working framework',
+                not_for_title: 'Who this course is NOT for',
+                not1: 'Those looking for a quick cheat sheet without thinking and calculation discipline',
+                not2: 'Those who need a general deck officer course or a chief officer course',
+                not3: 'Those who need tanker, container, or other type-specific cargo technology',
+                pricing_title: 'Pricing',
+                price_early: 'Early enrollment', price_standard: 'Standard price', price_enhanced: 'Group + personal review',
+                price_note: 'Reservation — 30% of the price. Balance — after group start is confirmed.',
+                get_title: 'What students receive',
+                get1: '10 live sessions of 90 minutes via Zoom', get2: '10 PDF reference cards for each topic', get3: 'Access to group work chat', get4: 'Step-by-step logic of the complete cargo cycle', get5: 'Analysis of hidden rules, typical mistakes and practical cases',
+                format_title: 'Format',
+                format_start_label: 'Start:', format_start: 'upon group enrollment (minimum 4 students)',
+                format_platform_label: 'Platform:', format_platform: 'Zoom (live sessions)',
+                format_schedule_label: 'Schedule:', format_schedule: '2 times per week, 90 min each, 5 weeks',
+                format_size_label: 'Group:', format_size: '4-6 students',
+                cta_title: 'Submit application', cta_sub: 'Group launches with minimum 4 students. 30% reservation.', cta_btn: 'Enroll',
+                modal_title: 'Course enrollment', form_name: 'Full name', form_bg: 'Background', form_cv: 'Attach CV', form_choose: 'Choose file', form_submit: 'Submit application'
             }
         };
 
@@ -434,69 +301,36 @@
             document.querySelectorAll('[data-i18n]').forEach(elem => {
                 const key = elem.getAttribute('data-i18n');
                 if (translations[lang][key]) {
-                    if (elem.tagName === 'INPUT' || elem.tagName === 'TEXTAREA') {
-                        elem.placeholder = translations[lang][key];
-                    } else {
-                        elem.innerHTML = translations[lang][key];
-                    }
+                    if (elem.tagName === 'INPUT' || elem.tagName === 'TEXTAREA') elem.placeholder = translations[lang][key];
+                    else elem.innerHTML = translations[lang][key];
                 }
             });
-            document.querySelectorAll('.lang-toggle button').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            document.querySelectorAll('.lang-toggle button').forEach(btn => btn.classList.remove('active'));
             document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
         }
 
-        function openModal() {
-            document.getElementById('registrationModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('registrationModal').classList.remove('active');
-            document.body.style.overflow = '';
-            document.getElementById('registrationForm').reset();
-            document.getElementById('fileName').textContent = '';
-        }
+        function openModal() { document.getElementById('registrationModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeModal() { document.getElementById('registrationModal').classList.remove('active'); document.body.style.overflow = ''; document.getElementById('registrationForm').reset(); document.getElementById('fileName').textContent = ''; }
 
         document.addEventListener('DOMContentLoaded', () => {
             setLanguage(currentLang);
-
-            document.querySelectorAll('.lang-toggle button').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    setLanguage(btn.getAttribute('data-lang'));
-                });
-            });
-
-            document.getElementById('cvFile').addEventListener('change', (e) => {
-                document.getElementById('fileName').textContent =
-                    e.target.files.length > 0 ? e.target.files[0].name : '';
-            });
+            document.querySelectorAll('.lang-toggle button').forEach(btn => { btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang'))); });
+            document.getElementById('cvFile').addEventListener('change', (e) => { document.getElementById('fileName').textContent = e.target.files.length > 0 ? e.target.files[0].name : ''; });
         });
 
         function handleSubmit(event) {
             event.preventDefault();
-            const formData = new FormData(event.target);
-            const data = {
-                fullName: formData.get('fullName'),
-                background: formData.get('background'),
-                course: currentLang === 'en' ? 'Cargo Officer Bulk Carrier' : 'Грузовой офицер балкер/сухогруз'
-            };
-
-            const subject = currentLang === 'en'
-                ? 'Course application: Cargo Officer Bulk Carrier'
-                : 'Заявка на курс: Грузовой офицер балкер/сухогруз';
+            const fd = new FormData(event.target);
+            const course = currentLang === 'en' ? 'Cargo Officer Bulk Carrier' : 'Грузовой офицер на балкере и сухогрузе';
+            const subject = currentLang === 'en' ? `Course application: ${course}` : `Заявка на курс: ${course}`;
             const body = currentLang === 'en'
-                ? `Course: ${data.course}\n\nFull name: ${data.fullName}\n\nBackground:\n${data.background}`
-                : `Курс: ${data.course}\n\nИмя и фамилия: ${data.fullName}\n\nБэкграунд:\n${data.background}`;
+                ? `Course: ${course}\n\nFull name: ${fd.get('fullName')}\n\nBackground:\n${fd.get('background')}`
+                : `Курс: ${course}\n\nИмя и фамилия: ${fd.get('fullName')}\n\nБэкграунд:\n${fd.get('background')}`;
             window.location.href = `mailto:broker@capt-tymur.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-            setTimeout(() => { closeModal(); }, 500);
+            setTimeout(() => closeModal(), 500);
         }
 
-        document.getElementById('registrationModal').addEventListener('click', (e) => {
-            if (e.target.id === 'registrationModal') closeModal();
-        });
+        document.getElementById('registrationModal').addEventListener('click', (e) => { if (e.target.id === 'registrationModal') closeModal(); });
     </script>
 </body>
 </html>
