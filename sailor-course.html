@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курс "Палубный моряк (матрос)" | Мореходные классы</title>
+    <meta name="description" content="Практический курс для будущих матросов. 8 занятий: от роли в экипаже до первого контракта. Палубное дело, швартовка, мостик, аварийные ситуации.">
+    <style>
+        /* Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; justify-content: center; align-items: center; }
+        .modal.active { display: flex; }
+        .modal-content { background: #1a2236; border: 1px solid #1e293b; border-radius: 12px; padding: 2rem; max-width: 500px; width: 90%; position: relative; }
+        .modal-close { position: absolute; top: 1rem; right: 1rem; background: transparent; border: none; color: #8b95a8; font-size: 1.5rem; cursor: pointer; padding: 0.5rem; line-height: 1; }
+        .modal-close:hover { color: #e8edf5; }
+        .modal h2 { margin-bottom: 1.5rem; color: #3b82f6; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; color: #e8edf5; font-weight: 600; }
+        .form-group input, .form-group textarea { width: 100%; padding: 0.75rem; background: #0a0e17; border: 1px solid #1e293b; border-radius: 6px; color: #e8edf5; font-family: inherit; font-size: 1rem; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #3b82f6; }
+        .form-group textarea { min-height: 100px; resize: vertical; }
+        .file-upload { position: relative; }
+        .file-upload input[type="file"] { display: none; }
+        .file-upload-btn { display: inline-block; padding: 0.75rem 1.5rem; background: #0a0e17; border: 1px solid #1e293b; border-radius: 6px; color: #e8edf5; cursor: pointer; transition: border-color 0.2s; }
+        .file-upload-btn:hover { border-color: #3b82f6; }
+        .file-name { display: inline-block; margin-left: 1rem; color: #8b95a8; font-size: 0.875rem; }
+        .submit-btn { width: 100%; padding: 1rem; background: #3b82f6; color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
+        .submit-btn:hover { background: #2563eb; }
+        .lang-toggle { display: flex; gap: 0.5rem; align-items: center; }
+        .lang-toggle button { background: transparent; border: 1px solid #1e293b; color: #8b95a8; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; transition: all 0.2s; }
+        .lang-toggle button.active { background: #3b82f6; color: white; border-color: #3b82f6; }
+        .curriculum-item { background: #111827; border: 1px solid #1e293b; border-radius: 8px; padding: 1.25rem 1.5rem; margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 1rem; }
+        .curriculum-item .num { background: #3b82f6; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
+        .curriculum-item .text { color: #8b95a8; font-size: 0.95rem; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
+        .pricing-option { background: #111827; border: 1px solid #1e293b; border-radius: 10px; padding: 1.5rem; text-align: center; }
+        .pricing-option.featured { border-color: #3b82f6; }
+        .pricing-option .price { font-size: 2rem; font-weight: 700; color: #10b981; }
+        .pricing-option .label { color: #8b95a8; font-size: 0.85rem; margin-top: 0.25rem; }
+        @media (max-width: 768px) { nav ul { display: none; } }
+    </style>
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0e17; color: #e8edf5; margin: 0; line-height: 1.6;">
+    <nav style="position: fixed; top: 0; width: 100%; background: rgba(10, 14, 23, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid #1e293b; z-index: 100; padding: 0 2rem;">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 0;">
+            <a href="index.html" style="font-size: 1.25rem; font-weight: 600; color: #e8edf5; text-decoration: none;">Мореходные <span style="color: #3b82f6;">классы</span></a>
+            <ul style="display: flex; list-style: none; gap: 2rem; margin: 0; padding: 0;">
+                <li><a href="index.html" style="color: #8b95a8; text-decoration: none;" data-i18n="nav_home">Главная</a></li>
+                <li><a href="schedule.html" style="color: #8b95a8; text-decoration: none;" data-i18n="nav_schedule">Расписание</a></li>
+                <li><a href="contact.html" style="color: #8b95a8; text-decoration: none;" data-i18n="nav_contact">Контакты</a></li>
+            </ul>
+            <div class="lang-toggle">
+                <button class="active" data-lang="ru">RU</button>
+                <button data-lang="en">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <div style="max-width: 900px; margin: 0 auto; padding: 6rem 2rem 4rem;">
+        <a href="index.html" style="color: #3b82f6; text-decoration: none;" data-i18n="back_link">&#8592; Назад к курсам</a>
+
+        <div style="margin: 2rem 0 3rem; padding-bottom: 2rem; border-bottom: 1px solid #1e293b;">
+            <div style="background: #10b981; color: white; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; display: inline-block; margin-bottom: 1rem;" data-i18n="status_badge">Набор группы</div>
+            <h1 style="font-size: 2.5rem; margin: 1rem 0;" data-i18n="page_title">Палубный моряк (матрос)</h1>
+            <p style="color: #8b95a8; font-size: 1.1rem; margin-top: 0.5rem;" data-i18n="page_sub">Практический курс для будущих матросов и матросов первого контракта: собрать роль палубного моряка в одну рабочую систему и войти на борт подготовленным</p>
+        </div>
+
+        <!-- Format block -->
+        <div style="background: #1a2236; border: 2px solid #3b82f6; border-radius: 12px; padding: 2rem; margin: 2rem 0; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem; text-align: center;">
+            <div>
+                <div style="font-size: 2rem; font-weight: 700; color: #3b82f6;" data-i18n="fmt_lessons">8 занятий</div>
+                <p style="color: #8b95a8; font-size: 0.875rem;" data-i18n="fmt_lessons_sub">по 90 минут</p>
+            </div>
+            <div>
+                <div style="font-size: 2rem; font-weight: 700; color: #3b82f6;" data-i18n="fmt_freq">2 раза</div>
+                <p style="color: #8b95a8; font-size: 0.875rem;" data-i18n="fmt_freq_sub">в неделю</p>
+            </div>
+            <div>
+                <div style="font-size: 2rem; font-weight: 700; color: #3b82f6;" data-i18n="fmt_group">5-10</div>
+                <p style="color: #8b95a8; font-size: 0.875rem;" data-i18n="fmt_group_sub">человек в группе</p>
+            </div>
+        </div>
+
+        <!-- About -->
+        <section style="margin-bottom: 3rem;">
+            <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem; color: #3b82f6;" data-i18n="about_title">О курсе</h2>
+            <p style="color: #8b95a8;" data-i18n="about_text">Курс собран вокруг реального рабочего цикла матроса на борту гражданского судна. Каждое занятие привязано к конкретной фазе матросской жизни: палуба, швартовка, мостик, порт, тревога, рутина. Это не офицерский курс и не сертификационный пакет — это сборка роли палубного моряка в одну систему.</p>
+
+            <div style="background: rgba(59, 130, 246, 0.15); border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 6px; margin: 1.5rem 0;">
+                <strong data-i18n="note_label">Честная граница:</strong> <span data-i18n="note_text">Курс не заменяет утверждённые курсы STCW, судовую вводную подготовку конкретной компании и фактический морской стаж. Но он помогает будущему матросу быстрее и спокойнее войти в реальную судовую работу без хаоса в голове.</span>
+            </div>
+        </section>
+
+        <!-- Curriculum -->
+        <section style="margin-bottom: 3rem;">
+            <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem; color: #3b82f6;" data-i18n="curriculum_title">Программа курса</h2>
+            <div class="curriculum-item"><div class="num">1</div><div class="text" data-i18n="topic1">Матрос как роль: место в экипаже, дисциплина и рабочий ритм. Разница между обычным матросом, матросом в составе навигационной вахты и квалифицированным палубным моряком.</div></div>
+            <div class="curriculum-item"><div class="num">2</div><div class="text" data-i18n="topic2">Безопасность палубного моряка: средства защиты, оценка риска, PTW, опасные работы. Работа на высоте, за бортом, в закрытых пространствах. Право остановить работу.</div></div>
+            <div class="curriculum-item"><div class="num">3</div><div class="text" data-i18n="topic3">Палубное дело: снасти, такелаж, узлы и сплесни, уход за палубой, инструменты. Крепление палубного имущества, работа с ржавчиной, краской, трапами и сходнями.</div></div>
+            <div class="curriculum-item"><div class="num">4</div><div class="text" data-i18n="topic4">Швартовка, якорь, буксир и работа на носу и корме. Подготовка станции, порядок команд, безопасные позиции, опасные зоны, связь с мостиком и боцманом.</div></div>
+            <div class="curriculum-item"><div class="num">5</div><div class="text" data-i18n="topic5">Мостик для матроса: руль, ручное управление, наблюдение, повтор команды. Доклад о целях, огнях, буях, тумане, опасности. Мостиковая дисциплина и логика вахты.</div></div>
+            <div class="curriculum-item"><div class="num">6</div><div class="text" data-i18n="topic6">Порт, грузовые операции, охрана судна и повседневная палубная работа. Вахта у трапа, контроль посетителей, помощь при подготовке грузовых помещений, противозагрязнительная дисциплина.</div></div>
+            <div class="curriculum-item"><div class="num">7</div><div class="text" data-i18n="topic7">Аварийные ситуации: пожар, оставление судна, человек за бортом и тревоги. Сбор по тревоге, судовая роль, пожарная партия, спасательные средства, поведение под адреналином.</div></div>
+            <div class="curriculum-item"><div class="num">8</div><div class="text" data-i18n="topic8">Первый контракт матроса: как войти в команду, как учиться быстро, как не ломаться под рутиной и давлением. Переход от новичка к надёжному палубному моряку.</div></div>
+        </section>
+
+        <!-- Audience -->
+        <section style="margin-bottom: 3rem;">
+            <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem; color: #3b82f6;" data-i18n="audience_title">Для кого этот курс</h2>
+            <ul style="color: #8b95a8; margin-left: 1.5rem;">
+                <li style="margin-bottom: 0.5rem;" data-i18n="aud1">Будущие матросы, готовящиеся к первому контракту</li>
+                <li style="margin-bottom: 0.5rem;" data-i18n="aud2">Матросы в составе навигационной вахты, которые хотят систематизировать роль</li>
+                <li style="margin-bottom: 0.5rem;" data-i18n="aud3">Курсанты морских учебных заведений перед выходом на практику</li>
+                <li style="margin-bottom: 0.5rem;" data-i18n="aud4">Те, кто хочет войти на борт с рабочей системой вместо хаоса в голове</li>
+            </ul>
+
+            <h3 style="font-size: 1.25rem; margin: 1.5rem 0 1rem; color: #e8edf5;" data-i18n="not_for_title">Кому курс не подходит</h3>
+            <ul style="color: #8b95a8; margin-left: 1.5rem;">
+                <li style="margin-bottom: 0.5rem;" data-i18n="not1">Тем, кто ищет офицерский курс — это курс для палубного рядового состава</li>
+                <li style="margin-bottom: 0.5rem;" data-i18n="not2">Тем, кто ищет утверждённый сертификат STCW — курс не является конвенционным тренингом</li>
+                <li style="margin-bottom: 0.5rem;" data-i18n="not3">Тем, кому нужна типоспецифическая подготовка (танкер, газовоз, контейнеровоз)</li>
+            </ul>
+        </section>
+
+        <!-- Pricing -->
+        <section style="margin-bottom: 3rem;">
+            <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem; color: #3b82f6;" data-i18n="pricing_title">Стоимость</h2>
+            <div class="pricing-grid">
+                <div class="pricing-option">
+                    <div class="price">$390</div>
+                    <div class="label" data-i18n="price_early">Ранний набор</div>
+                </div>
+                <div class="pricing-option featured">
+                    <div class="price">$490</div>
+                    <div class="label" data-i18n="price_standard">Стандартная цена</div>
+                </div>
+            </div>
+            <p style="color: #8b95a8; font-size: 0.85rem; margin-top: 1rem;" data-i18n="price_note">Бронь места — 30% от стоимости. Остаток — после подтверждения старта группы.</p>
+        </section>
+
+        <!-- What you get -->
+        <section style="margin-bottom: 3rem;">
+            <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem; color: #3b82f6;" data-i18n="get_title">Что получает слушатель</h2>
+            <ul style="color: #8b95a8; margin-left: 1.5rem;">
+                <li style="margin-bottom: 0.5rem;" data-i18n="get1">8 живых занятий по 90 минут через Zoom</li>
+                <li style="margin-bottom: 0.5rem;" data-i18n="get2">8 PDF-опорных карт к каждой теме</li>
+                <li style="margin-bottom: 0.5rem;" data-i18n="get3">Доступ в рабочий чат группы</li>
+                <li style="margin-bottom: 0.5rem;" data-i18n="get4">Входной тест, контрольные точки и итоговая самооценка</li>
+                <li style="margin-bottom: 0.5rem;" data-i18n="get5">Цельная рабочая картина роли матроса от палубы до мостика</li>
+            </ul>
+        </section>
+
+        <!-- Format -->
+        <section style="margin-bottom: 3rem;">
+            <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem; color: #3b82f6;" data-i18n="format_title">Формат</h2>
+            <ul style="color: #8b95a8; margin-left: 1.5rem;">
+                <li style="margin-bottom: 0.5rem;"><strong data-i18n="format_start_label">Старт:</strong> <span data-i18n="format_start">по набору группы (минимум 5 человек)</span></li>
+                <li style="margin-bottom: 0.5rem;"><strong data-i18n="format_platform_label">Платформа:</strong> <span data-i18n="format_platform">Zoom (живые занятия)</span></li>
+                <li style="margin-bottom: 0.5rem;"><strong data-i18n="format_schedule_label">Расписание:</strong> <span data-i18n="format_schedule">2 раза в неделю по 90 минут, 4 недели</span></li>
+                <li style="margin-bottom: 0.5rem;"><strong data-i18n="format_size_label">Группа:</strong> <span data-i18n="format_size">5-10 человек</span></li>
+            </ul>
+        </section>
+
+        <!-- CTA -->
+        <div style="background: #1a2236; border: 2px solid #3b82f6; border-radius: 12px; padding: 2rem; text-align: center;">
+            <div style="font-size: 2rem; font-weight: 700; color: #3b82f6;" data-i18n="cta_title">Оставить заявку</div>
+            <p style="color: #8b95a8; font-size: 0.875rem; margin: 0.5rem 0 1rem;" data-i18n="cta_sub">Группа запускается при наборе от 5 человек. Бронь — 30%.</p>
+            <a href="javascript:void(0)" onclick="openModal()" style="display: block; width: 100%; padding: 1rem; background: #3b82f6; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;" data-i18n="cta_btn">Записаться на курс</a>
+        </div>
+    </div>
+
+    <footer style="background: #111827; border-top: 1px solid #1e293b; padding: 2rem; text-align: center; color: #8b95a8; margin-top: 4rem;">
+        <p>&copy; 2026 Captain Tymur's Maritime Academy</p>
+    </footer>
+
+    <!-- Registration Modal -->
+    <div class="modal" id="registrationModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2 data-i18n="modal_title">Записаться на курс</h2>
+            <form id="registrationForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="fullName" data-i18n="form_name">Имя и фамилия</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="background" data-i18n="form_bg">О себе</label>
+                    <textarea id="background" name="background" placeholder="Расскажите о себе: образование, опыт, цели" required></textarea>
+                </div>
+                <div class="form-group file-upload">
+                    <label data-i18n="form_cv">Прикрепить CV</label>
+                    <label for="cvFile" class="file-upload-btn" data-i18n="form_choose">Выбрать файл</label>
+                    <input type="file" id="cvFile" name="cvFile" accept=".pdf,.doc,.docx">
+                    <span class="file-name" id="fileName"></span>
+                </div>
+                <button type="submit" class="submit-btn" data-i18n="form_submit">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            ru: {
+                nav_home: 'Главная', nav_schedule: 'Расписание', nav_contact: 'Контакты',
+                back_link: '&larr; Назад к курсам',
+                status_badge: 'Набор группы',
+                page_title: 'Палубный моряк (матрос)',
+                page_sub: 'Практический курс для будущих матросов и матросов первого контракта: собрать роль палубного моряка в одну рабочую систему и войти на борт подготовленным',
+                fmt_lessons: '8 занятий', fmt_lessons_sub: 'по 90 минут', fmt_freq: '2 раза', fmt_freq_sub: 'в неделю', fmt_group: '5-10', fmt_group_sub: 'человек в группе',
+                about_title: 'О курсе',
+                about_text: 'Курс собран вокруг реального рабочего цикла матроса на борту гражданского судна. Каждое занятие привязано к конкретной фазе матросской жизни: палуба, швартовка, мостик, порт, тревога, рутина. Это не офицерский курс и не сертификационный пакет — это сборка роли палубного моряка в одну систему.',
+                note_label: 'Честная граница:', note_text: 'Курс не заменяет утверждённые курсы STCW, судовую вводную подготовку конкретной компании и фактический морской стаж. Но он помогает будущему матросу быстрее и спокойнее войти в реальную судовую работу без хаоса в голове.',
+                curriculum_title: 'Программа курса',
+                topic1: 'Матрос как роль: место в экипаже, дисциплина и рабочий ритм. Разница между обычным матросом, матросом в составе навигационной вахты и квалифицированным палубным моряком.',
+                topic2: 'Безопасность палубного моряка: средства защиты, оценка риска, PTW, опасные работы. Работа на высоте, за бортом, в закрытых пространствах. Право остановить работу.',
+                topic3: 'Палубное дело: снасти, такелаж, узлы и сплесни, уход за палубой, инструменты. Крепление палубного имущества, работа с ржавчиной, краской, трапами и сходнями.',
+                topic4: 'Швартовка, якорь, буксир и работа на носу и корме. Подготовка станции, порядок команд, безопасные позиции, опасные зоны, связь с мостиком и боцманом.',
+                topic5: 'Мостик для матроса: руль, ручное управление, наблюдение, повтор команды. Доклад о целях, огнях, буях, тумане, опасности. Мостиковая дисциплина и логика вахты.',
+                topic6: 'Порт, грузовые операции, охрана судна и повседневная палубная работа. Вахта у трапа, контроль посетителей, помощь при подготовке грузовых помещений, противозагрязнительная дисциплина.',
+                topic7: 'Аварийные ситуации: пожар, оставление судна, человек за бортом и тревоги. Сбор по тревоге, судовая роль, пожарная партия, спасательные средства, поведение под адреналином.',
+                topic8: 'Первый контракт матроса: как войти в команду, как учиться быстро, как не ломаться под рутиной и давлением. Переход от новичка к надёжному палубному моряку.',
+                audience_title: 'Для кого этот курс',
+                aud1: 'Будущие матросы, готовящиеся к первому контракту',
+                aud2: 'Матросы в составе навигационной вахты, которые хотят систематизировать роль',
+                aud3: 'Курсанты морских учебных заведений перед выходом на практику',
+                aud4: 'Те, кто хочет войти на борт с рабочей системой вместо хаоса в голове',
+                not_for_title: 'Кому курс не подходит',
+                not1: 'Тем, кто ищет офицерский курс — это курс для палубного рядового состава',
+                not2: 'Тем, кто ищет утверждённый сертификат STCW — курс не является конвенционным тренингом',
+                not3: 'Тем, кому нужна типоспецифическая подготовка (танкер, газовоз, контейнеровоз)',
+                pricing_title: 'Стоимость',
+                price_early: 'Ранний набор', price_standard: 'Стандартная цена',
+                price_note: 'Бронь места — 30% от стоимости. Остаток — после подтверждения старта группы.',
+                get_title: 'Что получает слушатель',
+                get1: '8 живых занятий по 90 минут через Zoom', get2: '8 PDF-опорных карт к каждой теме', get3: 'Доступ в рабочий чат группы', get4: 'Входной тест, контрольные точки и итоговая самооценка', get5: 'Цельная рабочая картина роли матроса от палубы до мостика',
+                format_title: 'Формат',
+                format_start_label: 'Старт:', format_start: 'по набору группы (минимум 5 человек)',
+                format_platform_label: 'Платформа:', format_platform: 'Zoom (живые занятия)',
+                format_schedule_label: 'Расписание:', format_schedule: '2 раза в неделю по 90 минут, 4 недели',
+                format_size_label: 'Группа:', format_size: '5-10 человек',
+                cta_title: 'Оставить заявку', cta_sub: 'Группа запускается при наборе от 5 человек. Бронь — 30%.', cta_btn: 'Записаться на курс',
+                modal_title: 'Записаться на курс', form_name: 'Имя и фамилия', form_bg: 'О себе', form_cv: 'Прикрепить CV', form_choose: 'Выбрать файл', form_submit: 'Отправить заявку'
+            },
+            en: {
+                nav_home: 'Home', nav_schedule: 'Schedule', nav_contact: 'Contact',
+                back_link: '&larr; Back to courses',
+                status_badge: 'Enrollment open',
+                page_title: 'Deck Sailor (Rating)',
+                page_sub: 'Practical course for future sailors and first-contract ratings: build the deck sailor role into one working system and come aboard prepared',
+                fmt_lessons: '8 lessons', fmt_lessons_sub: '90 min each', fmt_freq: '2 times', fmt_freq_sub: 'per week', fmt_group: '5-10', fmt_group_sub: 'students per group',
+                about_title: 'About the course',
+                about_text: 'The course is built around the real working cycle of a sailor on a merchant vessel. Each lesson is tied to a specific phase of a sailor\'s life: deck, mooring, bridge, port, emergency, routine. This is not an officer course and not a certification package — it\'s building the deck sailor role into one system.',
+                note_label: 'Honest boundary:', note_text: 'The course does not replace approved STCW courses, company-specific onboard familiarization, or actual sea service. But it helps a future sailor enter real shipboard work faster and calmer, without chaos in their head.',
+                curriculum_title: 'Curriculum',
+                topic1: 'Sailor as a role: place in the crew, discipline and work rhythm. Difference between ordinary seaman, rating forming part of a navigational watch, and able seaman.',
+                topic2: 'Deck sailor safety: protective equipment, risk assessment, PTW, hazardous work. Working at height, overside, in enclosed spaces. Right to stop work.',
+                topic3: 'Seamanship: lines, rigging, knots and splices, deck maintenance, tools. Securing deck equipment, rust and paint work, gangways and accommodation ladders.',
+                topic4: 'Mooring, anchoring, towing and work on bow and stern. Station preparation, command sequence, safe positions, danger zones, communication with bridge and bosun.',
+                topic5: 'Bridge for the sailor: helm, manual steering, lookout, repeating commands. Reporting targets, lights, buoys, fog, danger. Bridge discipline and watch logic.',
+                topic6: 'Port, cargo operations, ship security and daily deck work. Gangway watch, visitor control, cargo hold preparation assistance, anti-pollution discipline.',
+                topic7: 'Emergency situations: fire, abandon ship, man overboard and alarms. Muster, ship\'s role, fire party, life-saving appliances, behavior under adrenaline.',
+                topic8: 'First contract as a sailor: how to join the team, learn fast, handle routine and pressure. Transition from newcomer to a reliable deck crew member.',
+                audience_title: 'Who is this course for',
+                aud1: 'Future sailors preparing for their first contract',
+                aud2: 'Ratings forming part of a navigational watch who want to systematize their role',
+                aud3: 'Maritime academy cadets before their sea practice',
+                aud4: 'Those who want to come aboard with a working system instead of chaos',
+                not_for_title: 'Who this course is NOT for',
+                not1: 'Those looking for an officer course — this is for deck ratings',
+                not2: 'Those seeking an STCW certificate — this is not a conventional training course',
+                not3: 'Those who need type-specific training (tanker, gas carrier, container ship)',
+                pricing_title: 'Pricing',
+                price_early: 'Early enrollment', price_standard: 'Standard price',
+                price_note: 'Reservation — 30% of the price. Balance — after group start is confirmed.',
+                get_title: 'What students receive',
+                get1: '8 live sessions of 90 minutes via Zoom', get2: '8 PDF reference cards for each topic', get3: 'Access to group work chat', get4: 'Entry test, checkpoints and final self-assessment', get5: 'Complete working picture of the sailor role from deck to bridge',
+                format_title: 'Format',
+                format_start_label: 'Start:', format_start: 'upon group enrollment (minimum 5 students)',
+                format_platform_label: 'Platform:', format_platform: 'Zoom (live sessions)',
+                format_schedule_label: 'Schedule:', format_schedule: '2 times per week, 90 min each, 4 weeks',
+                format_size_label: 'Group:', format_size: '5-10 students',
+                cta_title: 'Submit application', cta_sub: 'Group launches with minimum 5 students. 30% reservation.', cta_btn: 'Enroll',
+                modal_title: 'Course enrollment', form_name: 'Full name', form_bg: 'About yourself', form_cv: 'Attach CV', form_choose: 'Choose file', form_submit: 'Submit application'
+            }
+        };
+
+        let currentLang = localStorage.getItem('language') || 'ru';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('language', lang);
+            document.querySelectorAll('[data-i18n]').forEach(elem => {
+                const key = elem.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    if (elem.tagName === 'INPUT' || elem.tagName === 'TEXTAREA') elem.placeholder = translations[lang][key];
+                    else elem.innerHTML = translations[lang][key];
+                }
+            });
+            document.querySelectorAll('.lang-toggle button').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+        }
+
+        function openModal() { document.getElementById('registrationModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeModal() { document.getElementById('registrationModal').classList.remove('active'); document.body.style.overflow = ''; document.getElementById('registrationForm').reset(); document.getElementById('fileName').textContent = ''; }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage(currentLang);
+            document.querySelectorAll('.lang-toggle button').forEach(btn => { btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang'))); });
+            document.getElementById('cvFile').addEventListener('change', (e) => { document.getElementById('fileName').textContent = e.target.files.length > 0 ? e.target.files[0].name : ''; });
+        });
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const fd = new FormData(event.target);
+            const course = currentLang === 'en' ? 'Deck Sailor (Rating)' : 'Палубный моряк (матрос)';
+            const subject = currentLang === 'en' ? `Course application: ${course}` : `Заявка на курс: ${course}`;
+            const body = currentLang === 'en'
+                ? `Course: ${course}\n\nFull name: ${fd.get('fullName')}\n\nAbout yourself:\n${fd.get('background')}`
+                : `Курс: ${course}\n\nИмя и фамилия: ${fd.get('fullName')}\n\nО себе:\n${fd.get('background')}`;
+            window.location.href = `mailto:broker@capt-tymur.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            setTimeout(() => closeModal(), 500);
+        }
+
+        document.getElementById('registrationModal').addEventListener('click', (e) => { if (e.target.id === 'registrationModal') closeModal(); });
+    </script>
+</body>
+</html>
