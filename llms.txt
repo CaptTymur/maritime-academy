@@ -1,0 +1,35 @@
+# Captain Tymur's Maritime Academy
+
+> Practical maritime training, consultations, and searchable guides for masters, chief officers, deck officers, and maritime teams.
+
+## Main Pages
+
+- Home: https://academy.capt-tymur.com/
+- Consultations: https://academy.capt-tymur.com/consultations.html
+- Schedule: https://academy.capt-tymur.com/schedule.html
+- Contact: https://academy.capt-tymur.com/contact.html
+
+## Core Courses
+
+- Captain course: https://academy.capt-tymur.com/captain-course.html
+- Chief Officer course: https://academy.capt-tymur.com/chief-officer-course.html
+- Deck Officer course: https://academy.capt-tymur.com/deck-officer-course.html
+- Bulk cargo officer course: https://academy.capt-tymur.com/cargo-officer-course.html
+- Deck sailor course: https://academy.capt-tymur.com/sailor-course.html
+- LNG cargo officer course: https://academy.capt-tymur.com/lng-cargo-officer-course.html
+
+## Searchable Guides
+
+- Chief Mate first 30 days: https://academy.capt-tymur.com/chief-mate-first-30-days.html
+- PSC checklist for chief mate: https://academy.capt-tymur.com/psc-checklist-chief-mate.html
+- PTW stop-work triggers: https://academy.capt-tymur.com/ptw-stop-work-deck.html
+- Pilot ladder inspection checklist: https://academy.capt-tymur.com/pilot-ladder-inspection-checklist.html
+- Watertight integrity checklist: https://academy.capt-tymur.com/watertight-integrity-checklist.html
+- Mooring lines replacement guide: https://academy.capt-tymur.com/mooring-lines-replacement-guide.html
+- Recurring defects in PMS: https://academy.capt-tymur.com/recurring-defects-pms.html
+- Reporting to office using Minto pyramid: https://academy.capt-tymur.com/report-to-office-minto.html
+- Class inspection preparation checklist: https://academy.capt-tymur.com/class-inspection-preparation.html
+
+## Author / Founder
+
+- Tymur Rudov: https://tymur.org/
