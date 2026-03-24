@@ -358,6 +358,159 @@
             border-color: var(--accent);
         }
 
+        /* Events */
+        .events-section {
+            padding: 4rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .events-section h2 {
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .events-section > p {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+        }
+
+        .event-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .event-badge {
+            display: inline-block;
+            background: var(--success);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.3rem 0.8rem;
+            border-radius: 100px;
+            margin-bottom: 1rem;
+        }
+
+        .event-header {
+            padding: 2rem 2rem 1.5rem;
+        }
+
+        .event-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .event-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .event-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .event-desc {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .event-form-wrap {
+            padding: 1.5rem 2rem 2rem;
+            border-top: 1px solid var(--border);
+            background: rgba(59, 130, 246, 0.03);
+        }
+
+        .event-form-wrap h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .event-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .event-form input,
+        .event-form select {
+            padding: 0.7rem 1rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .event-form input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .event-form .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .event-form label.checkbox-label {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            cursor: pointer;
+            margin-top: 0.25rem;
+        }
+
+        .event-form label.checkbox-label input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            flex-shrink: 0;
+            accent-color: var(--accent);
+        }
+
+        .event-form button {
+            grid-column: 1 / -1;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .event-form button:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .event-form {
+                grid-template-columns: 1fr;
+            }
+            .event-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             nav ul {
@@ -384,6 +537,7 @@
                 <li><a href="#guides" data-i18n="nav_guides">Гайды</a></li>
                 <li><a href="consultations.html" data-i18n="nav_consultations">Консультации</a></li>
                 <li><a href="schedule.html" data-i18n="nav_schedule">Расписание</a></li>
+                <li><a href="#events" data-i18n="nav_events">События</a></li>
                 <li><a href="contact.html" data-i18n="nav_contact">Контакты</a></li>
             </ul>
             <div class="lang-toggle">
@@ -579,6 +733,44 @@
         </div>
     </section>
 
+    <!-- Events -->
+    <section id="events" class="events-section">
+        <h2 data-i18n="events_title">События и вебинары</h2>
+        <p data-i18n="events_desc">Бесплатные открытые мероприятия от Мореходных Классов</p>
+
+        <div class="event-card">
+            <div class="event-header">
+                <div class="event-badge" data-i18n="event1_badge">Бесплатно</div>
+                <h3 data-i18n="event1_title">Балкер — подготовка грузовых помещений</h3>
+                <div class="event-meta">
+                    <span>📅 <span data-i18n="event1_date">Пятница, 28 марта 2026</span></span>
+                    <span>🕚 <span data-i18n="event1_time">11:00 (Тбилиси, UTC+4)</span></span>
+                    <span>🎤 <span data-i18n="event1_speaker">КДП Гаенко</span></span>
+                    <span>💻 Zoom</span>
+                </div>
+                <p class="event-desc" data-i18n="event1_desc">Практический вебинар о подготовке грузовых помещений на балкерах: осмотр, зачистка, документация, типичные дефекты и требования сюрвейеров. Спикер — капитан дальнего плавания с многолетним опытом работы на балкерном флоте.</p>
+            </div>
+            <div class="event-form-wrap">
+                <h4 data-i18n="event1_form_title">Регистрация на вебинар</h4>
+                <form class="event-form" action="https://formsubmit.co/broker@capt-tymur.com" method="POST">
+                    <input type="hidden" name="_subject" value="Webinar Registration: Bulk Carrier — Cargo Hold Preparation (28 Mar)">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://academy.capt-tymur.com/#events">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="text" name="name" required placeholder="Имя и фамилия" data-i18n="event1_ph_name">
+                    <input type="email" name="email" required placeholder="Email" data-i18n="event1_ph_email">
+                    <input type="text" name="phone" placeholder="Телефон / WhatsApp (необязательно)" data-i18n="event1_ph_phone">
+                    <input type="text" name="position" placeholder="Должность / звание (необязательно)" data-i18n="event1_ph_position">
+                    <label class="checkbox-label full-width">
+                        <input type="checkbox" name="subscribe" value="yes">
+                        <span data-i18n="event1_subscribe">Хочу получать уведомления от Мореходных Классов о новых событиях и учебных программах</span>
+                    </label>
+                    <button type="submit" data-i18n="event1_submit">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact -->
     <section id="contact" class="contact">
         <h2 data-i18n="contact_title">Контакты</h2>
@@ -680,6 +872,22 @@
                 feature3_desc: '5-10 человек для эффективного обучения',
                 feature4_title: 'Гибкий подход',
                 feature4_desc: 'Это не продажа видео за деньги, это передача опыта, знаний и уверенности в себе',
+                nav_events: 'События',
+                events_title: 'События и вебинары',
+                events_desc: 'Бесплатные открытые мероприятия от Мореходных Классов',
+                event1_badge: 'Бесплатно',
+                event1_title: 'Балкер — подготовка грузовых помещений',
+                event1_date: 'Пятница, 28 марта 2026',
+                event1_time: '11:00 (Тбилиси, UTC+4)',
+                event1_speaker: 'КДП Гаенко',
+                event1_desc: 'Практический вебинар о подготовке грузовых помещений на балкерах: осмотр, зачистка, документация, типичные дефекты и требования сюрвейеров. Спикер — капитан дальнего плавания с многолетним опытом работы на балкерном флоте.',
+                event1_form_title: 'Регистрация на вебинар',
+                event1_subscribe: 'Хочу получать уведомления от Мореходных Классов о новых событиях и учебных программах',
+                event1_submit: 'Зарегистрироваться',
+                event1_ph_name: 'Имя и фамилия',
+                event1_ph_email: 'Email',
+                event1_ph_phone: 'Телефон / WhatsApp (необязательно)',
+                event1_ph_position: 'Должность / звание (необязательно)',
                 contact_title: 'Контакты',
                 footer_rights: '&copy; 2026 Captain Tymur\'s Maritime Academy. Все права защищены.',
                 footer_tagline: 'Профессиональное обучение моряков'
@@ -758,6 +966,22 @@
                 feature3_desc: '5-10 people for effective learning',
                 feature4_title: 'Flexible Approach',
                 feature4_desc: 'This is not selling videos for money, this is transferring experience, knowledge and self-confidence',
+                nav_events: 'Events',
+                events_title: 'Events & Webinars',
+                events_desc: 'Free open events from the Maritime Academy',
+                event1_badge: 'Free',
+                event1_title: 'Bulk Carrier — Cargo Hold Preparation',
+                event1_date: 'Friday, 28 March 2026',
+                event1_time: '11:00 (Tbilisi, UTC+4)',
+                event1_speaker: 'Capt. Gaenko, Master Mariner',
+                event1_desc: 'A practical webinar on cargo hold preparation for bulk carriers: inspection, cleaning, documentation, common defects, and surveyor requirements. Speaker — Master Mariner with extensive experience on bulk carrier fleet.',
+                event1_form_title: 'Register for Webinar',
+                event1_subscribe: 'I want to receive notifications from the Maritime Academy about new events and training programs',
+                event1_submit: 'Register',
+                event1_ph_name: 'Full name',
+                event1_ph_email: 'Email',
+                event1_ph_phone: 'Phone / WhatsApp (optional)',
+                event1_ph_position: 'Rank / position (optional)',
                 contact_title: 'Contact',
                 footer_rights: '&copy; 2026 Captain Tymur\'s Maritime Academy. All rights reserved.',
                 footer_tagline: 'Professional maritime training'
