@@ -172,10 +172,11 @@
 
     <div style="max-width: 900px; margin: 0 auto; padding: 0 2rem;">
         <section class="reviews">
-            <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem; color: #3b82f6;" data-i18n="reviews_title">Отзывы выпускников</h2>
-            <div class="review-empty">
-                <p data-i18n="reviews_empty">Курс запускается впервые. Отзывы появятся после завершения первой группы.</p>
-                <p style="margin-top: 0.5rem;"><a href="#" onclick="openModal(); return false;" data-i18n="reviews_enroll">Стать первым выпускником →</a></p>
+            <h2 data-i18n="reviews_title">Отзывы выпускников</h2>
+            <div class="reviews-grid" id="reviewsContainer">
+                <div class="review-empty" id="reviewsEmpty">
+                    <p data-i18n="reviews_empty">Отзывы появятся здесь после завершения первой группы.</p>
+                </div>
             </div>
         </section>
     </div>
@@ -245,8 +246,7 @@
                 cta_title: 'Открыт набор', cta_sub: 'Группа H (Hotel) стартует 15 мая 2026', cta_btn: 'Записаться на курс',
                 modal_title: 'Записаться на курс', form_name: 'Имя и фамилия', form_bg: 'Бэкграунд', form_cv: 'Прикрепить CV', form_choose: 'Выбрать файл', form_submit: 'Отправить заявку',
                 reviews_title: 'Отзывы выпускников',
-                reviews_empty: 'Курс запускается впервые. Отзывы появятся после завершения первой группы.',
-                reviews_enroll: 'Стать первым выпускником →'
+                reviews_empty: 'Отзывы появятся здесь после завершения первой группы.'
             },
             en: {
                 nav_home: 'Home', nav_schedule: 'Schedule', nav_contact: 'Contact',
@@ -282,8 +282,7 @@
                 cta_title: 'Enrollment open', cta_sub: 'Group H (Hotel) starts May 15, 2026', cta_btn: 'Enroll',
                 modal_title: 'Course enrollment', form_name: 'Full name', form_bg: 'Background', form_cv: 'Attach CV', form_choose: 'Choose file', form_submit: 'Submit application',
                 reviews_title: 'Graduate Reviews',
-                reviews_empty: 'This course is launching for the first time. Reviews will appear after the first group completes.',
-                reviews_enroll: 'Be the first graduate →'
+                reviews_empty: 'Reviews will appear here after the first group completes.'
             }
         };
 
@@ -324,6 +323,43 @@
         }
 
         document.getElementById('registrationModal').addEventListener('click', (e) => { if (e.target.id === 'registrationModal') closeModal(); });
+
+        // Reviews loader
+        (function() {
+            var container = document.getElementById('reviewsContainer');
+            var empty = document.getElementById('reviewsEmpty');
+            if (!container) return;
+
+            var courseName = document.title.split('—')[0].trim().toLowerCase().replace(/[^a-z0-9]/g, '-');
+
+            fetch('/reviews.json')
+                .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
+                .then(function(data) {
+                    var reviews = data[courseName] || [];
+                    if (reviews.length === 0) return;
+                    empty.style.display = 'none';
+                    reviews.forEach(function(rev) {
+                        var initials = (rev.name || '?')[0].toUpperCase();
+                        var stars = '';
+                        for (var i = 0; i < (rev.rating || 5); i++) stars += '\u2605';
+                        var card = '<div class="review-card">'
+                            + '<div class="review-stars">' + stars + '</div>'
+                            + '<div class="review-text">\u00ab' + escapeHtml(rev.text) + '\u00bb</div>'
+                            + '<div class="review-author">'
+                            + '<div class="review-avatar">' + initials + '</div>'
+                            + '<div class="review-info">'
+                            + '<div class="review-name">' + escapeHtml(rev.name) + '</div>'
+                            + '<div class="review-role">' + escapeHtml(rev.role || '') + '</div>'
+                            + '</div></div></div>';
+                        container.insertAdjacentHTML('beforeend', card);
+                    });
+                })
+                .catch(function() {});
+
+            function escapeHtml(s) {
+                return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+            }
+        })();
     </script>
 </body>
 </html>

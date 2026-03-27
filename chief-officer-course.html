@@ -547,29 +547,10 @@
 
     <div class="container" style="padding-top: 0;">
         <section class="reviews">
-            <h2>Отзывы выпускников</h2>
-            <div class="reviews-grid">
-                <div class="review-card">
-                    <div class="review-stars">★★★★★</div>
-                    <div class="review-text">«Курс полностью перестроил моё понимание роли старпома. Это не просто "следи за палубой" — это управление людьми, ресурсами и рисками. Очень практично.»</div>
-                    <div class="review-author">
-                        <div class="review-avatar">I</div>
-                        <div class="review-info">
-                            <div class="review-name">Игорь К.</div>
-                            <div class="review-role">Second Officer, выпуск 2026</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="review-stars">★★★★★</div>
-                    <div class="review-text">«После курса начал по-другому планировать работу палубной команды. Чеклисты первых 30 дней — это то, чего мне не хватало при заходе на новое судно.»</div>
-                    <div class="review-author">
-                        <div class="review-avatar">S</div>
-                        <div class="review-info">
-                            <div class="review-name">Сергей М.</div>
-                            <div class="review-role">Third Officer, выпуск 2026</div>
-                        </div>
-                    </div>
+            <h2 data-i18n="reviews_title">Отзывы выпускников</h2>
+            <div class="reviews-grid" id="reviewsContainer">
+                <div class="review-empty" id="reviewsEmpty">
+                    <p data-i18n="reviews_empty">Отзывы появятся здесь после завершения первой группы.</p>
                 </div>
             </div>
         </section>
@@ -662,6 +643,43 @@
                 closeModal();
             }
         });
+
+        // Reviews loader
+        (function() {
+            var container = document.getElementById('reviewsContainer');
+            var empty = document.getElementById('reviewsEmpty');
+            if (!container) return;
+
+            var courseName = document.title.split('—')[0].trim().toLowerCase().replace(/[^a-z0-9]/g, '-');
+
+            fetch('/reviews.json')
+                .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
+                .then(function(data) {
+                    var reviews = data[courseName] || [];
+                    if (reviews.length === 0) return;
+                    empty.style.display = 'none';
+                    reviews.forEach(function(rev) {
+                        var initials = (rev.name || '?')[0].toUpperCase();
+                        var stars = '';
+                        for (var i = 0; i < (rev.rating || 5); i++) stars += '\u2605';
+                        var card = '<div class="review-card">'
+                            + '<div class="review-stars">' + stars + '</div>'
+                            + '<div class="review-text">\u00ab' + escapeHtml(rev.text) + '\u00bb</div>'
+                            + '<div class="review-author">'
+                            + '<div class="review-avatar">' + initials + '</div>'
+                            + '<div class="review-info">'
+                            + '<div class="review-name">' + escapeHtml(rev.name) + '</div>'
+                            + '<div class="review-role">' + escapeHtml(rev.role || '') + '</div>'
+                            + '</div></div></div>';
+                        container.insertAdjacentHTML('beforeend', card);
+                    });
+                })
+                .catch(function() {});
+
+            function escapeHtml(s) {
+                return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+            }
+        })();
     </script>
 </body>
 </html>

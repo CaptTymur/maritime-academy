@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оставить отзыв — Мореходные Классы</title>
+    <meta name="robots" content="noindex">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #0a0e17;
+            --surface: #111827;
+            --card: #1a2236;
+            --border: #1e293b;
+            --text: #e8edf5;
+            --dim: #8b95a8;
+            --accent: #3b82f6;
+            --green: #10b981;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 520px;
+            width: 100%;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .logo a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .logo a span { color: var(--accent); }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+        h1 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            color: var(--dim);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--dim);
+            margin-bottom: 0.3rem;
+            margin-top: 1rem;
+        }
+        label:first-of-type { margin-top: 0; }
+        input, select, textarea {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+        input::placeholder, textarea::placeholder { color: var(--dim); }
+        textarea { resize: vertical; min-height: 100px; }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        select { cursor: pointer; }
+        select option { background: var(--card); }
+
+        /* Stars */
+        .stars {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.3rem;
+        }
+        .star {
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--border);
+            transition: color 0.15s;
+            user-select: none;
+        }
+        .star.active { color: #f59e0b; }
+        .star:hover { color: #fbbf24; }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: background 0.2s;
+        }
+        button[type="submit"]:hover { background: #2563eb; }
+        .note {
+            text-align: center;
+            color: var(--dim);
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+        .success {
+            text-align: center;
+            padding: 2rem;
+        }
+        .success h2 {
+            color: var(--green);
+            margin-bottom: 0.75rem;
+        }
+        .success p { color: var(--dim); }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <a href="index.html">Мореходные <span>классы</span></a>
+        </div>
+
+        <div class="card" id="formCard">
+            <h1>Оставить отзыв</h1>
+            <p class="subtitle">Ваш отзыв будет опубликован на странице курса и поможет будущим студентам.</p>
+
+            <form id="reviewForm" action="https://formsubmit.co/broker@capt-tymur.com" method="POST">
+                <input type="hidden" name="_subject" value="New Course Review">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://academy.capt-tymur.com/review.html?sent=1">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_autoresponse" value="Спасибо за ваш отзыв! Он будет опубликован на сайте после проверки.
+
+--
+Мореходные Классы Капитана Тимура
+academy.capt-tymur.com">
+
+                <label>Имя и фамилия *</label>
+                <input type="text" name="name" required placeholder="Как отображать на сайте (можно сокращённо)">
+
+                <label>Email *</label>
+                <input type="email" name="email" required placeholder="Не публикуется, только для связи">
+
+                <label>Курс *</label>
+                <select name="course" required>
+                    <option value="" disabled selected>Выберите курс</option>
+                    <option value="captain">Капитан гражданского судна</option>
+                    <option value="chief-officer">Старший палубный офицер</option>
+                    <option value="deck-officer">Палубный офицер</option>
+                    <option value="cargo-officer">Грузовой офицер на балкере</option>
+                    <option value="sailor">Палубный моряк (матрос)</option>
+                    <option value="lng-cargo-officer">Газовоз СПГ — грузовой офицер</option>
+                </select>
+
+                <label>Должность / звание</label>
+                <input type="text" name="role" placeholder="Например: Chief Officer, 2nd Officer">
+
+                <label>Оценка *</label>
+                <div class="stars" id="starsWidget">
+                    <span class="star" data-v="1">★</span>
+                    <span class="star" data-v="2">★</span>
+                    <span class="star" data-v="3">★</span>
+                    <span class="star" data-v="4">★</span>
+                    <span class="star" data-v="5">★</span>
+                </div>
+                <input type="hidden" name="rating" id="ratingValue" value="5" required>
+
+                <label>Отзыв *</label>
+                <textarea name="text" required placeholder="Что было полезно? Что бы вы отметили? Рекомендуете ли курс коллегам?"></textarea>
+
+                <button type="submit">Отправить отзыв</button>
+                <p class="note">Отзыв будет опубликован после проверки.</p>
+            </form>
+        </div>
+
+        <div class="card success hidden" id="successCard">
+            <h2>Спасибо!</h2>
+            <p>Ваш отзыв получен и будет опубликован на странице курса после проверки.</p>
+            <p style="margin-top: 1rem;"><a href="index.html" style="color: var(--accent); text-decoration: none;">← Вернуться на сайт</a></p>
+        </div>
+    </div>
+
+    <script>
+    // Stars widget
+    var stars = document.querySelectorAll('.star');
+    var ratingInput = document.getElementById('ratingValue');
+    var currentRating = 5;
+
+    function setRating(n) {
+        currentRating = n;
+        ratingInput.value = n;
+        stars.forEach(function(s, i) {
+            s.classList.toggle('active', i < n);
+        });
+    }
+
+    stars.forEach(function(s) {
+        s.addEventListener('click', function() { setRating(parseInt(this.dataset.v)); });
+        s.addEventListener('mouseenter', function() {
+            var v = parseInt(this.dataset.v);
+            stars.forEach(function(ss, i) { ss.classList.toggle('active', i < v); });
+        });
+    });
+
+    document.getElementById('starsWidget').addEventListener('mouseleave', function() {
+        setRating(currentRating);
+    });
+
+    setRating(5);
+
+    // Pre-select course from URL parameter
+    var params = new URLSearchParams(window.location.search);
+    var course = params.get('course');
+    if (course) {
+        var sel = document.querySelector('select[name="course"]');
+        if (sel) {
+            for (var i = 0; i < sel.options.length; i++) {
+                if (sel.options[i].value === course) {
+                    sel.selectedIndex = i;
+                    break;
+                }
+            }
+        }
+    }
+
+    // Show success if redirected back
+    if (params.get('sent') === '1') {
+        document.getElementById('formCard').classList.add('hidden');
+        document.getElementById('successCard').classList.remove('hidden');
+    }
+    </script>
+</body>
+</html>
