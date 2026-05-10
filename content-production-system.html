@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система контента для экспертов | Capt. Tymur Academy</title>
+    <meta name="description" content="Практический курс для профессионалов, консультантов, фаундеров и малого бизнеса: превратить экспертизу в регулярный поток контента для LinkedIn и соцсетей.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://academy.capt-tymur.com/content-production-system.html">
+    <meta property="og:title" content="Система контента для экспертов | Capt. Tymur Academy">
+    <meta property="og:description" content="Превратить знание и опыт в регулярный контент для LinkedIn — повторяемая система, не очередной guru-курс.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://academy.capt-tymur.com/content-production-system.html">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Система контента для экспертов | Capt. Tymur Academy">
+    <meta name="twitter:description" content="Регулярный контент в LinkedIn — система для профессионалов.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Content Production System",
+        "description": "Practical course on turning professional expertise into consistent LinkedIn and social media content. Built for consultants, coaches, founders, small business owners and experts.",
+        "provider": {
+            "@type": "EducationalOrganization",
+            "name": "Capt. Tymur Academy",
+            "url": "https://academy.capt-tymur.com/"
+        },
+        "courseMode": "online",
+        "inLanguage": ["ru", "en"],
+        "educationalLevel": "Professional training"
+    }
+    </script>
+    <style>
+        :root {
+            --bg: #0a0e17;
+            --bg-card: #1a2236;
+            --bg-soft: #111827;
+            --rule: #1e293b;
+            --text: #e8edf5;
+            --text-mid: #cbd2da;
+            --text-muted: #8b95a8;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --gold: #f59e0b;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { color: var(--accent-hover); }
+
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(10,14,23,0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--rule);
+            z-index: 100; padding: 0 2rem;
+        }
+        nav .inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 0; gap: 1rem;
+        }
+        nav .brand {
+            font-size: 1.25rem; font-weight: 600; color: var(--text);
+        }
+        nav .brand .accent { color: var(--accent); }
+        nav ul { display: flex; list-style: none; gap: 2rem; }
+        nav ul a { color: var(--text-muted); }
+        .lang-toggle { display: flex; gap: 0.5rem; align-items: center; }
+        .lang-toggle button {
+            background: transparent; border: 1px solid var(--rule);
+            color: var(--text-muted); padding: 0.5rem 1rem;
+            border-radius: 6px; cursor: pointer; font-family: inherit;
+            font-size: 0.85rem; transition: all 0.2s;
+        }
+        .lang-toggle button.active {
+            background: var(--accent); color: #fff; border-color: var(--accent);
+        }
+        @media (max-width: 768px) { nav ul { display: none; } }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+        .hero { padding: 8rem 0 4rem; }
+        .hero .kicker {
+            color: var(--accent); font-size: 0.85rem; font-weight: 600;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .hero h1 {
+            font-size: 2.75rem; line-height: 1.15;
+            margin-bottom: 1rem; letter-spacing: -0.01em;
+        }
+        .hero .sub {
+            font-size: 1.2rem; color: var(--text-mid); margin-bottom: 1.5rem;
+            max-width: 720px;
+        }
+        .hero .lead {
+            color: var(--text-muted); font-size: 1.05rem; margin-bottom: 2rem;
+            max-width: 720px;
+        }
+        .cta-row {
+            display: flex; gap: 1rem; flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-block; padding: 0.95rem 1.6rem;
+            font-weight: 600; font-size: 1rem; border-radius: 8px;
+            border: 1px solid transparent; cursor: pointer;
+            transition: all 0.15s ease;
+            font-family: inherit;
+        }
+        .btn-primary { background: var(--accent); color: #fff; }
+        .btn-primary:hover { background: var(--accent-hover); color: #fff; }
+        .btn-secondary {
+            background: transparent; color: var(--text);
+            border-color: var(--rule);
+        }
+        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+        section { padding: 3rem 0; border-top: 1px solid var(--rule); }
+        section h2 {
+            font-size: 1.75rem; color: var(--accent);
+            margin-bottom: 0.75rem; letter-spacing: -0.005em;
+        }
+        section p.section-sub {
+            color: var(--text-muted); margin-bottom: 1.75rem; max-width: 720px;
+        }
+        section p { color: var(--text-mid); }
+
+        .problem-quote {
+            background: rgba(59,130,246,0.08);
+            border-left: 4px solid var(--accent);
+            padding: 1.25rem 1.5rem; border-radius: 6px;
+            color: var(--text); font-size: 1.05rem;
+            max-width: 760px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 0.75rem;
+        }
+        .pill {
+            background: var(--bg-soft); border: 1px solid var(--rule);
+            padding: 0.85rem 1.1rem; border-radius: 8px;
+            color: var(--text); font-size: 0.95rem;
+        }
+
+        .what-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.85rem;
+        }
+        .what-item {
+            background: var(--bg-card); border: 1px solid var(--rule);
+            border-left: 3px solid var(--accent);
+            padding: 1rem 1.2rem; border-radius: 8px;
+            color: var(--text-mid); font-size: 0.95rem;
+        }
+
+        .module-list { counter-reset: mod; }
+        .module {
+            display: flex; gap: 1rem; align-items: flex-start;
+            background: var(--bg-soft); border: 1px solid var(--rule);
+            border-radius: 8px; padding: 1.1rem 1.4rem; margin-bottom: 0.6rem;
+        }
+        .module .num {
+            counter-increment: mod;
+            background: var(--accent); color: #fff;
+            min-width: 32px; height: 32px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.85rem; font-weight: 700; flex-shrink: 0;
+        }
+        .module .num::before { content: counter(mod, decimal-leading-zero); }
+        .module .body strong { color: var(--text); display: block; margin-bottom: 0.15rem; }
+        .module .body p { color: var(--text-muted); font-size: 0.92rem; margin: 0; }
+
+        .offer-card {
+            background: var(--bg-card); border: 1px solid var(--rule);
+            border-radius: 12px; padding: 1.5rem 1.75rem; margin-bottom: 0.85rem;
+            display: grid; grid-template-columns: 1fr auto;
+            gap: 1rem; align-items: center;
+        }
+        .offer-card .tier {
+            font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--text-muted);
+            margin-bottom: 0.4rem;
+        }
+        .offer-card .tier-name {
+            color: var(--text); font-size: 1.1rem; font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        .offer-card .tier-desc {
+            color: var(--text-muted); font-size: 0.92rem;
+        }
+        .offer-card .price {
+            font-size: 1.3rem; color: var(--accent); font-weight: 700;
+            white-space: nowrap;
+        }
+        .offer-card.featured {
+            border-color: var(--accent);
+            background: linear-gradient(180deg, rgba(59,130,246,0.08), var(--bg-card));
+        }
+        @media (max-width: 600px) {
+            .offer-card { grid-template-columns: 1fr; }
+        }
+
+        .form-card {
+            background: var(--bg-card); border: 1px solid var(--rule);
+            border-radius: 12px; padding: 1.75rem 1.85rem;
+        }
+        .form-group { margin-bottom: 1.1rem; }
+        .form-group label {
+            display: block; margin-bottom: 0.4rem;
+            color: var(--text); font-weight: 600; font-size: 0.92rem;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 0.75rem 0.85rem;
+            background: var(--bg); border: 1px solid var(--rule);
+            border-radius: 6px; color: var(--text);
+            font-family: inherit; font-size: 0.95rem;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none; border-color: var(--accent);
+        }
+        .form-group textarea { min-height: 100px; resize: vertical; }
+        .form-card .btn-primary { width: 100%; margin-top: 0.5rem; }
+
+        .final-cta {
+            text-align: center; padding: 4rem 0;
+            background: linear-gradient(180deg, transparent, rgba(59,130,246,0.05));
+        }
+        .final-cta h2 { color: var(--text); margin-bottom: 0.75rem; }
+        .final-cta p { color: var(--text-muted); margin-bottom: 1.5rem; max-width: 560px; margin-left: auto; margin-right: auto; }
+
+        footer {
+            border-top: 1px solid var(--rule); padding: 2rem;
+            text-align: center; color: var(--text-muted); font-size: 0.88rem;
+        }
+        footer a { color: var(--text-muted); }
+
+        @media (max-width: 600px) {
+            .hero { padding: 6rem 0 3rem; }
+            .hero h1 { font-size: 2.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="inner">
+        <a href="index.html" class="brand">Capt. Tymur <span class="accent">Academy</span></a>
+        <ul>
+            <li><a href="#problem" data-i18n="nav_problem">Проблема</a></li>
+            <li><a href="#modules" data-i18n="nav_modules">Модули</a></li>
+            <li><a href="#offer" data-i18n="nav_offer">Условия</a></li>
+            <li><a href="#request" data-i18n="nav_request">Заявка</a></li>
+        </ul>
+        <div class="lang-toggle">
+            <button class="active" data-lang="ru">RU</button>
+            <button data-lang="en">EN</button>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="container">
+        <div class="kicker" data-i18n="kicker">Capt. Tymur Academy · Beta-набор</div>
+        <h1 data-i18n="hero_title">Система контента для экспертов</h1>
+        <p class="sub" data-i18n="hero_sub">Превратите знание, опыт и рабочую практику в регулярный поток контента для LinkedIn и соцсетей.</p>
+        <p class="lead" data-i18n="hero_lead">Практический курс для профессионалов, консультантов, фаундеров и владельцев небольших компаний. Постройте повторяемый процесс создания, публикации и переиспользования контента — чтобы каждую неделю не начинать с нуля.</p>
+        <div class="cta-row">
+            <a href="#request" class="btn btn-primary" data-i18n="cta_request">Подать заявку</a>
+            <a href="mailto:broker@capt-tymur.com?subject=Content%20Production%20System%20—%20Consultation" class="btn btn-secondary" data-i18n="cta_consult">Записаться на консультацию</a>
+        </div>
+    </div>
+</header>
+
+<section id="problem">
+    <div class="container">
+        <h2 data-i18n="problem_title">Проблема</h2>
+        <p class="section-sub" data-i18n="problem_sub">Дело не в нехватке экспертизы. Дело в отсутствии системы.</p>
+        <div class="problem-quote" data-i18n="problem_quote">
+            Большинству экспертов не хватает не знаний, а повторяемой системы превращения экспертизы в контент. Поэтому публикации становятся эпизодическими, энергия уходит в «что бы написать сегодня» вместо самой работы, а LinkedIn-присутствие так и не набирает оборот.
+        </div>
+    </div>
+</section>
+
+<section id="audience">
+    <div class="container">
+        <h2 data-i18n="audience_title">Для кого</h2>
+        <p class="section-sub" data-i18n="audience_sub">Для тех, чья экспертиза — это сам продукт, и кто хочет, чтобы её видели.</p>
+        <div class="grid-2">
+            <div class="pill" data-i18n="aud1">Консультанты и советники</div>
+            <div class="pill" data-i18n="aud2">Коучи</div>
+            <div class="pill" data-i18n="aud3">Фаундеры и владельцы малого бизнеса</div>
+            <div class="pill" data-i18n="aud4">Эксперты в своей области</div>
+            <div class="pill" data-i18n="aud5">Независимые профессионалы</div>
+            <div class="pill" data-i18n="aud6">Все, кому нужна видимость в LinkedIn</div>
+        </div>
+    </div>
+</section>
+
+<section id="what-it-helps">
+    <div class="container">
+        <h2 data-i18n="helps_title">С чем поможет курс</h2>
+        <p class="section-sub" data-i18n="helps_sub">Конкретные результаты, а не абстрактные советы.</p>
+        <div class="what-list">
+            <div class="what-item" data-i18n="help1">Сформулировать, чем именно вы хотите быть известны</div>
+            <div class="what-item" data-i18n="help2">Выбрать контент-столбы (pillars)</div>
+            <div class="what-item" data-i18n="help3">Собирать идеи из ежедневной работы</div>
+            <div class="what-item" data-i18n="help4">Превращать сырые идеи в готовые посты</div>
+            <div class="what-item" data-i18n="help5">Выстроить недельный ритм публикаций, который реально выдерживается</div>
+            <div class="what-item" data-i18n="help6">Переиспользовать одну идею в нескольких форматах</div>
+            <div class="what-item" data-i18n="help7">Использовать контент для видимости, доверия и продаж</div>
+        </div>
+    </div>
+</section>
+
+<section id="modules">
+    <div class="container">
+        <h2 data-i18n="modules_title">Модули курса</h2>
+        <p class="section-sub" data-i18n="modules_sub">Десять модулей. Последовательные, практичные, с шаблонами и чек-листами.</p>
+        <div class="module-list">
+            <div class="module"><div class="num"></div><div class="body"><strong data-i18n="m1_t">Позиционирование</strong><p data-i18n="m1_d">Что вы отстаиваете, к кому обращаетесь, почему это важно сейчас.</p></div></div>
+            <div class="module"><div class="num"></div><div class="body"><strong data-i18n="m2_t">Аудитория и оффер</strong><p data-i18n="m2_d">Связь между тем, кто вас читает, и тем, что вы продаёте.</p></div></div>
+            <div class="module"><div class="num"></div><div class="body"><strong data-i18n="m3_t">Контент-столбы</strong><p data-i18n="m3_d">Три-пять тем, о которых вы можете говорить годами.</p></div></div>
+            <div class="module"><div class="num"></div><div class="body"><strong data-i18n="m4_t">Система сбора идей</strong><p data-i18n="m4_d">Перестать охотиться за идеями. Построить пайплайн из своей же работы.</p></div></div>
+            <div class="module"><div class="num"></div><div class="body"><strong data-i18n="m5_t">Производственный поток поста</strong><p data-i18n="m5_d">От сырой идеи до публикации — за известное количество шагов.</p></div></div>
+            <div class="module"><div class="num"></div><div class="body"><strong data-i18n="m6_t">Видео и длинный формат</strong><p data-i18n="m6_d">Когда и как разворачивать пост в видео, статью или карусель.</p></div></div>
+            <div class="module"><div class="num"></div><div class="body"><strong data-i18n="m7_t">Переиспользование</strong><p data-i18n="m7_d">Одна идея — несколько форматов, без эффекта «снова это же».</p></div></div>
+            <div class="module"><div class="num"></div><div class="body"><strong data-i18n="m8_t">Ритм публикаций</strong><p data-i18n="m8_d">Недельный темп, который реально совместим с вашей рабочей нагрузкой.</p></div></div>
+            <div class="module"><div class="num"></div><div class="body"><strong data-i18n="m9_t">Промо и дистрибуция</strong><p data-i18n="m9_d">Чтобы ваши публикации видели нужные люди.</p></div></div>
+            <div class="module"><div class="num"></div><div class="body"><strong data-i18n="m10_t">Что мерить</strong><p data-i18n="m10_d">Несколько сигналов, которые реально важны для видимости и продаж.</p></div></div>
+        </div>
+    </div>
+</section>
+
+<section id="offer">
+    <div class="container">
+        <h2 data-i18n="offer_title">Условия</h2>
+        <p class="section-sub" data-i18n="offer_sub">Beta-версия. Цены ориентировочные и могут меняться по мере зрелости курса.</p>
+
+        <div class="offer-card featured">
+            <div>
+                <div class="tier" data-i18n="t1_tier">Beta-доступ</div>
+                <div class="tier-name" data-i18n="t1_name">Доступ к курсу (beta)</div>
+                <div class="tier-desc" data-i18n="t1_desc">Курс в self-paced формате, шаблоны и чек-листы. Обратная связь в beta-когорте.</div>
+            </div>
+            <div class="price">$49–$99</div>
+        </div>
+        <div class="offer-card">
+            <div>
+                <div class="tier" data-i18n="t2_tier">Курс + 1:1</div>
+                <div class="tier-name" data-i18n="t2_name">Курс + личная сессия</div>
+                <div class="tier-desc" data-i18n="t2_desc">Beta-доступ плюс персональная консультация с Тимуром: применить систему к вашей ситуации.</div>
+            </div>
+            <div class="price">$199–$300</div>
+        </div>
+        <div class="offer-card">
+            <div>
+                <div class="tier" data-i18n="t3_tier">Консалтинг</div>
+                <div class="tier-name" data-i18n="t3_name">Консалтинговый пакет</div>
+                <div class="tier-desc" data-i18n="t3_desc">Прямая работа над позиционированием, контент-системой и ритмом публикаций. Объём по согласованию.</div>
+            </div>
+            <div class="price" data-i18n="t3_price">от $500</div>
+        </div>
+    </div>
+</section>
+
+<section id="request">
+    <div class="container">
+        <h2 data-i18n="form_title">Подать заявку</h2>
+        <p class="section-sub" data-i18n="form_sub">Расскажите коротко о своей ситуации. Получите письменный ответ со следующими шагами.</p>
+        <form class="form-card" action="/forms/submit" method="POST">
+            <input type="hidden" name="_form" value="content-production-system">
+            <input type="hidden" name="_subject" value="Content Production System — Access Request">
+            <input type="hidden" name="_redirect" value="https://academy.capt-tymur.com/content-production-system.html?sent=1">
+            <input type="hidden" name="Source" value="academy.capt-tymur.com / Content Production System">
+
+            <div class="form-group">
+                <label for="name" data-i18n="f_name">Имя</label>
+                <input id="name" name="Name" type="text" required>
+            </div>
+            <div class="form-group">
+                <label for="email" data-i18n="f_email">Email</label>
+                <input id="email" name="Email" type="email" required>
+            </div>
+            <div class="form-group">
+                <label for="linkedin" data-i18n="f_linkedin">LinkedIn-профиль</label>
+                <input id="linkedin" name="LinkedIn" type="url" placeholder="https://www.linkedin.com/in/...">
+            </div>
+            <div class="form-group">
+                <label for="goal" data-i18n="f_goal">Что хотите улучшить?</label>
+                <textarea id="goal" name="Goal" data-i18n="f_goal_ph" placeholder="Несколько строк: где вы сейчас и что хотите изменить." required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="interest" data-i18n="f_interest">Что интересует:</label>
+                <select id="interest" name="Interest" required>
+                    <option value="" data-i18n="f_choose">— выберите —</option>
+                    <option data-i18n="f_opt1">Доступ к курсу (beta)</option>
+                    <option data-i18n="f_opt2">Курс + личная сессия</option>
+                    <option data-i18n="f_opt3">Консалтинговый пакет</option>
+                    <option data-i18n="f_opt4">Пока не уверен — открыт к разговору</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" data-i18n="f_submit">Подать заявку</button>
+        </form>
+    </div>
+</section>
+
+<section class="final-cta">
+    <div class="container">
+        <h2 data-i18n="final_title">Постройте систему один раз. Используйте её годами.</h2>
+        <p data-i18n="final_p">Перестаньте каждую неделю заново выдумывать контент-процесс. Получите шаблоны, ритм и схему переиспользования, которыми пользуются работающие профессионалы.</p>
+        <a href="#request" class="btn btn-primary" data-i18n="final_cta">Подать заявку на участие</a>
+    </div>
+</section>
+
+<footer>
+    &copy; 2026 Capt. Tymur Academy ·
+    <a href="mailto:broker@capt-tymur.com">broker@capt-tymur.com</a> ·
+    <a href="https://tymur.org/">tymur.org</a>
+</footer>
+
+<script>
+    const translations = {
+        ru: {
+            nav_problem: 'Проблема', nav_modules: 'Модули', nav_offer: 'Условия', nav_request: 'Заявка',
+            kicker: 'Capt. Tymur Academy · Beta-набор',
+            hero_title: 'Система контента для экспертов',
+            hero_sub: 'Превратите знание, опыт и рабочую практику в регулярный поток контента для LinkedIn и соцсетей.',
+            hero_lead: 'Практический курс для профессионалов, консультантов, фаундеров и владельцев небольших компаний. Постройте повторяемый процесс создания, публикации и переиспользования контента — чтобы каждую неделю не начинать с нуля.',
+            cta_request: 'Подать заявку', cta_consult: 'Записаться на консультацию',
+            problem_title: 'Проблема',
+            problem_sub: 'Дело не в нехватке экспертизы. Дело в отсутствии системы.',
+            problem_quote: 'Большинству экспертов не хватает не знаний, а повторяемой системы превращения экспертизы в контент. Поэтому публикации становятся эпизодическими, энергия уходит в «что бы написать сегодня» вместо самой работы, а LinkedIn-присутствие так и не набирает оборот.',
+            audience_title: 'Для кого',
+            audience_sub: 'Для тех, чья экспертиза — это сам продукт, и кто хочет, чтобы её видели.',
+            aud1: 'Консультанты и советники', aud2: 'Коучи', aud3: 'Фаундеры и владельцы малого бизнеса',
+            aud4: 'Эксперты в своей области', aud5: 'Независимые профессионалы', aud6: 'Все, кому нужна видимость в LinkedIn',
+            helps_title: 'С чем поможет курс', helps_sub: 'Конкретные результаты, а не абстрактные советы.',
+            help1: 'Сформулировать, чем именно вы хотите быть известны',
+            help2: 'Выбрать контент-столбы (pillars)',
+            help3: 'Собирать идеи из ежедневной работы',
+            help4: 'Превращать сырые идеи в готовые посты',
+            help5: 'Выстроить недельный ритм публикаций, который реально выдерживается',
+            help6: 'Переиспользовать одну идею в нескольких форматах',
+            help7: 'Использовать контент для видимости, доверия и продаж',
+            modules_title: 'Модули курса', modules_sub: 'Десять модулей. Последовательные, практичные, с шаблонами и чек-листами.',
+            m1_t: 'Позиционирование', m1_d: 'Что вы отстаиваете, к кому обращаетесь, почему это важно сейчас.',
+            m2_t: 'Аудитория и оффер', m2_d: 'Связь между тем, кто вас читает, и тем, что вы продаёте.',
+            m3_t: 'Контент-столбы', m3_d: 'Три-пять тем, о которых вы можете говорить годами.',
+            m4_t: 'Система сбора идей', m4_d: 'Перестать охотиться за идеями. Построить пайплайн из своей же работы.',
+            m5_t: 'Производственный поток поста', m5_d: 'От сырой идеи до публикации — за известное количество шагов.',
+            m6_t: 'Видео и длинный формат', m6_d: 'Когда и как разворачивать пост в видео, статью или карусель.',
+            m7_t: 'Переиспользование', m7_d: 'Одна идея — несколько форматов, без эффекта «снова это же».',
+            m8_t: 'Ритм публикаций', m8_d: 'Недельный темп, который реально совместим с вашей рабочей нагрузкой.',
+            m9_t: 'Промо и дистрибуция', m9_d: 'Чтобы ваши публикации видели нужные люди.',
+            m10_t: 'Что мерить', m10_d: 'Несколько сигналов, которые реально важны для видимости и продаж.',
+            offer_title: 'Условия', offer_sub: 'Beta-версия. Цены ориентировочные и могут меняться по мере зрелости курса.',
+            t1_tier: 'Beta-доступ', t1_name: 'Доступ к курсу (beta)', t1_desc: 'Курс в self-paced формате, шаблоны и чек-листы. Обратная связь в beta-когорте.',
+            t2_tier: 'Курс + 1:1', t2_name: 'Курс + личная сессия', t2_desc: 'Beta-доступ плюс персональная консультация с Тимуром: применить систему к вашей ситуации.',
+            t3_tier: 'Консалтинг', t3_name: 'Консалтинговый пакет', t3_desc: 'Прямая работа над позиционированием, контент-системой и ритмом публикаций. Объём по согласованию.',
+            t3_price: 'от $500',
+            form_title: 'Подать заявку', form_sub: 'Расскажите коротко о своей ситуации. Получите письменный ответ со следующими шагами.',
+            f_name: 'Имя', f_email: 'Email', f_linkedin: 'LinkedIn-профиль',
+            f_goal: 'Что хотите улучшить?', f_goal_ph: 'Несколько строк: где вы сейчас и что хотите изменить.',
+            f_interest: 'Что интересует:', f_choose: '— выберите —',
+            f_opt1: 'Доступ к курсу (beta)', f_opt2: 'Курс + личная сессия', f_opt3: 'Консалтинговый пакет', f_opt4: 'Пока не уверен — открыт к разговору',
+            f_submit: 'Подать заявку',
+            final_title: 'Постройте систему один раз. Используйте её годами.',
+            final_p: 'Перестаньте каждую неделю заново выдумывать контент-процесс. Получите шаблоны, ритм и схему переиспользования, которыми пользуются работающие профессионалы.',
+            final_cta: 'Подать заявку на участие'
+        },
+        en: {
+            nav_problem: 'Problem', nav_modules: 'Modules', nav_offer: 'Offer', nav_request: 'Request access',
+            kicker: 'Capt. Tymur Academy · Beta cohort',
+            hero_title: 'Content Production System',
+            hero_sub: 'Turn your knowledge, experience and professional work into consistent LinkedIn and social media content.',
+            hero_lead: 'A practical training for professionals, consultants, founders and small business owners. Build a repeatable process for creating, publishing and reusing content — without starting from zero every time.',
+            cta_request: 'Request access', cta_consult: 'Book consultation',
+            problem_title: 'The problem',
+            problem_sub: "It's not an expertise gap. It's a system gap.",
+            problem_quote: 'Most professionals do not lack expertise. They lack a repeatable system for turning expertise into content. So publishing becomes a sporadic effort, energy goes into "what to post today" instead of into the work itself, and the LinkedIn pipeline never builds momentum.',
+            audience_title: "Who it's for",
+            audience_sub: 'Built for people whose expertise is the product, and who want it to be visible.',
+            aud1: 'Consultants and advisors', aud2: 'Coaches', aud3: 'Founders and small business owners',
+            aud4: 'Subject-matter experts', aud5: 'Independent professionals', aud6: 'Anyone who wants more visibility on LinkedIn',
+            helps_title: 'What the course helps with', helps_sub: 'Concrete outcomes, not abstract advice.',
+            help1: 'Define what you want to be known for',
+            help2: 'Choose your content pillars',
+            help3: 'Capture ideas from your daily work',
+            help4: 'Turn raw ideas into publishable posts',
+            help5: 'Build a weekly publishing rhythm you can sustain',
+            help6: 'Repurpose one idea into multiple formats',
+            help7: 'Use content to support visibility, trust and sales',
+            modules_title: 'Course modules', modules_sub: 'Ten modules. Sequential, practical, each with templates and checklists.',
+            m1_t: 'Positioning', m1_d: 'What you stand for, who you talk to, why it matters now.',
+            m2_t: 'Audience and offer clarity', m2_d: 'Make the connection between who reads you and what you sell.',
+            m3_t: 'Content pillars', m3_d: 'Three to five themes you can talk about for years.',
+            m4_t: 'Idea capture system', m4_d: 'Stop hunting for ideas. Build a pipeline from your daily work.',
+            m5_t: 'Post production workflow', m5_d: 'From raw idea to published post in a known number of steps.',
+            m6_t: 'Video and long-form content', m6_d: 'When and how to expand a post into video, article or carousel.',
+            m7_t: 'Repurposing', m7_d: 'One idea, multiple formats — without it feeling repetitive.',
+            m8_t: 'Publishing rhythm', m8_d: 'A weekly cadence that is sustainable for your real workload.',
+            m9_t: 'Promotion and distribution', m9_d: 'Get the right people to see what you publish.',
+            m10_t: 'Measuring what works', m10_d: 'The few signals that actually matter for visibility and sales.',
+            offer_title: 'Offer', offer_sub: 'Early beta version. Pricing is provisional and may change as the course matures.',
+            t1_tier: 'Beta access', t1_name: 'Course beta access', t1_desc: 'Self-paced course, practical templates and checklists. Beta cohort feedback loop.',
+            t2_tier: 'Course + 1:1', t2_name: 'Course + personal session', t2_desc: 'Beta course access plus a personal consultation with Capt. Tymur to apply it to your situation.',
+            t3_tier: 'Consulting', t3_name: 'Consulting package', t3_desc: 'Direct work on positioning, content system and publishing rhythm. Custom scope.',
+            t3_price: 'from $500',
+            form_title: 'Request access', form_sub: "Tell me a bit about your situation. You'll get a written reply with next steps.",
+            f_name: 'Name', f_email: 'Email', f_linkedin: 'LinkedIn profile',
+            f_goal: 'What do you want to improve?', f_goal_ph: 'A few lines on where you are now and what you want to change.',
+            f_interest: 'Are you interested in:', f_choose: '— choose —',
+            f_opt1: 'Course beta access', f_opt2: 'Course + personal session', f_opt3: 'Consulting package', f_opt4: 'Not sure yet — open to discussion',
+            f_submit: 'Request access',
+            final_title: 'Build the system once. Use it for years.',
+            final_p: 'Stop reinventing your content workflow every week. Get the templates, rhythm and repurposing process used by working professionals.',
+            final_cta: 'Request access to the Content Production System'
+        }
+    };
+
+    let currentLang = localStorage.getItem('language') || 'ru';
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('language', lang);
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang] && translations[lang][key] !== undefined) {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = translations[lang][key];
+                } else {
+                    el.innerHTML = translations[lang][key];
+                }
+            }
+        });
+        document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+        const btn = document.querySelector(`.lang-toggle button[data-lang="${lang}"]`);
+        if (btn) btn.classList.add('active');
+        // Update <title>
+        document.title = (lang === 'en'
+            ? 'Content Production System | Capt. Tymur Academy'
+            : 'Система контента для экспертов | Capt. Tymur Academy');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        setLanguage(currentLang);
+        document.querySelectorAll('.lang-toggle button').forEach(btn => {
+            btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang')));
+        });
+    });
+</script>
+
+</body>
+</html>
