@@ -362,16 +362,29 @@
             document.getElementById('cvFile').addEventListener('change', (e) => { document.getElementById('fileName').textContent = e.target.files.length > 0 ? e.target.files[0].name : ''; });
         });
 
-        function handleSubmit(event) {
+        async function handleSubmit(event) {
             event.preventDefault();
-            const fd = new FormData(event.target);
+            const form = event.target;
+            const btn = form.querySelector('button[type=submit]');
+            if (btn) btn.disabled = true;
+            const fd = new FormData(form);
             const course = currentLang === 'en' ? 'Deck Sailor (Rating)' : 'Палубный моряк (матрос)';
-            const subject = currentLang === 'en' ? `Course application: ${course}` : `Заявка на курс: ${course}`;
-            const body = currentLang === 'en'
-                ? `Course: ${course}\n\nFull name: ${fd.get('fullName')}\n\nAbout yourself:\n${fd.get('background')}`
-                : `Курс: ${course}\n\nИмя и фамилия: ${fd.get('fullName')}\n\nО себе:\n${fd.get('background')}`;
-            window.location.href = `mailto:broker@capt-tymur.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            setTimeout(() => closeModal(), 500);
+            const params = new URLSearchParams();
+            for (const [k, v] of fd.entries()) { if (typeof v === 'string') params.append(k, v); }
+            params.append('_form', 'sailor-course');
+            params.append('course', course);
+            params.append('_subject', currentLang === 'en' ? `Course application: ${course}` : `Заявка на курс: ${course}`);
+            try {
+                const r = await fetch('/forms/submit', { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' }, body: params });
+                if (!r.ok) throw new Error('http ' + r.status);
+                alert(currentLang === 'en' ? 'Thanks! Application received. We will be in touch shortly.' : 'Спасибо! Заявка получена. Свяжемся в ближайшее время.');
+                closeModal();
+            } catch (e) {
+                console.error(e);
+                alert(currentLang === 'en' ? 'Could not send. Email broker@capt-tymur.com directly.' : 'Не удалось отправить. Напишите напрямую: broker@capt-tymur.com');
+            } finally {
+                if (btn) btn.disabled = false;
+            }
         }
 
         document.getElementById('registrationModal').addEventListener('click', (e) => { if (e.target.id === 'registrationModal') closeModal(); });

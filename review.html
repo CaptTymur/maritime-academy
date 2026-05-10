@@ -143,16 +143,10 @@
             <h1>Оставить отзыв</h1>
             <p class="subtitle">Ваш отзыв будет опубликован на странице курса и поможет будущим студентам.</p>
 
-            <form id="reviewForm" action="https://formsubmit.co/broker@capt-tymur.com" method="POST">
+            <form id="reviewForm" action="/forms/submit" method="POST">
+                <input type="hidden" name="_form" value="course-review">
                 <input type="hidden" name="_subject" value="New Course Review">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://academy.capt-tymur.com/review.html?sent=1">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_autoresponse" value="Спасибо за ваш отзыв! Он будет опубликован на сайте после проверки.
-
---
-Мореходные Классы Капитана Тимура
-academy.capt-tymur.com">
+                <input type="hidden" name="_redirect" value="https://academy.capt-tymur.com/review.html?sent=1">
 
                 <label>Имя и фамилия *</label>
                 <input type="text" name="name" required placeholder="Как отображать на сайте (можно сокращённо)">

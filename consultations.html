@@ -372,6 +372,22 @@
                     </ul>
                     <button class="btn" onclick="openModal('mentoring')" data-i18n="book_btn">Записаться</button>
                 </div>
+
+                <!-- LinkedIn Profile -->
+                <div class="pricing-card">
+                    <h3 data-i18n="tier4_title">LinkedIn-профиль</h3>
+                    <div class="duration" data-i18n="tier4_duration">По вашему резюме и целям</div>
+                    <div class="price">$112</div>
+                    <div class="price-note" data-i18n="tier4_note">разовая услуга</div>
+                    <ul>
+                        <li data-i18n="tier4_f1">Профессиональный профиль на основе вашего CV</li>
+                        <li data-i18n="tier4_f2">Headline, About, Experience — на английском</li>
+                        <li data-i18n="tier4_f3">Подбор фотографии и оформление</li>
+                        <li data-i18n="tier4_f4">Адаптация под вашу цель и индустрию</li>
+                        <li data-i18n="tier4_f5">Готовый текст — копируйте в LinkedIn</li>
+                    </ul>
+                    <button class="btn" onclick="openModal('linkedin')" data-i18n="tier4_btn">Заказать профиль</button>
+                </div>
             </div>
         </section>
 
@@ -455,11 +471,15 @@
                         <option value="quick" data-i18n-opt="opt_quick">Быстрая консультация (30 мин) — $75</option>
                         <option value="standard" data-i18n-opt="opt_standard">Стандартная сессия (60 мин) — $150</option>
                         <option value="mentoring" data-i18n-opt="opt_mentoring">Менторинг-пакет (4 сессии/мес) — $400/мес</option>
+                        <option value="linkedin" data-i18n-opt="opt_linkedin">LinkedIn-профиль моряка — $112</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="topic" data-i18n="form_topic">Тема / вопросы</label>
+                    <label for="topic" id="topicLabel" data-i18n="form_topic">Тема / вопросы</label>
                     <textarea id="topic" name="topic" required></textarea>
+                </div>
+                <div id="cvNote" style="display: none; background: var(--accent-dim); border-left: 3px solid var(--accent); padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem;">
+                    <p style="color: var(--text-primary); font-size: 0.9rem; margin: 0;" data-i18n="form_cv_instruction">После отправки заявки пришлите на <strong>broker@capt-tymur.com</strong>:<br>1) Резюме / CV<br>2) Фотографию для профиля<br>3) Опишите ваши цели (какую работу/должность ищете)</p>
                 </div>
                 <div class="form-group">
                     <label for="email" data-i18n="form_email">Ваш email</label>
@@ -501,7 +521,13 @@
                 form_name: 'Имя и фамилия', form_format: 'Формат', form_topic: 'Тема / вопросы', form_email: 'Ваш email', form_submit: 'Отправить заявку',
                 opt_quick: 'Быстрая консультация (30 мин) — $75',
                 opt_standard: 'Стандартная сессия (60 мин) — $150',
-                opt_mentoring: 'Менторинг-пакет (4 сессии/мес) — $400/мес'
+                opt_mentoring: 'Менторинг-пакет (4 сессии/мес) — $400/мес',
+                opt_linkedin: 'LinkedIn-профиль — $112',
+                tier4_title: 'LinkedIn-профиль', tier4_duration: 'По вашему резюме и целям', tier4_note: 'разовая услуга',
+                tier4_f1: 'Профессиональный профиль на основе вашего CV', tier4_f2: 'Headline, About, Experience — на английском', tier4_f3: 'Подбор фотографии и оформление', tier4_f4: 'Адаптация под вашу цель и индустрию', tier4_f5: 'Готовый текст — копируйте в LinkedIn',
+                tier4_btn: 'Заказать профиль',
+                form_topic_linkedin: 'Кратко: кто вы и какую цель преследуете',
+                form_cv_instruction: 'После отправки заявки пришлите на <strong>broker@capt-tymur.com</strong>:<br>1) Резюме / CV<br>2) Фотографию для профиля<br>3) Опишите ваши цели (какую работу/должность ищете)'
             },
             en: {
                 nav_home: 'Home', nav_schedule: 'Schedule', nav_contact: 'Contact',
@@ -532,7 +558,13 @@
                 form_name: 'Full name', form_format: 'Format', form_topic: 'Topic / questions', form_email: 'Your email', form_submit: 'Submit application',
                 opt_quick: 'Quick Consultation (30 min) — $75',
                 opt_standard: 'Standard Session (60 min) — $150',
-                opt_mentoring: 'Mentoring Package (4 sessions/mo) — $400/mo'
+                opt_mentoring: 'Mentoring Package (4 sessions/mo) — $400/mo',
+                opt_linkedin: 'LinkedIn Profile — $112',
+                tier4_title: 'LinkedIn Profile', tier4_duration: 'Based on your resume and goals', tier4_note: 'one-time service',
+                tier4_f1: 'Professional profile built from your CV', tier4_f2: 'Headline, About, Experience — in English', tier4_f3: 'Photo selection and formatting', tier4_f4: 'Tailored to your goal and industry', tier4_f5: 'Ready-to-use text — copy to LinkedIn',
+                tier4_btn: 'Order profile',
+                form_topic_linkedin: 'Briefly: who you are and what you\'re looking for',
+                form_cv_instruction: 'After submitting, please send to <strong>broker@capt-tymur.com</strong>:<br>1) Your CV / Resume<br>2) A photo for the profile<br>3) Describe your goals (what role/position you\'re looking for)'
             }
         };
 
@@ -566,9 +598,21 @@
 
         let selectedFormat = 'standard';
 
+        function updateLinkedinFields(format) {
+            const isLinkedin = format === 'linkedin';
+            document.getElementById('cvNote').style.display = isLinkedin ? 'block' : 'none';
+            const label = document.getElementById('topicLabel');
+            if (isLinkedin) {
+                label.textContent = translations[currentLang].form_topic_linkedin || 'Текущая должность и цель профиля';
+            } else {
+                label.textContent = translations[currentLang].form_topic || 'Тема / вопросы';
+            }
+        }
+
         function openModal(format) {
             selectedFormat = format || 'standard';
             document.getElementById('format').value = selectedFormat;
+            updateLinkedinFields(selectedFormat);
             document.getElementById('bookingModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -579,29 +623,44 @@
             document.getElementById('bookingForm').reset();
         }
 
-        function handleSubmit(event) {
+        async function handleSubmit(event) {
             event.preventDefault();
-            const fd = new FormData(event.target);
+            const form = event.target;
+            const btn = form.querySelector('button[type=submit]');
+            if (btn) btn.disabled = true;
+            const fd = new FormData(form);
             const format = fd.get('format');
             const formatLabels = {
                 quick: currentLang === 'en' ? 'Quick Consultation (30 min) — $75' : 'Быстрая консультация (30 мин) — $75',
                 standard: currentLang === 'en' ? 'Standard Session (60 min) — $150' : 'Стандартная сессия (60 мин) — $150',
-                mentoring: currentLang === 'en' ? 'Mentoring Package (4 sessions/mo) — $400/mo' : 'Менторинг-пакет (4 сессии/мес) — $400/мес'
+                mentoring: currentLang === 'en' ? 'Mentoring Package (4 sessions/mo) — $400/mo' : 'Менторинг-пакет (4 сессии/мес) — $400/мес',
+                linkedin: currentLang === 'en' ? 'LinkedIn Profile — $112' : 'LinkedIn-профиль — $112'
             };
-            const subject = currentLang === 'en'
-                ? `Consultation request: ${formatLabels[format]}`
-                : `Заявка на консультацию: ${formatLabels[format]}`;
-            const body = currentLang === 'en'
-                ? `Format: ${formatLabels[format]}\n\nName: ${fd.get('fullName')}\nEmail: ${fd.get('email')}\n\nTopic / questions:\n${fd.get('topic')}`
-                : `Формат: ${formatLabels[format]}\n\nИмя: ${fd.get('fullName')}\nEmail: ${fd.get('email')}\n\nТема / вопросы:\n${fd.get('topic')}`;
-            window.location.href = `mailto:broker@capt-tymur.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            setTimeout(() => closeModal(), 500);
+            const params = new URLSearchParams();
+            for (const [k, v] of fd.entries()) { if (typeof v === 'string') params.append(k, v); }
+            params.append('_form', 'consultations');
+            params.append('formatLabel', formatLabels[format] || format);
+            params.append('_subject', currentLang === 'en' ? `Consultation request: ${formatLabels[format]}` : `Заявка на консультацию: ${formatLabels[format]}`);
+            try {
+                const r = await fetch('/forms/submit', { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' }, body: params });
+                if (!r.ok) throw new Error('http ' + r.status);
+                alert(currentLang === 'en' ? 'Thanks! Application received. We will be in touch shortly.' : 'Спасибо! Заявка получена. Свяжемся в ближайшее время.');
+                closeModal();
+            } catch (e) {
+                console.error(e);
+                alert(currentLang === 'en' ? 'Could not send. Email broker@capt-tymur.com directly.' : 'Не удалось отправить. Напишите напрямую: broker@capt-tymur.com');
+            } finally {
+                if (btn) btn.disabled = false;
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             setLanguage(currentLang);
             document.querySelectorAll('.lang-toggle button').forEach(btn => {
                 btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang')));
+            });
+            document.getElementById('format').addEventListener('change', function() {
+                updateLinkedinFields(this.value);
             });
         });
 

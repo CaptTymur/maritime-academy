@@ -612,29 +612,38 @@
             });
         });
 
-        // Form submission handler
-        function handleSubmit(event) {
+        // Form submission handler — POST to self-hosted form handler at /forms/submit
+        async function handleSubmit(event) {
             event.preventDefault();
+            const form = event.target;
+            const btn = form.querySelector('button[type=submit]');
+            if (btn) btn.disabled = true;
 
-            const formData = new FormData(event.target);
-            const data = {
-                fullName: formData.get('fullName'),
-                background: formData.get('background'),
-                course: 'Старший палубный офицер',
-                groupId: 'F (Foxtrot)'
-            };
+            const fd = new FormData(form);
+            const params = new URLSearchParams();
+            for (const [k, v] of fd.entries()) {
+                if (typeof v === 'string') params.append(k, v);
+            }
+            params.append('_form', 'chief-officer-course');
+            params.append('course', 'Старший палубный офицер');
+            params.append('groupId', 'F (Foxtrot)');
+            params.append('_subject', 'Заявка на курс: Группа F (Foxtrot) — Старший палубный офицер');
 
-            // Send email via mailto
-            const subject = 'Заявка на курс: Группа F (Foxtrot) - Старший палубный офицер';
-            const body = `Группа: F (Foxtrot)\nКурс: ${data.course}\n\nИмя и фамилия: ${data.fullName}\n\nБэкграунд:\n${data.background}`;
-            const mailtoLink = `mailto:broker@capt-tymur.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-            window.location.href = mailtoLink;
-
-            // Close modal after short delay
-            setTimeout(() => {
+            try {
+                const r = await fetch('/forms/submit', {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: params,
+                });
+                if (!r.ok) throw new Error('http ' + r.status);
+                alert('Спасибо! Заявка получена. Свяжемся в ближайшее время.');
                 closeModal();
-            }, 500);
+            } catch (e) {
+                console.error(e);
+                alert('Не удалось отправить. Напишите напрямую: broker@capt-tymur.com');
+            } finally {
+                if (btn) btn.disabled = false;
+            }
         }
 
         // Close modal on background click
