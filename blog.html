@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блог и White Papers | Captain Tymur's Maritime Academy</title>
+    <meta name="description" content="Блог и white papers Captain Tymur's Maritime Academy: практические материалы для моряков, старпомов, капитанов и тех, кто рассматривает переход на берег.">
+    <meta name="author" content="Tymur Rudov">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://academy.capt-tymur.com/blog.html">
+    <meta property="og:title" content="Блог и White Papers | Captain Tymur's Maritime Academy">
+    <meta property="og:description" content="Практические материалы для моряков: карьера, управление судном, проверки, коммуникация с офисом и переход на берег.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://academy.capt-tymur.com/blog.html">
+    <meta property="og:site_name" content="Captain Tymur's Maritime Academy">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Блог и White Papers | Captain Tymur's Maritime Academy">
+    <meta name="twitter:description" content="Практические материалы для моряков, старпомов, капитанов и shore-side перехода.">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "Блог и White Papers Captain Tymur's Maritime Academy",
+            "description": "Практические материалы для моряков, старпомов, капитанов и специалистов, которые рассматривают переход на берег.",
+            "url": "https://academy.capt-tymur.com/blog.html",
+            "inLanguage": "ru",
+            "publisher": {
+                "@type": "EducationalOrganization",
+                "name": "Captain Tymur's Maritime Academy",
+                "url": "https://academy.capt-tymur.com/"
+            },
+            "hasPart": [
+                {
+                    "@type": "Article",
+                    "headline": "Переход моряка на берег: как упаковать опыт для shore-side роли",
+                    "url": "https://academy.capt-tymur.com/seafarer-shore-transition-white-paper.html"
+                },
+                {
+                    "@type": "Article",
+                    "headline": "Chief Mate Checklist: первые 30 дней старпома",
+                    "url": "https://academy.capt-tymur.com/chief-mate-first-30-days.html"
+                },
+                {
+                    "@type": "Article",
+                    "headline": "How to Report to Office Using Minto Pyramid",
+                    "url": "https://academy.capt-tymur.com/report-to-office-minto.html"
+                }
+            ]
+        }
+    </script>
+    <style>
+        * { box-sizing: border-box; }
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --bg-card: #1a2236;
+            --text-primary: #e8edf5;
+            --text-secondary: #94a3b8;
+            --accent: #3b82f6;
+            --accent-soft: rgba(59, 130, 246, 0.15);
+            --border: #1e293b;
+            --success: #10b981;
+        }
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: #60a5fa; }
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 14, 23, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 20;
+        }
+        nav .inner, .wrap {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        nav .inner {
+            min-height: 64px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        nav a {
+            text-decoration: none;
+            color: #cbd5e1;
+        }
+        nav .brand {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        nav ul {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            padding: 4.5rem 0 3rem;
+            background: linear-gradient(135deg, #0a0e17 0%, #111827 100%);
+            border-bottom: 1px solid var(--border);
+        }
+        .eyebrow {
+            display: inline-block;
+            padding: 0.35rem 0.8rem;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: #60a5fa;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            max-width: 840px;
+            margin: 0 0 1rem;
+            font-size: clamp(2.1rem, 5vw, 3.5rem);
+            line-height: 1.1;
+            letter-spacing: 0;
+        }
+        .lead {
+            max-width: 760px;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        main {
+            padding: 3rem 0 4rem;
+        }
+        .section-title {
+            font-size: 1.65rem;
+            margin: 0 0 1.25rem;
+            color: var(--text-primary);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            align-items: stretch;
+        }
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(96, 165, 250, 0.7);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.25);
+        }
+        .card.featured {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+            gap: 1.5rem;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.13), rgba(26, 34, 54, 1));
+        }
+        .tag {
+            display: inline-block;
+            width: fit-content;
+            padding: 0.25rem 0.65rem;
+            border: 1px solid rgba(96, 165, 250, 0.35);
+            border-radius: 999px;
+            color: #93c5fd;
+            font-size: 0.78rem;
+            margin-bottom: 0.8rem;
+        }
+        h2, h3 {
+            letter-spacing: 0;
+        }
+        .card h2, .card h3 {
+            margin: 0 0 0.75rem;
+            color: #60a5fa;
+            line-height: 1.25;
+        }
+        .card p {
+            color: var(--text-secondary);
+            margin: 0 0 1.25rem;
+        }
+        .meta {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+        .meta span {
+            padding: 0.35rem 0.7rem;
+            border-radius: 6px;
+            background: rgba(10, 14, 23, 0.6);
+            border: 1px solid var(--border);
+        }
+        .cta {
+            margin-top: 3rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(59, 130, 246, 0.35);
+            border-radius: 8px;
+            background: rgba(59, 130, 246, 0.1);
+        }
+        .cta h2 {
+            margin: 0 0 0.6rem;
+            color: var(--text-primary);
+            font-size: 1.35rem;
+        }
+        .cta p {
+            margin: 0 0 1rem;
+            color: var(--text-secondary);
+        }
+        .button {
+            display: inline-block;
+            padding: 0.85rem 1.25rem;
+            border-radius: 8px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        @media (max-width: 760px) {
+            nav ul { display: none; }
+            .card.featured {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="inner">
+            <a class="brand" href="index.html">Мореходные классы</a>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="blog.html">Блог</a></li>
+                <li><a href="consultations.html">Консультации</a></li>
+                <li><a href="contact.html">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="wrap">
+            <span class="eyebrow">Blog / White Papers</span>
+            <h1>Белые страницы для моряков, которые хотят управлять карьерой осознанно</h1>
+            <p class="lead">Практические материалы Captain Tymur's Maritime Academy: как думать о повышении, работе с офисом, проверках, CV, LinkedIn и переходе на shore-side роли в shipping management.</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="wrap">
+            <h2 class="section-title">White papers</h2>
+            <div class="grid">
+                <a class="card featured" href="seafarer-shore-transition-white-paper.html">
+                    <div>
+                        <span class="tag">Career / Shore Transition</span>
+                        <h2>Переход моряка на берег: как упаковать опыт для shore-side роли</h2>
+                        <p>Разбор для капитанов, старпомов и офицеров: какие shore-side роли смотреть, как перевести морской опыт в язык ship management, как собрать CV, LinkedIn и историю для интервью.</p>
+                        <div class="meta">
+                            <span>White paper</span>
+                            <span>2026-05-12</span>
+                            <span>CV, LinkedIn, interview</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p>Ключевой тезис: на берегу продается не сам факт sea service, а доказуемая способность управлять риском, людьми, документацией, коммуникацией с офисом и коммерческими последствиями решений.</p>
+                    </div>
+                </a>
+            </div>
+
+            <h2 class="section-title" style="margin-top: 3rem;">Практические гайды</h2>
+            <div class="grid">
+                <a class="card" href="chief-mate-first-30-days.html">
+                    <span class="tag">Chief Mate</span>
+                    <h3>Chief Mate Checklist: первые 30 дней старпома</h3>
+                    <p>Что проверить и выстроить в первый месяц: handover, палуба, команда, PMS, recurring defects и связь с капитаном.</p>
+                    <div class="meta"><span>Guide</span><span>Management</span></div>
+                </a>
+                <a class="card" href="report-to-office-minto.html">
+                    <span class="tag">Office Communication</span>
+                    <h3>How to Report to Office Using Minto Pyramid</h3>
+                    <p>Как докладывать в офис коротко: суть, риск, что сделано, что нужно и к какому сроку.</p>
+                    <div class="meta"><span>Guide</span><span>Office</span></div>
+                </a>
+                <a class="card" href="recurring-defects-pms.html">
+                    <span class="tag">PMS / Defects</span>
+                    <h3>Recurring Defects in PMS</h3>
+                    <p>Почему повторяющиеся дефекты говорят не только о железе, но и о качестве управления, эскалации и приоритетов.</p>
+                    <div class="meta"><span>Guide</span><span>Technical management</span></div>
+                </a>
+            </div>
+
+            <section class="cta">
+                <h2>Нужен разбор вашего перехода на берег?</h2>
+                <p>Для пилотного формата пришлите ранг, типы судов, опыт, английский, интересные shore-side роли и страну или рынок поиска.</p>
+                <a class="button" href="mailto:info@tymur.org?subject=Shore%20transition%20consultation">Написать на info@tymur.org</a>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

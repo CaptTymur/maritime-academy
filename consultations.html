@@ -378,7 +378,7 @@
         .submit-btn:hover { background: #2563eb; }
 
         @media (max-width: 768px) {
-            nav ul { display: none; }
+            nav ul { display: none !important; }
         }
     </style>
 </head>
@@ -388,6 +388,7 @@
             <a href="index.html" style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary); text-decoration: none;">Мореходные <span style="color: var(--accent);">классы</span></a>
             <ul style="display: flex; list-style: none; gap: 2rem; margin: 0; padding: 0;">
                 <li><a href="index.html" style="color: var(--text-secondary); text-decoration: none;" data-i18n="nav_home">Главная</a></li>
+                <li><a href="blog.html" style="color: var(--text-secondary); text-decoration: none;" data-i18n="nav_blog">Блог</a></li>
                 <li><a href="schedule.html" style="color: var(--text-secondary); text-decoration: none;" data-i18n="nav_schedule">Расписание</a></li>
                 <li><a href="contact.html" style="color: var(--text-secondary); text-decoration: none;" data-i18n="nav_contact">Контакты</a></li>
             </ul>
@@ -552,15 +553,15 @@
                 <!-- Shore Transition (NEW) -->
                 <div class="pricing-card">
                     <h3 data-i18n="tier5_title">Переход на берег</h3>
-                    <div class="duration" data-i18n="tier5_duration">CV-упаковка + mock interview</div>
-                    <div class="price">$275</div>
-                    <div class="price-note" data-i18n="tier5_note">пакет</div>
+                    <div class="duration" data-i18n="tier5_duration">CV / LinkedIn + market scan + mock interview</div>
+                    <div class="price">$200-500</div>
+                    <div class="price-note" data-i18n="tier5_note">пилотный пакет, объём согласуем</div>
                     <ul>
                         <li data-i18n="tier5_f1">CV переписан под shore-роль (ship management / crewing / chartering / sale &amp; purchase)</li>
-                        <li data-i18n="tier5_f2">Подбор позиций под ваш профиль и реальные шансы</li>
-                        <li data-i18n="tier5_f3">1 mock-interview сессия (60 мин / Zoom) под конкретную должность или компанию</li>
-                        <li data-i18n="tier5_f4">Письменный отчёт после интервью: где провисало, что подтянуть</li>
-                        <li data-i18n="tier5_f5">Готовые ответы на 10 типовых вопросов от ship management</li>
+                        <li data-i18n="tier5_f2">Market scan: какие позиции подходят и где реальные шансы</li>
+                        <li data-i18n="tier5_f3">LinkedIn headline, About и Experience под целевой рынок</li>
+                        <li data-i18n="tier5_f4">1 mock-interview сессия (60 мин / Zoom) под конкретную должность или компанию</li>
+                        <li data-i18n="tier5_f5">Письменный отчёт и база ответов на типовые вопросы ship management</li>
                     </ul>
                     <button class="btn" onclick="openModal('shore-transition')" data-i18n="tier5_btn">Записаться</button>
                 </div>
@@ -653,7 +654,7 @@
                             <option value="standard" data-i18n-opt="opt_standard">Стандартная сессия (60 мин) — $150</option>
                             <option value="mentoring" data-i18n-opt="opt_mentoring">Менторинг-пакет (4 сессии/мес) — $400/мес</option>
                             <option value="linkedin" data-i18n-opt="opt_linkedin">LinkedIn-профиль моряка — $112</option>
-                            <option value="shore-transition" data-i18n-opt="opt_shore">Переход на берег — $275</option>
+                            <option value="shore-transition" data-i18n-opt="opt_shore">Переход на берег — $200-500</option>
                         </optgroup>
                         <optgroup label="Для бизнеса" id="optgrp_business">
                             <option value="owner-advisory" data-i18n-opt="opt_owner">Судовладельцу — по запросу</option>
@@ -666,7 +667,7 @@
                     <textarea id="topic" name="topic" required></textarea>
                 </div>
                 <div id="cvNote" style="display: none; background: var(--accent-dim); border-left: 3px solid var(--accent); padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem;">
-                    <p style="color: var(--text-primary); font-size: 0.9rem; margin: 0;" data-i18n="form_cv_instruction">После отправки заявки пришлите на <strong>broker@capt-tymur.com</strong>:<br>1) Резюме / CV<br>2) Фотографию для профиля (для LinkedIn)<br>3) Опишите ваши цели (какую работу/должность ищете)</p>
+                    <p style="color: var(--text-primary); font-size: 0.9rem; margin: 0;" data-i18n="form_cv_instruction">После отправки заявки пришлите на <strong>info@tymur.org</strong>:<br>1) Резюме / CV<br>2) Фотографию для профиля (для LinkedIn)<br>3) Опишите ваши цели (какую работу/должность ищете)</p>
                 </div>
                 <div class="form-group">
                     <label for="email" data-i18n="form_email">Ваш email</label>
@@ -681,7 +682,7 @@
     <script>
         const translations = {
             ru: {
-                nav_home: 'Главная', nav_schedule: 'Расписание', nav_contact: 'Контакты',
+                nav_home: 'Главная', nav_blog: 'Блог', nav_schedule: 'Расписание', nav_contact: 'Контакты',
                 back_link: '← Назад к курсам',
                 page_title: 'Консультации',
                 page_subtitle: 'Независимый взгляд для трёх аудиторий: судовладельцы и владельцы активов, крюинговые компании, моряки.',
@@ -725,12 +726,12 @@
                 tier4_title: 'LinkedIn-профиль', tier4_duration: 'По вашему резюме и целям', tier4_note: 'разовая услуга',
                 tier4_f1: 'Профессиональный профиль на основе вашего CV', tier4_f2: 'Headline, About, Experience — на английском', tier4_f3: 'Подбор фотографии и оформление', tier4_f4: 'Адаптация под вашу цель и индустрию', tier4_f5: 'Готовый текст — копируйте в LinkedIn',
                 tier4_btn: 'Заказать профиль',
-                tier5_title: 'Переход на берег', tier5_duration: 'CV-упаковка + mock interview', tier5_note: 'пакет',
+                tier5_title: 'Переход на берег', tier5_duration: 'CV / LinkedIn + market scan + mock interview', tier5_note: 'пилотный пакет, объём согласуем',
                 tier5_f1: 'CV переписан под shore-роль (ship management / crewing / chartering / sale & purchase)',
-                tier5_f2: 'Подбор позиций под ваш профиль и реальные шансы',
-                tier5_f3: '1 mock-interview сессия (60 мин / Zoom) под конкретную должность или компанию',
-                tier5_f4: 'Письменный отчёт после интервью: где провисало, что подтянуть',
-                tier5_f5: 'Готовые ответы на 10 типовых вопросов от ship management',
+                tier5_f2: 'Market scan: какие позиции подходят и где реальные шансы',
+                tier5_f3: 'LinkedIn headline, About и Experience под целевой рынок',
+                tier5_f4: '1 mock-interview сессия (60 мин / Zoom) под конкретную должность или компанию',
+                tier5_f5: 'Письменный отчёт и база ответов на типовые вопросы ship management',
                 tier5_btn: 'Записаться',
                 book_btn: 'Записаться',
 
@@ -753,18 +754,18 @@
                 form_name: 'Имя и фамилия', form_company: 'Компания', form_format: 'Формат', form_topic: 'Тема / вопросы', form_email: 'Ваш email', form_submit: 'Отправить заявку',
                 form_topic_business: 'Опишите задачу и контекст (суда, тип бизнеса, что нужно оценить)',
                 form_topic_linkedin: 'Кратко: кто вы и какую цель преследуете',
-                form_topic_shore: 'На какие shore-роли смотрите (ship management / crewing / chartering / sale & purchase) и какой опыт за плечами',
-                form_cv_instruction: 'После отправки заявки пришлите на <strong>broker@capt-tymur.com</strong>:<br>1) Резюме / CV<br>2) Фотографию для профиля (для LinkedIn)<br>3) Опишите ваши цели (какую работу/должность ищете)',
+                form_topic_shore: 'На какие shore-роли смотрите (ship management / crewing / operations / QHSE / chartering / brokerage) и какой опыт за плечами',
+                form_cv_instruction: 'После отправки заявки пришлите на <strong>info@tymur.org</strong>:<br>1) Резюме / CV<br>2) Фотографию для профиля (для LinkedIn)<br>3) Опишите ваши цели (какую работу/должность ищете)',
                 opt_quick: 'Быстрая консультация (30 мин) — $75',
                 opt_standard: 'Стандартная сессия (60 мин) — $150',
                 opt_mentoring: 'Менторинг-пакет (4 сессии/мес) — $400/мес',
                 opt_linkedin: 'LinkedIn-профиль моряка — $112',
-                opt_shore: 'Переход на берег — $275',
+                opt_shore: 'Переход на берег — $200-500',
                 opt_owner: 'Судовладельцу — по запросу',
                 opt_crewing: 'Крюингу — по запросу'
             },
             en: {
-                nav_home: 'Home', nav_schedule: 'Schedule', nav_contact: 'Contact',
+                nav_home: 'Home', nav_blog: 'Blog', nav_schedule: 'Schedule', nav_contact: 'Contact',
                 back_link: '← Back to courses',
                 page_title: 'Consultations',
                 page_subtitle: 'Independent advisory for three audiences: shipowners and asset managers, crewing companies, seafarers.',
@@ -808,12 +809,12 @@
                 tier4_title: 'LinkedIn Profile', tier4_duration: 'Based on your resume and goals', tier4_note: 'one-time service',
                 tier4_f1: 'Professional profile built from your CV', tier4_f2: 'Headline, About, Experience — in English', tier4_f3: 'Photo selection and formatting', tier4_f4: 'Tailored to your goal and industry', tier4_f5: 'Ready-to-use text — copy to LinkedIn',
                 tier4_btn: 'Order profile',
-                tier5_title: 'Shore Transition', tier5_duration: 'CV repositioning + mock interview', tier5_note: 'package',
+                tier5_title: 'Shore Transition', tier5_duration: 'CV / LinkedIn + market scan + mock interview', tier5_note: 'pilot package, scope agreed individually',
                 tier5_f1: 'CV rewritten for a shore role (ship management / crewing / chartering / sale & purchase)',
-                tier5_f2: 'Position match against your profile and realistic odds',
-                tier5_f3: '1 mock interview (60 min / Zoom) for a specific role or company',
-                tier5_f4: 'Written debrief after the interview: where you slipped and what to tighten',
-                tier5_f5: 'Prepared answers to 10 typical ship-management questions',
+                tier5_f2: 'Market scan: suitable positions and realistic odds',
+                tier5_f3: 'LinkedIn headline, About, and Experience for the target market',
+                tier5_f4: '1 mock interview (60 min / Zoom) for a specific role or company',
+                tier5_f5: 'Written debrief and answer bank for typical ship-management questions',
                 tier5_btn: 'Book now',
                 book_btn: 'Book now',
 
@@ -836,13 +837,13 @@
                 form_name: 'Full name', form_company: 'Company', form_format: 'Format', form_topic: 'Topic / questions', form_email: 'Your email', form_submit: 'Submit application',
                 form_topic_business: 'Describe the task and context (vessels, business type, what to assess)',
                 form_topic_linkedin: 'Briefly: who you are and what you\'re looking for',
-                form_topic_shore: 'Which shore roles are you targeting (ship management / crewing / chartering / sale & purchase) and what is your background',
-                form_cv_instruction: 'After submitting, please send to <strong>broker@capt-tymur.com</strong>:<br>1) Your CV / Resume<br>2) A photo (for LinkedIn)<br>3) Describe your goals (what role/position you\'re looking for)',
+                form_topic_shore: 'Which shore roles are you targeting (ship management / crewing / operations / QHSE / chartering / brokerage) and what is your background',
+                form_cv_instruction: 'After submitting, please send to <strong>info@tymur.org</strong>:<br>1) Your CV / Resume<br>2) A photo (for LinkedIn)<br>3) Describe your goals (what role/position you\'re looking for)',
                 opt_quick: 'Quick Consultation (30 min) — $75',
                 opt_standard: 'Standard Session (60 min) — $150',
                 opt_mentoring: 'Mentoring Package (4 sessions/mo) — $400/mo',
                 opt_linkedin: 'LinkedIn Profile — $112',
-                opt_shore: 'Shore Transition — $275',
+                opt_shore: 'Shore Transition — $200-500',
                 opt_owner: 'Shipowner — on request',
                 opt_crewing: 'Crewing — on request'
             }
@@ -934,7 +935,7 @@
                 standard: currentLang === 'en' ? 'Standard Session (60 min) — $150' : 'Стандартная сессия (60 мин) — $150',
                 mentoring: currentLang === 'en' ? 'Mentoring Package (4 sessions/mo) — $400/mo' : 'Менторинг-пакет (4 сессии/мес) — $400/мес',
                 linkedin: currentLang === 'en' ? 'LinkedIn Profile — $112' : 'LinkedIn-профиль — $112',
-                'shore-transition': currentLang === 'en' ? 'Shore Transition — $275' : 'Переход на берег — $275',
+                'shore-transition': currentLang === 'en' ? 'Shore Transition — $200-500' : 'Переход на берег — $200-500',
                 'owner-advisory': currentLang === 'en' ? 'Shipowner advisory — on request' : 'Судовладельцу — по запросу',
                 'crewing-advisory': currentLang === 'en' ? 'Crewing advisory — on request' : 'Крюингу — по запросу'
             };

@@ -5,6 +5,7 @@
 ## Main Pages
 
 - Home: https://academy.capt-tymur.com/
+- Blog and white papers: https://academy.capt-tymur.com/blog.html
 - Consultations: https://academy.capt-tymur.com/consultations.html
 - Schedule: https://academy.capt-tymur.com/schedule.html
 - Contact: https://academy.capt-tymur.com/contact.html
@@ -29,6 +30,10 @@
 - Recurring defects in PMS: https://academy.capt-tymur.com/recurring-defects-pms.html
 - Reporting to office using Minto pyramid: https://academy.capt-tymur.com/report-to-office-minto.html
 - Class inspection preparation checklist: https://academy.capt-tymur.com/class-inspection-preparation.html
+
+## White Papers
+
+- Seafarer shore transition: CV, LinkedIn and interview preparation for ship management, crewing, operations, QHSE, port captain, chartering and brokerage roles: https://academy.capt-tymur.com/seafarer-shore-transition-white-paper.html
 
 ## Author / Founder
 
