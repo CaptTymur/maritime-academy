@@ -685,22 +685,31 @@
 
     <!-- Consultations -->
     <section id="consultations" style="background: var(--bg-secondary);">
-        <h2 data-i18n="consult_title">Персональные консультации</h2>
-        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-            <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;" data-i18n="consult_desc">Индивидуальные сессии с капитаном через Zoom. Карьера, операции, подготовка к повышению, переход на берег.</p>
-            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem;">
-                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; min-width: 180px;">
-                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--success);">$75</div>
-                    <div style="color: var(--text-secondary); font-size: 0.875rem;" data-i18n="consult_30">30 минут</div>
-                </div>
-                <div style="background: var(--bg-card); border: 2px solid var(--accent); border-radius: 8px; padding: 1.5rem; min-width: 180px;">
-                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--success);">$150</div>
-                    <div style="color: var(--text-secondary); font-size: 0.875rem;" data-i18n="consult_60">60 минут</div>
-                </div>
-                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; min-width: 180px;">
-                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--success);">$400<span style="font-size: 0.875rem; color: var(--text-secondary);" data-i18n="consult_mo">/мес</span></div>
-                    <div style="color: var(--text-secondary); font-size: 0.875rem;" data-i18n="consult_4">4 сессии</div>
-                </div>
+        <h2 data-i18n="consult_title">Консультации</h2>
+        <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+            <p style="color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 1.1rem;" data-i18n="consult_desc">Независимый взгляд для трёх аудиторий: судовладельцы, крюинговые компании, моряки.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-bottom: 2rem;">
+                <a href="consultations.html#owners" style="text-decoration: none; color: inherit;">
+                    <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; text-align: left; height: 100%;">
+                        <div style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem;" data-i18n="consult_a1_eyebrow">Сегмент 1</div>
+                        <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 0.5rem;" data-i18n="consult_a1_title">Судовладельцам</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;" data-i18n="consult_a1_desc">Pre-purchase review, performance audit, trading area / cargo fit.</p>
+                    </div>
+                </a>
+                <a href="consultations.html#crewing" style="text-decoration: none; color: inherit;">
+                    <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; text-align: left; height: 100%;">
+                        <div style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem;" data-i18n="consult_a2_eyebrow">Сегмент 2</div>
+                        <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 0.5rem;" data-i18n="consult_a2_title">Крюинговым компаниям</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;" data-i18n="consult_a2_desc">Process audit, officer competency screening, STCW / training matrix review.</p>
+                    </div>
+                </a>
+                <a href="consultations.html#seafarers" style="text-decoration: none; color: inherit;">
+                    <div style="background: var(--bg-card); border: 2px solid var(--accent); border-radius: 8px; padding: 1.5rem; text-align: left; height: 100%;">
+                        <div style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem;" data-i18n="consult_a3_eyebrow">Сегмент 3</div>
+                        <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 0.5rem;" data-i18n="consult_a3_title">Морякам</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;" data-i18n="consult_a3_desc">Карьера, операции, подготовка к повышению, переход на берег. 5 форматов от $75 до $400/мес.</p>
+                    </div>
+                </a>
             </div>
             <a href="consultations.html" class="cta-button" data-i18n="consult_link">Подробнее →</a>
         </div>
@@ -857,12 +866,11 @@
                 course7_start: 'Beta-набор',
                 course7_desc: 'Практический курс для профессионалов, консультантов, фаундеров и малого бизнеса: как превращать экспертизу в системный поток контента для LinkedIn и соцсетей. Повторяемый процесс — без поиска идей с нуля каждую неделю.',
                 course7_link: 'Подробнее →',
-                consult_title: 'Персональные консультации',
-                consult_desc: 'Индивидуальные сессии с капитаном через Zoom. Карьера, операции, подготовка к повышению, переход на берег.',
-                consult_30: '30 минут',
-                consult_60: '60 минут',
-                consult_mo: '/мес',
-                consult_4: '4 сессии',
+                consult_title: 'Консультации',
+                consult_desc: 'Независимый взгляд для трёх аудиторий: судовладельцы, крюинговые компании, моряки.',
+                consult_a1_eyebrow: 'Сегмент 1', consult_a1_title: 'Судовладельцам', consult_a1_desc: 'Pre-purchase review, performance audit, trading area / cargo fit.',
+                consult_a2_eyebrow: 'Сегмент 2', consult_a2_title: 'Крюинговым компаниям', consult_a2_desc: 'Process audit, officer competency screening, STCW / training matrix review.',
+                consult_a3_eyebrow: 'Сегмент 3', consult_a3_title: 'Морякам', consult_a3_desc: 'Карьера, операции, подготовка к повышению, переход на берег. 5 форматов от $75 до $400/мес.',
                 consult_link: 'Подробнее →',
                 sp_title: 'Self-paced платформа в разработке',
                 sp_desc: 'Скоро вы сможете проходить курсы в своём темпе — видеоуроки, контрольные точки, сертификат. Оставьте email, чтобы узнать первыми о запуске.',
@@ -952,12 +960,11 @@
                 course7_start: 'Beta cohort',
                 course7_desc: 'A practical course for professionals, consultants, founders and small businesses: turn expertise into a systematic content flow for LinkedIn and social. A repeatable process — without hunting for ideas from scratch every week.',
                 course7_link: 'Learn More →',
-                consult_title: 'Personal Consultations',
-                consult_desc: 'One-on-one sessions with a Captain via Zoom. Career, operations, promotion preparation, shore-side transition.',
-                consult_30: '30 minutes',
-                consult_60: '60 minutes',
-                consult_mo: '/mo',
-                consult_4: '4 sessions',
+                consult_title: 'Consultations',
+                consult_desc: 'Independent advisory for three audiences: shipowners, crewing companies, seafarers.',
+                consult_a1_eyebrow: 'Segment 1', consult_a1_title: 'For shipowners', consult_a1_desc: 'Pre-purchase review, performance audit, trading area / cargo fit.',
+                consult_a2_eyebrow: 'Segment 2', consult_a2_title: 'For crewing companies', consult_a2_desc: 'Process audit, officer competency screening, STCW / training matrix review.',
+                consult_a3_eyebrow: 'Segment 3', consult_a3_title: 'For seafarers', consult_a3_desc: 'Career, operations, promotion prep, shore transition. 5 formats from $75 to $400/mo.',
                 consult_link: 'Learn More →',
                 sp_title: 'Self-paced platform coming soon',
                 sp_desc: 'Soon you will be able to take courses at your own pace — video lessons, checkpoints, certificate. Leave your email to be the first to know about the launch.',
