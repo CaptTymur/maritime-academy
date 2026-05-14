@@ -429,18 +429,18 @@
         <div class="course-header">
             <h1>Капитан гражданского судна</h1>
             <div class="course-meta">
-                <span class="meta-tag" style="background: var(--accent); color: white; font-weight: 700;">Группа G (Golf)</span>
-                <span class="meta-tag">Старт 13 апреля</span>
+                <span class="meta-tag" style="background: var(--accent); color: white; font-weight: 700;">Следующий поток</span>
+                <span class="meta-tag">Набор по заявкам</span>
                 <span class="meta-tag">8 занятий</span>
                 <span class="meta-tag">Zoom онлайн</span>
-                <span class="meta-tag">5-10 человек</span>
+                <span class="meta-tag">5-8 человек</span>
                 <span class="meta-tag">Между занятиями работаем в чате - изучаем дополнительный материал</span>
             </div>
         </div>
 
         <div class="price-box" style="border-color: var(--accent);">
-            <div class="price" style="color: var(--accent);">13 апреля 2026</div>
-            <p class="note">Следующая группа начинает занятия</p>
+            <div class="price" style="color: var(--accent);">Следующий поток</div>
+            <p class="note">Дата старта определяется после набора рабочей группы</p>
         </div>
 
         <section>
@@ -543,16 +543,16 @@
                 <li><strong>Длительность:</strong> 8 занятий по 2 часа</li>
                 <li><strong>Расписание:</strong> 2 раза в неделю</li>
                 <li><strong>Платформа:</strong> Zoom (живые занятия)</li>
-                <li><strong>Размер группы:</strong> 5-10 человек</li>
+                <li><strong>Размер группы:</strong> 5-8 человек</li>
                 <li><strong>Язык:</strong> Русский</li>
                 <li><strong>Между занятиями:</strong> Работа в режиме чата (голосовые и текст)</li>
             </ul>
         </section>
 
         <div class="price-box">
-            <div class="price">Открыт набор</div>
-            <p class="note">Следующая группа стартует 13 апреля 2026</p>
-            <a href="javascript:void(0)" onclick="openModal()" class="cta-button">Записаться на курс</a>
+            <div class="price">Принимаем заявки</div>
+            <p class="note">Оставьте заявку, чтобы получить условия участия и понять, подходит ли вам следующий поток</p>
+            <a href="javascript:void(0)" onclick="openModal()" class="cta-button">Оставить заявку</a>
         </div>
     </div>
 
@@ -645,8 +645,8 @@
             }
             params.append('_form', 'captain-course');
             params.append('course', 'Капитан гражданского судна');
-            params.append('groupId', 'G (Golf)');
-            params.append('_subject', 'Заявка на курс: Группа G (Golf) — Капитан гражданского судна');
+            params.append('groupId', 'next-cohort');
+            params.append('_subject', 'Заявка на курс: следующий поток — Капитан гражданского судна');
 
             try {
                 const r = await fetch('/forms/submit', {
