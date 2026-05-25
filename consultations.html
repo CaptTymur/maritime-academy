@@ -381,6 +381,7 @@
             nav ul { display: none !important; }
         }
     </style>
+    <link rel="stylesheet" href="academy-theme.css">
 </head>
 <body>
     <nav style="position: fixed; top: 0; width: 100%; background: rgba(10, 14, 23, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 100; padding: 0 2rem;">
@@ -667,7 +668,7 @@
                     <textarea id="topic" name="topic" required></textarea>
                 </div>
                 <div id="cvNote" style="display: none; background: var(--accent-dim); border-left: 3px solid var(--accent); padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem;">
-                    <p style="color: var(--text-primary); font-size: 0.9rem; margin: 0;" data-i18n="form_cv_instruction">После отправки заявки пришлите на <strong>info@tymur.org</strong>:<br>1) Резюме / CV<br>2) Фотографию для профиля (для LinkedIn)<br>3) Опишите ваши цели (какую работу/должность ищете)</p>
+                    <p style="color: var(--text-primary); font-size: 0.9rem; margin: 0;" data-i18n="form_cv_instruction">После отправки заявки пришлите на <strong>consult@capt-tymur.com</strong>:<br>1) Резюме / CV<br>2) Фотографию для профиля (для LinkedIn)<br>3) Опишите ваши цели (какую работу/должность ищете)</p>
                 </div>
                 <div class="form-group">
                     <label for="email" data-i18n="form_email">Ваш email</label>
@@ -755,7 +756,7 @@
                 form_topic_business: 'Опишите задачу и контекст (суда, тип бизнеса, что нужно оценить)',
                 form_topic_linkedin: 'Кратко: кто вы и какую цель преследуете',
                 form_topic_shore: 'На какие shore-роли смотрите (ship management / crewing / operations / QHSE / chartering / brokerage) и какой опыт за плечами',
-                form_cv_instruction: 'После отправки заявки пришлите на <strong>info@tymur.org</strong>:<br>1) Резюме / CV<br>2) Фотографию для профиля (для LinkedIn)<br>3) Опишите ваши цели (какую работу/должность ищете)',
+                form_cv_instruction: 'После отправки заявки пришлите на <strong>consult@capt-tymur.com</strong>:<br>1) Резюме / CV<br>2) Фотографию для профиля (для LinkedIn)<br>3) Опишите ваши цели (какую работу/должность ищете)',
                 opt_quick: 'Быстрая консультация (30 мин) — $75',
                 opt_standard: 'Стандартная сессия (60 мин) — $150',
                 opt_mentoring: 'Менторинг-пакет (4 сессии/мес) — $400/мес',
@@ -838,7 +839,7 @@
                 form_topic_business: 'Describe the task and context (vessels, business type, what to assess)',
                 form_topic_linkedin: 'Briefly: who you are and what you\'re looking for',
                 form_topic_shore: 'Which shore roles are you targeting (ship management / crewing / operations / QHSE / chartering / brokerage) and what is your background',
-                form_cv_instruction: 'After submitting, please send to <strong>info@tymur.org</strong>:<br>1) Your CV / Resume<br>2) A photo (for LinkedIn)<br>3) Describe your goals (what role/position you\'re looking for)',
+                form_cv_instruction: 'After submitting, please send to <strong>consult@capt-tymur.com</strong>:<br>1) Your CV / Resume<br>2) A photo (for LinkedIn)<br>3) Describe your goals (what role/position you\'re looking for)',
                 opt_quick: 'Quick Consultation (30 min) — $75',
                 opt_standard: 'Standard Session (60 min) — $150',
                 opt_mentoring: 'Mentoring Package (4 sessions/mo) — $400/mo',
@@ -952,7 +953,7 @@
                 closeModal();
             } catch (e) {
                 console.error(e);
-                alert(currentLang === 'en' ? 'Could not send. Email broker@capt-tymur.com directly.' : 'Не удалось отправить. Напишите напрямую: broker@capt-tymur.com');
+                alert(currentLang === 'en' ? 'Could not send. Email consult@capt-tymur.com directly.' : 'Не удалось отправить. Напишите напрямую: consult@capt-tymur.com');
             } finally {
                 if (btn) btn.disabled = false;
             }

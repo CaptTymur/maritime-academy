@@ -107,7 +107,7 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.35rem;
         }
 
         nav a {
@@ -169,6 +169,7 @@
         /* Section */
         section {
             padding: 4rem 2rem;
+            scroll-margin-top: 72px;
         }
 
         section h2 {
@@ -260,6 +261,117 @@
 
         .course-card a:hover {
             background: #2563eb;
+        }
+
+        /* Reviews */
+        .reviews-section {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .reviews-section h2 {
+            margin-bottom: 1rem;
+        }
+
+        .review-trust-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+            max-width: 1000px;
+            margin: 2rem auto;
+        }
+
+        .review-trust-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+
+        .review-trust-card h3 {
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .review-trust-card p {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+        }
+
+        .review-cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin: 2rem 0;
+        }
+
+        .secondary-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: border-color 0.2s, color 0.2s, background 0.2s;
+        }
+
+        .secondary-button:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(59, 130, 246, 0.06);
+        }
+
+        .review-public-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .review-public-card,
+        .review-empty-home {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+
+        .review-empty-home {
+            grid-column: 1 / -1;
+            border-style: dashed;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .review-public-stars {
+            color: #f59e0b;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.75rem;
+        }
+
+        .review-public-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .review-public-name {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.92rem;
+        }
+
+        .review-public-meta {
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            margin-top: 0.15rem;
         }
 
         /* Features */
@@ -509,6 +621,14 @@
                 flex-direction: column;
                 gap: 0.5rem;
             }
+            .review-trust-grid {
+                grid-template-columns: 1fr;
+            }
+            .review-cta-row a {
+                width: 100%;
+                max-width: 360px;
+                text-align: center;
+            }
         }
 
         /* Responsive */
@@ -526,6 +646,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="academy-theme.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -538,6 +659,7 @@
                 <li><a href="blog.html" data-i18n="nav_blog">Блог</a></li>
                 <li><a href="consultations.html" data-i18n="nav_consultations">Консультации</a></li>
                 <li><a href="schedule.html" data-i18n="nav_schedule">Расписание</a></li>
+                <li><a href="#reviews" data-i18n="nav_reviews">Отзывы</a></li>
                 <li><a href="#events" data-i18n="nav_events">События</a></li>
                 <li><a href="contact.html" data-i18n="nav_contact">Контакты</a></li>
             </ul>
@@ -550,13 +672,42 @@
 
     <!-- Hero -->
     <section class="hero">
-        <h1 data-i18n="hero_title">Мореходные Классы Капитана Тимура</h1>
-        <p data-i18n="hero_subtitle">Практические модели, кейсы и управленческое мышление для капитанов, старпомов и палубных офицеров</p>
-        <a href="#courses" class="cta-button" data-i18n="hero_cta">Посмотреть курсы</a>
+        <div class="hero-inner">
+            <span class="hero-eyebrow" data-i18n="hero_eyebrow">Практическое обучение для моряков</span>
+            <h1 data-i18n="hero_title">Мореходные Классы Капитана Тимура</h1>
+            <p data-i18n="hero_subtitle">Практические модели, кейсы и управленческое мышление для капитанов, старпомов и палубных офицеров</p>
+            <div class="hero-ctas">
+                <a href="#courses" class="cta-button" data-i18n="hero_cta">Посмотреть курсы</a>
+                <a href="consultations.html" class="secondary-button hero-secondary" data-i18n="hero_consult_cta">Запросить консультацию</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="academy-stats" aria-label="Academy highlights">
+        <div class="stats-grid">
+            <div class="stat">
+                <div class="num" data-i18n="stat1_num">6+</div>
+                <div class="lbl" data-i18n="stat1_lbl">Курсов и форматов</div>
+            </div>
+            <div class="stat">
+                <div class="num" data-i18n="stat2_num">5-10</div>
+                <div class="lbl" data-i18n="stat2_lbl">Человек в группе</div>
+            </div>
+            <div class="stat">
+                <div class="num" data-i18n="stat3_num">2013</div>
+                <div class="lbl" data-i18n="stat3_lbl">Капитанский опыт</div>
+            </div>
+            <div class="stat">
+                <div class="num" data-i18n="stat4_num">Online</div>
+                <div class="lbl" data-i18n="stat4_lbl">Формат обучения</div>
+            </div>
+        </div>
     </section>
 
     <!-- Courses -->
     <section id="courses">
+        <span class="eyebrow" data-i18n="courses_eyebrow">Programs</span>
         <h2 data-i18n="courses_title">Курсы / Групповое обучение</h2>
         <div class="courses-grid">
             <!-- Course 1: Captain -->
@@ -631,8 +782,44 @@
         </div>
     </section>
 
+    <!-- Reviews -->
+    <section id="reviews" class="reviews-section">
+        <div class="container">
+            <span class="eyebrow" data-i18n="reviews_eyebrow">Student proof</span>
+            <h2 data-i18n="reviews_section_title">Отзывы слушателей</h2>
+            <p class="section-intro" data-i18n="reviews_section_desc">Отзывы публикуются от слушателей, которым после завершения курса или услуги выдан одноразовый token. Это помогает новым клиентам видеть живой опыт, а не обезличенную рекламу.</p>
+
+            <div class="review-trust-grid">
+                <div class="review-trust-card">
+                    <h3 data-i18n="reviews_trust1_title">Проверенный доступ</h3>
+                    <p data-i18n="reviews_trust1_desc">Форма открыта по персональному token, который получает слушатель после обучения.</p>
+                </div>
+                <div class="review-trust-card">
+                    <h3 data-i18n="reviews_trust2_title">Можно анонимно</h3>
+                    <p data-i18n="reviews_trust2_desc">Слушатель выбирает: опубликовать отзыв анонимно или указать имя и фамилию.</p>
+                </div>
+                <div class="review-trust-card">
+                    <h3 data-i18n="reviews_trust3_title">Привязка к курсу</h3>
+                    <p data-i18n="reviews_trust3_desc">Каждый отзыв относится к конкретному курсу, консультации или другой услуге.</p>
+                </div>
+            </div>
+
+            <div class="review-cta-row">
+                <a href="#courses" class="cta-button" data-i18n="reviews_courses_cta">Выбрать курс</a>
+                <a href="review.html" class="secondary-button" data-i18n="reviews_leave_cta">Оставить отзыв по token</a>
+            </div>
+
+            <div class="review-public-grid" id="homepageReviewsGrid">
+                <div class="review-empty-home" id="homepageReviewsEmpty">
+                    <p data-i18n="reviews_empty_home">Публичные отзывы появятся здесь после проверки первых отправленных форм.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Guides -->
     <section id="guides" style="background: var(--bg-secondary);">
+        <span class="eyebrow" data-i18n="guides_eyebrow">Practical library</span>
         <h2 data-i18n="guides_title">Гайды и чек-листы</h2>
         <p class="section-intro" data-i18n="guides_desc">Материалы под реальные рабочие вопросы: что проверить, как подготовиться и где у старпома чаще всего возникают сбои.</p>
         <div class="courses-grid">
@@ -686,6 +873,7 @@
 
     <!-- White Papers / Blog -->
     <section id="white-papers">
+        <span class="eyebrow" data-i18n="whitepapers_eyebrow">Reading room</span>
         <h2 data-i18n="whitepapers_title">White Papers и блог</h2>
         <p class="section-intro" data-i18n="whitepapers_desc">Длинные практические материалы под карьерные и управленческие вопросы моряков: переход на берег, коммуникация с офисом, CV, LinkedIn и подготовка к интервью.</p>
         <div class="courses-grid">
@@ -709,6 +897,7 @@
 
     <!-- Consultations -->
     <section id="consultations" style="background: var(--bg-secondary);">
+        <span class="eyebrow" data-i18n="consult_eyebrow">Advisory</span>
         <h2 data-i18n="consult_title">Консультации</h2>
         <div style="max-width: 900px; margin: 0 auto; text-align: center;">
             <p style="color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 1.1rem;" data-i18n="consult_desc">Независимый взгляд для трёх аудиторий: судовладельцы, крюинговые компании, моряки.</p>
@@ -745,12 +934,13 @@
             <div style="font-size: 2rem; margin-bottom: 0.75rem;">🚀</div>
             <h2 style="color: var(--text-primary); font-size: 1.5rem; margin-bottom: 0.75rem;" data-i18n="sp_title">Self-paced платформа в разработке</h2>
             <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6;" data-i18n="sp_desc">Скоро вы сможете проходить курсы в своём темпе — видеоуроки, контрольные точки, сертификат. Оставьте email, чтобы узнать первыми о запуске.</p>
-            <a href="mailto:broker@capt-tymur.com?subject=Self-paced%20waitlist&body=Хочу%20узнать%20о%20запуске%20self-paced%20платформы" class="cta-button" data-i18n="sp_cta">Попасть в лист ожидания</a>
+            <a href="mailto:consult@capt-tymur.com?subject=Self-paced%20waitlist&body=Хочу%20узнать%20о%20запуске%20self-paced%20платформы" class="cta-button" data-i18n="sp_cta">Попасть в лист ожидания</a>
         </div>
     </section>
 
     <!-- Features -->
     <section class="features">
+        <span class="eyebrow" data-i18n="features_eyebrow">Why it works</span>
         <h2 data-i18n="features_title">Почему моряки приходят сюда</h2>
         <div class="features-grid">
             <div class="feature">
@@ -778,6 +968,7 @@
 
     <!-- Events / Recordings -->
     <section id="events" class="events-section">
+        <span class="eyebrow" data-i18n="events_eyebrow">Recordings</span>
         <h2 data-i18n="events_title">Записи вебинаров</h2>
         <p data-i18n="events_desc">Практические вебинары в записи — смотри в удобное время</p>
 
@@ -806,11 +997,12 @@
 
     <!-- Contact -->
     <section id="contact" class="contact">
+        <span class="eyebrow" data-i18n="contact_eyebrow">Get in touch</span>
         <h2 data-i18n="contact_title">Контакты</h2>
         <div class="contact-info">
             <div class="contact-item">
                 <h3>📧 Email</h3>
-                <a href="mailto:broker@capt-tymur.com">broker@capt-tymur.com</a>
+                <a href="mailto:consult@capt-tymur.com">consult@capt-tymur.com</a>
             </div>
             <div class="contact-item">
                 <h3>📱 Telegram</h3>
@@ -837,11 +1029,36 @@
                 nav_blog: 'Блог',
                 nav_consultations: 'Консультации',
                 nav_schedule: 'Расписание',
+                nav_reviews: 'Отзывы',
                 nav_contact: 'Контакты',
+                hero_eyebrow: 'Практическое обучение для моряков',
                 hero_title: 'Мореходные Классы Капитана Тимура',
                 hero_subtitle: 'Практические модели, кейсы и управленческое мышление для капитанов, старпомов и палубных офицеров',
                 hero_cta: 'Посмотреть курсы',
+                hero_consult_cta: 'Запросить консультацию',
+                stat1_num: '6+',
+                stat1_lbl: 'Курсов и форматов',
+                stat2_num: '5-10',
+                stat2_lbl: 'Человек в группе',
+                stat3_num: '2013',
+                stat3_lbl: 'Капитанский опыт',
+                stat4_num: 'Online',
+                stat4_lbl: 'Формат обучения',
+                courses_eyebrow: 'Программы',
                 courses_title: 'Курсы / Групповое обучение',
+                reviews_eyebrow: 'Отзывы и доверие',
+                reviews_section_title: 'Отзывы слушателей',
+                reviews_section_desc: 'Отзывы публикуются от слушателей, которым после завершения курса или услуги выдан одноразовый token. Это помогает новым клиентам видеть живой опыт, а не обезличенную рекламу.',
+                reviews_trust1_title: 'Проверенный доступ',
+                reviews_trust1_desc: 'Форма открыта по персональному token, который получает слушатель после обучения.',
+                reviews_trust2_title: 'Можно анонимно',
+                reviews_trust2_desc: 'Слушатель выбирает: опубликовать отзыв анонимно или указать имя и фамилию.',
+                reviews_trust3_title: 'Привязка к курсу',
+                reviews_trust3_desc: 'Каждый отзыв относится к конкретному курсу, консультации или другой услуге.',
+                reviews_courses_cta: 'Выбрать курс',
+                reviews_leave_cta: 'Оставить отзыв по token',
+                reviews_empty_home: 'Публичные отзывы появятся здесь после проверки первых отправленных форм.',
+                guides_eyebrow: 'Практическая библиотека',
                 guides_title: 'Гайды и чек-листы',
                 guides_desc: 'Материалы под реальные рабочие вопросы: что проверить, как подготовиться и где у старпома чаще всего возникают сбои.',
                 guide1_title: 'Chief Mate Checklist: первые 30 дней старпома',
@@ -863,6 +1080,7 @@
                 guide9_title: 'Class Inspection Preparation Checklist',
                 guide9_desc: 'Как подготовиться к class inspection без театра последних часов и где старпом чаще всего теряет контроль.',
                 guide_link: 'Открыть материал →',
+                whitepapers_eyebrow: 'Материалы',
                 whitepapers_title: 'White Papers и блог',
                 whitepapers_desc: 'Длинные практические материалы под карьерные и управленческие вопросы моряков: переход на берег, коммуникация с офисом, CV, LinkedIn и подготовка к интервью.',
                 whitepaper1_title: 'Переход моряка на берег: CV, LinkedIn и интервью',
@@ -902,6 +1120,7 @@
                 course7_start: 'Beta-набор',
                 course7_desc: 'Практический курс для профессионалов, консультантов, фаундеров и малого бизнеса: как превращать экспертизу в системный поток контента для LinkedIn и соцсетей. Повторяемый процесс — без поиска идей с нуля каждую неделю.',
                 course7_link: 'Подробнее →',
+                consult_eyebrow: 'Консалтинг',
                 consult_title: 'Консультации',
                 consult_desc: 'Независимый взгляд для трёх аудиторий: судовладельцы, крюинговые компании, моряки.',
                 consult_a1_eyebrow: 'Сегмент 1', consult_a1_title: 'Судовладельцам', consult_a1_desc: 'Pre-purchase review, performance audit, trading area / cargo fit.',
@@ -911,6 +1130,7 @@
                 sp_title: 'Self-paced платформа в разработке',
                 sp_desc: 'Скоро вы сможете проходить курсы в своём темпе — видеоуроки, контрольные точки, сертификат. Оставьте email, чтобы узнать первыми о запуске.',
                 sp_cta: 'Попасть в лист ожидания',
+                features_eyebrow: 'Почему это работает',
                 features_title: 'Почему моряки приходят сюда',
                 feature1_title: 'Практический опыт',
                 feature1_desc: 'Капитан с 2013 года, 3 года опыта в техническом менеджменте судоходной компании',
@@ -920,6 +1140,7 @@
                 feature3_desc: '5-10 человек для эффективного обучения',
                 feature4_title: 'Гибкий подход',
                 feature4_desc: 'Это не продажа видео за деньги, это передача опыта, знаний и уверенности в себе',
+                events_eyebrow: 'Записи',
                 nav_events: 'Записи',
                 events_title: 'Записи вебинаров',
                 events_desc: 'Практические вебинары в записи — смотри в удобное время',
@@ -933,6 +1154,7 @@
                 event1_price_note: 'Единовременная оплата, доступ навсегда',
                 event1_buy: 'Купить и смотреть →',
                 event1_note: 'Оплата через PayPal. После оплаты мы пришлём лицензионный ключ на email.',
+                contact_eyebrow: 'Связаться',
                 contact_title: 'Контакты',
                 footer_rights: '&copy; 2026 Captain Tymur\'s Maritime Academy. Все права защищены.',
                 footer_tagline: 'Профессиональное обучение моряков'
@@ -943,11 +1165,36 @@
                 nav_blog: 'Blog',
                 nav_consultations: 'Consultations',
                 nav_schedule: 'Schedule',
+                nav_reviews: 'Reviews',
                 nav_contact: 'Contact',
+                hero_eyebrow: 'Practical maritime training',
                 hero_title: 'Captain Tymur\'s Maritime Academy',
                 hero_subtitle: 'Practical frameworks, case-based learning, and management thinking for masters, chief officers, and deck officers',
                 hero_cta: 'View Courses',
+                hero_consult_cta: 'Request Consultation',
+                stat1_num: '6+',
+                stat1_lbl: 'Courses and formats',
+                stat2_num: '5-10',
+                stat2_lbl: 'Students per group',
+                stat3_num: '2013',
+                stat3_lbl: 'Command experience',
+                stat4_num: 'Online',
+                stat4_lbl: 'Training format',
+                courses_eyebrow: 'Programs',
                 courses_title: 'Courses / Group Training',
+                reviews_eyebrow: 'Student proof',
+                reviews_section_title: 'Student Reviews',
+                reviews_section_desc: 'Reviews are published by students who receive a one-time token after completing a course or service. This helps new clients see real experience instead of generic promotion.',
+                reviews_trust1_title: 'Verified access',
+                reviews_trust1_desc: 'The form is opened with a personal token issued after training.',
+                reviews_trust2_title: 'Anonymous option',
+                reviews_trust2_desc: 'Students choose whether to publish anonymously or with their first and last name.',
+                reviews_trust3_title: 'Course context',
+                reviews_trust3_desc: 'Every review is tied to a specific course, consultation, or other service.',
+                reviews_courses_cta: 'Choose a Course',
+                reviews_leave_cta: 'Leave a review with token',
+                reviews_empty_home: 'Public reviews will appear here after the first submitted forms are checked.',
+                guides_eyebrow: 'Practical library',
                 guides_title: 'Guides & Checklists',
                 guides_desc: 'Searchable materials for real onboard questions: what to inspect, how to prepare, and where chief mates most often lose control.',
                 guide1_title: 'Chief Mate Checklist: First 30 Days',
@@ -969,6 +1216,7 @@
                 guide9_title: 'Class Inspection Preparation Checklist',
                 guide9_desc: 'How to prepare for class inspection without last-hour theatre and where chief mates most often lose control.',
                 guide_link: 'Open Guide →',
+                whitepapers_eyebrow: 'Reading room',
                 whitepapers_title: 'White Papers and Blog',
                 whitepapers_desc: 'Long-form practical material for seafarer career and management questions: shore transition, office communication, CV, LinkedIn, and interview preparation.',
                 whitepaper1_title: 'Seafarer Shore Transition: CV, LinkedIn, and Interview',
@@ -1008,6 +1256,7 @@
                 course7_start: 'Beta cohort',
                 course7_desc: 'A practical course for professionals, consultants, founders and small businesses: turn expertise into a systematic content flow for LinkedIn and social. A repeatable process — without hunting for ideas from scratch every week.',
                 course7_link: 'Learn More →',
+                consult_eyebrow: 'Advisory',
                 consult_title: 'Consultations',
                 consult_desc: 'Independent advisory for three audiences: shipowners, crewing companies, seafarers.',
                 consult_a1_eyebrow: 'Segment 1', consult_a1_title: 'For shipowners', consult_a1_desc: 'Pre-purchase review, performance audit, trading area / cargo fit.',
@@ -1017,6 +1266,7 @@
                 sp_title: 'Self-paced platform coming soon',
                 sp_desc: 'Soon you will be able to take courses at your own pace — video lessons, checkpoints, certificate. Leave your email to be the first to know about the launch.',
                 sp_cta: 'Join the waitlist',
+                features_eyebrow: 'Why it works',
                 features_title: 'Why Seafarers Come Here',
                 feature1_title: 'Practical Experience',
                 feature1_desc: 'Captain since 2013, 3 years experience in shipping company technical management',
@@ -1026,6 +1276,7 @@
                 feature3_desc: '5-10 people for effective learning',
                 feature4_title: 'Flexible Approach',
                 feature4_desc: 'This is not selling videos for money, this is transferring experience, knowledge and self-confidence',
+                events_eyebrow: 'Recordings',
                 nav_events: 'Recordings',
                 events_title: 'Webinar Recordings',
                 events_desc: 'Practical webinars on demand — watch anytime',
@@ -1039,6 +1290,7 @@
                 event1_price_note: 'One-time payment, lifetime access',
                 event1_buy: 'Buy and watch →',
                 event1_note: 'PayPal checkout. After payment we will send the license key to your email.',
+                contact_eyebrow: 'Get in touch',
                 contact_title: 'Contact',
                 footer_rights: '&copy; 2026 Captain Tymur\'s Maritime Academy. All rights reserved.',
                 footer_tagline: 'Professional maritime training'
@@ -1048,6 +1300,7 @@
         let currentLang = localStorage.getItem('language') || 'ru';
 
         function setLanguage(lang) {
+            if (!translations[lang]) lang = 'ru';
             currentLang = lang;
             localStorage.setItem('language', lang);
 
@@ -1067,12 +1320,137 @@
             document.querySelectorAll('.lang-toggle button').forEach(btn => {
                 btn.classList.remove('active');
             });
-            document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+            const activeLangButton = document.querySelector(`[data-lang="${lang}"]`);
+            if (activeLangButton) activeLangButton.classList.add('active');
+
+            renderHomepageReviews();
+        }
+
+        const reviewCourseLabels = {
+            ru: {
+                captain: 'Капитан гражданского судна',
+                'chief-officer': 'Старший палубный офицер',
+                'deck-officer': 'Палубный офицер',
+                'cargo-officer': 'Грузовой офицер на балкере и сухогрузе',
+                sailor: 'Палубный моряк (матрос)',
+                'lng-cargo-officer': 'Газовоз СПГ — грузовой офицер',
+                'content-production-system': 'Система контента для экспертов',
+                consultation: 'Консультация / индивидуальный разбор',
+                other: 'Другая услуга'
+            },
+            en: {
+                captain: 'Master Mariner',
+                'chief-officer': 'Chief Officer',
+                'deck-officer': 'Deck Officer',
+                'cargo-officer': 'Cargo Officer on Bulk Carriers',
+                sailor: 'Deck Sailor (Rating)',
+                'lng-cargo-officer': 'LNG Carrier — Cargo Officer',
+                'content-production-system': 'Content Production System',
+                consultation: 'Consultation / Individual Review',
+                other: 'Other service'
+            }
+        };
+        let homepageReviews = [];
+
+        function getReviewCourseLabel(item) {
+            const labels = reviewCourseLabels[currentLang] || reviewCourseLabels.ru;
+            if (item.courseKey === 'other' && item.custom_service) return item.custom_service;
+            return item.course_label || labels[item.courseKey] || labels[item.course] || item.courseKey || item.course || '';
+        }
+
+        function getReviewName(item) {
+            return item.name || item.displayName || item.public_name || (currentLang === 'en' ? 'Anonymous student' : 'Анонимный слушатель');
+        }
+
+        function normalizeRating(value) {
+            const rating = parseInt(value, 10);
+            if (Number.isNaN(rating)) return 5;
+            return Math.max(1, Math.min(5, rating));
+        }
+
+        function renderHomepageReviews() {
+            const grid = document.getElementById('homepageReviewsGrid');
+            if (!grid) return;
+
+            const empty = document.getElementById('homepageReviewsEmpty');
+            grid.querySelectorAll('.review-public-card').forEach(card => card.remove());
+
+            if (!homepageReviews.length) {
+                if (empty) empty.style.display = '';
+                return;
+            }
+
+            if (empty) empty.style.display = 'none';
+
+            homepageReviews.slice(0, 6).forEach(item => {
+                const card = document.createElement('article');
+                card.className = 'review-public-card';
+
+                const stars = document.createElement('div');
+                stars.className = 'review-public-stars';
+                stars.textContent = '★'.repeat(normalizeRating(item.rating));
+
+                const text = document.createElement('p');
+                text.className = 'review-public-text';
+                text.textContent = item.text || item.review || '';
+
+                const name = document.createElement('div');
+                name.className = 'review-public-name';
+                name.textContent = getReviewName(item);
+
+                const meta = document.createElement('div');
+                meta.className = 'review-public-meta';
+                const role = item.role ? item.role + ' · ' : '';
+                meta.textContent = role + getReviewCourseLabel(item);
+
+                card.appendChild(stars);
+                card.appendChild(text);
+                card.appendChild(name);
+                card.appendChild(meta);
+                grid.appendChild(card);
+            });
+        }
+
+        function loadHomepageReviews() {
+            fetch('reviews.json')
+                .then(response => response.ok ? response.json() : Promise.reject())
+                .then(data => {
+                    const items = [];
+
+                    if (Array.isArray(data)) {
+                        data.forEach(review => {
+                            if (review && (review.text || review.review)) {
+                                items.push({ ...review, courseKey: review.course || review.courseKey || 'other' });
+                            }
+                        });
+                    } else {
+                        Object.keys(data || {}).forEach(courseKey => {
+                            const reviews = Array.isArray(data[courseKey]) ? data[courseKey] : [];
+                            reviews.forEach(review => {
+                                if (review && (review.text || review.review)) {
+                                    items.push({ ...review, courseKey });
+                                }
+                            });
+                        });
+                    }
+
+                    homepageReviews = items.sort((a, b) => {
+                        const dateA = Date.parse(a.date || a.created_at || 0) || 0;
+                        const dateB = Date.parse(b.date || b.created_at || 0) || 0;
+                        return dateB - dateA;
+                    });
+                    renderHomepageReviews();
+                })
+                .catch(() => {
+                    homepageReviews = [];
+                    renderHomepageReviews();
+                });
         }
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', () => {
             setLanguage(currentLang);
+            loadHomepageReviews();
 
             // Add click handlers to language buttons
             document.querySelectorAll('.lang-toggle button').forEach(btn => {

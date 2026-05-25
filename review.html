@@ -16,6 +16,8 @@
             --dim: #8b95a8;
             --accent: #3b82f6;
             --green: #10b981;
+            --gold: #f59e0b;
+            --danger: #ef4444;
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -24,12 +26,12 @@
             line-height: 1.6;
             min-height: 100vh;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             padding: 2rem;
         }
         .container {
-            max-width: 520px;
+            max-width: 640px;
             width: 100%;
         }
         .logo {
@@ -46,7 +48,7 @@
         .card {
             background: var(--card);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 10px;
             padding: 2rem;
         }
         h1 {
@@ -55,17 +57,34 @@
         }
         .subtitle {
             color: var(--dim);
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             margin-bottom: 1.5rem;
         }
-        label {
+        .token-panel {
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.28);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .token-panel strong {
+            display: block;
+            color: var(--text);
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+        .token-panel p {
+            color: var(--dim);
+            font-size: 0.86rem;
+        }
+        label,
+        .field-label {
             display: block;
             font-size: 0.85rem;
             color: var(--dim);
             margin-bottom: 0.3rem;
             margin-top: 1rem;
         }
-        label:first-of-type { margin-top: 0; }
         input, select, textarea {
             width: 100%;
             padding: 0.7rem 1rem;
@@ -77,13 +96,63 @@
             font-family: inherit;
         }
         input::placeholder, textarea::placeholder { color: var(--dim); }
-        textarea { resize: vertical; min-height: 100px; }
+        textarea { resize: vertical; min-height: 120px; }
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: var(--accent);
         }
         select { cursor: pointer; }
         select option { background: var(--card); }
+        .field-note {
+            color: var(--dim);
+            font-size: 0.78rem;
+            margin-top: 0.35rem;
+        }
+        .field-note.error { color: var(--danger); }
+        .choice-field {
+            border: 0;
+            margin-top: 1.1rem;
+        }
+        .choice-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+        }
+        .choice-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 0;
+            padding: 0.85rem;
+        }
+        .choice-card:has(input:checked) {
+            border-color: var(--accent);
+            background: rgba(59, 130, 246, 0.08);
+        }
+        .choice-card input {
+            width: auto;
+            margin-top: 0.2rem;
+            accent-color: var(--accent);
+        }
+        .choice-title {
+            display: block;
+            color: var(--text);
+            font-size: 0.9rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        .choice-desc {
+            display: block;
+            color: var(--dim);
+            font-size: 0.78rem;
+            line-height: 1.45;
+            margin-top: 0.25rem;
+        }
+        .conditional.hidden { display: none; }
 
         /* Stars */
         .stars {
@@ -98,7 +167,7 @@
             transition: color 0.15s;
             user-select: none;
         }
-        .star.active { color: #f59e0b; }
+        .star.active { color: var(--gold); }
         .star:hover { color: #fbbf24; }
 
         button[type="submit"] {
@@ -131,7 +200,14 @@
         }
         .success p { color: var(--dim); }
         .hidden { display: none; }
+
+        @media (max-width: 640px) {
+            body { padding: 1rem; }
+            .card { padding: 1.25rem; }
+            .choice-grid { grid-template-columns: 1fr; }
+        }
     </style>
+    <link rel="stylesheet" href="academy-theme.css">
 </head>
 <body>
     <div class="container">
@@ -141,32 +217,71 @@
 
         <div class="card" id="formCard">
             <h1>Оставить отзыв</h1>
-            <p class="subtitle">Ваш отзыв будет опубликован на странице курса и поможет будущим студентам.</p>
+            <p class="subtitle">Форма доступна слушателям после завершения курса или услуги. Отзыв публикуется после проверки.</p>
+
+            <div class="token-panel">
+                <strong>Публикация по одноразовому token</strong>
+                <p>Token подтверждает, что отзыв оставляет реальный слушатель. Если вы получили персональную ссылку, token будет подставлен автоматически.</p>
+            </div>
 
             <form id="reviewForm" action="/forms/submit" method="POST">
                 <input type="hidden" name="_form" value="course-review">
-                <input type="hidden" name="_subject" value="New Course Review">
+                <input type="hidden" name="_subject" value="Course Review Token Submission">
                 <input type="hidden" name="_redirect" value="https://academy.capt-tymur.com/review.html?sent=1">
 
-                <label>Имя и фамилия *</label>
-                <input type="text" name="name" required placeholder="Как отображать на сайте (можно сокращённо)">
+                <label for="reviewToken">Одноразовый token *</label>
+                <input type="text" id="reviewToken" name="review_token" required autocomplete="off" placeholder="Например: RVW-2026-...">
+                <p class="field-note" id="tokenHint">Введите token, который вы получили после завершения курса.</p>
 
-                <label>Email *</label>
-                <input type="email" name="email" required placeholder="Не публикуется, только для связи">
+                <fieldset class="choice-field">
+                    <legend class="field-label">Как опубликовать отзыв *</legend>
+                    <div class="choice-grid">
+                        <label class="choice-card">
+                            <input type="radio" name="publish_mode" value="anonymous" checked>
+                            <span>
+                                <span class="choice-title">Анонимно</span>
+                                <span class="choice-desc">На сайте будет показано “Анонимный слушатель”.</span>
+                            </span>
+                        </label>
+                        <label class="choice-card">
+                            <input type="radio" name="publish_mode" value="public">
+                            <span>
+                                <span class="choice-title">С именем</span>
+                                <span class="choice-desc">Укажите имя и фамилию, которые можно опубликовать.</span>
+                            </span>
+                        </label>
+                    </div>
+                </fieldset>
 
-                <label>Курс *</label>
-                <select name="course" required>
-                    <option value="" disabled selected>Выберите курс</option>
+                <div class="conditional hidden" id="nameBlock">
+                    <label for="publicName">Имя и фамилия для публикации *</label>
+                    <input type="text" id="publicName" name="name" disabled placeholder="Например: Олег Иванов">
+                </div>
+
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required autocomplete="email" placeholder="Не публикуется, только для связи">
+
+                <label for="courseSelect">Курс или услуга *</label>
+                <select id="courseSelect" name="course" required>
+                    <option value="" disabled selected>Выберите курс или услугу</option>
                     <option value="captain">Капитан гражданского судна</option>
                     <option value="chief-officer">Старший палубный офицер</option>
                     <option value="deck-officer">Палубный офицер</option>
-                    <option value="cargo-officer">Грузовой офицер на балкере</option>
+                    <option value="cargo-officer">Балкер/сухогруз — грузовой офицер</option>
                     <option value="sailor">Палубный моряк (матрос)</option>
                     <option value="lng-cargo-officer">Газовоз СПГ — грузовой офицер</option>
+                    <option value="content-production-system">Система контента для экспертов</option>
+                    <option value="consultation">Консультация / индивидуальный разбор</option>
+                    <option value="other">Другая услуга</option>
                 </select>
 
-                <label>Должность / звание</label>
-                <input type="text" name="role" placeholder="Например: Chief Officer, 2nd Officer">
+                <div class="conditional hidden" id="customServiceBlock">
+                    <label for="customService">Каким курсом или услугой вы пользовались? *</label>
+                    <input type="text" id="customService" name="custom_service" disabled placeholder="Например: индивидуальная подготовка к интервью">
+                </div>
+
+                <label for="role">Должность / звание</label>
+                <input type="text" id="role" name="role" placeholder="Например: Chief Officer, 2nd Officer">
 
                 <label>Оценка *</label>
                 <div class="stars" id="starsWidget">
@@ -178,22 +293,33 @@
                 </div>
                 <input type="hidden" name="rating" id="ratingValue" value="5" required>
 
-                <label>Отзыв *</label>
-                <textarea name="text" required placeholder="Что было полезно? Что бы вы отметили? Рекомендуете ли курс коллегам?"></textarea>
+                <label for="reviewText">Отзыв *</label>
+                <textarea id="reviewText" name="text" required minlength="20" placeholder="Что было полезно? Что изменилось после курса? Рекомендуете ли обучение коллегам?"></textarea>
 
                 <button type="submit">Отправить отзыв</button>
-                <p class="note">Отзыв будет опубликован после проверки.</p>
+                <p class="note">Email и token не публикуются. Публичный текст появится на сайте после проверки.</p>
             </form>
         </div>
 
         <div class="card success hidden" id="successCard">
             <h2>Спасибо!</h2>
-            <p>Ваш отзыв получен и будет опубликован на странице курса после проверки.</p>
+            <p>Ваш отзыв получен и будет опубликован после проверки.</p>
             <p style="margin-top: 1rem;"><a href="index.html" style="color: var(--accent); text-decoration: none;">← Вернуться на сайт</a></p>
         </div>
     </div>
 
     <script>
+    var params = new URLSearchParams(window.location.search);
+    var form = document.getElementById('reviewForm');
+    var tokenInput = document.getElementById('reviewToken');
+    var tokenHint = document.getElementById('tokenHint');
+    var courseSelect = document.getElementById('courseSelect');
+    var customServiceBlock = document.getElementById('customServiceBlock');
+    var customServiceInput = document.getElementById('customService');
+    var nameBlock = document.getElementById('nameBlock');
+    var publicNameInput = document.getElementById('publicName');
+    var publishModeInputs = document.querySelectorAll('input[name="publish_mode"]');
+
     // Stars widget
     var stars = document.querySelectorAll('.star');
     var ratingInput = document.getElementById('ratingValue');
@@ -208,9 +334,9 @@
     }
 
     stars.forEach(function(s) {
-        s.addEventListener('click', function() { setRating(parseInt(this.dataset.v)); });
+        s.addEventListener('click', function() { setRating(parseInt(this.dataset.v, 10)); });
         s.addEventListener('mouseenter', function() {
-            var v = parseInt(this.dataset.v);
+            var v = parseInt(this.dataset.v, 10);
             stars.forEach(function(ss, i) { ss.classList.toggle('active', i < v); });
         });
     });
@@ -219,22 +345,82 @@
         setRating(currentRating);
     });
 
-    setRating(5);
+    function syncPublishMode() {
+        var mode = document.querySelector('input[name="publish_mode"]:checked').value;
+        var isPublic = mode === 'public';
+        nameBlock.classList.toggle('hidden', !isPublic);
+        publicNameInput.disabled = !isPublic;
+        publicNameInput.required = isPublic;
+        if (!isPublic) publicNameInput.value = '';
+    }
 
-    // Pre-select course from URL parameter
-    var params = new URLSearchParams(window.location.search);
-    var course = params.get('course');
-    if (course) {
-        var sel = document.querySelector('select[name="course"]');
-        if (sel) {
-            for (var i = 0; i < sel.options.length; i++) {
-                if (sel.options[i].value === course) {
-                    sel.selectedIndex = i;
-                    break;
-                }
+    function syncCourseFields() {
+        var isOther = courseSelect.value === 'other';
+        customServiceBlock.classList.toggle('hidden', !isOther);
+        customServiceInput.disabled = !isOther;
+        customServiceInput.required = isOther;
+        if (!isOther) customServiceInput.value = '';
+    }
+
+    function selectCourseFromUrl(value) {
+        if (!value) return;
+        for (var i = 0; i < courseSelect.options.length; i++) {
+            if (courseSelect.options[i].value === value) {
+                courseSelect.selectedIndex = i;
+                syncCourseFields();
+                return;
             }
         }
+        courseSelect.value = 'other';
+        syncCourseFields();
+        customServiceInput.value = value;
     }
+
+    function syncTokenFromUrl() {
+        var token = params.get('token') || params.get('review_token');
+        if (token) {
+            tokenInput.value = token;
+            tokenHint.textContent = 'Token подставлен из персональной ссылки.';
+            tokenHint.classList.remove('error');
+        }
+    }
+
+    publishModeInputs.forEach(function(input) {
+        input.addEventListener('change', syncPublishMode);
+    });
+    courseSelect.addEventListener('change', syncCourseFields);
+
+    form.addEventListener('submit', function(event) {
+        tokenHint.classList.remove('error');
+        tokenInput.setCustomValidity('');
+        customServiceInput.setCustomValidity('');
+        publicNameInput.setCustomValidity('');
+
+        if (!tokenInput.value.trim()) {
+            tokenInput.setCustomValidity('Введите одноразовый token.');
+            tokenHint.textContent = 'Без token отзыв не может быть принят к публикации.';
+            tokenHint.classList.add('error');
+        }
+
+        if (courseSelect.value === 'other' && !customServiceInput.value.trim()) {
+            customServiceInput.setCustomValidity('Укажите курс или услугу.');
+        }
+
+        if (document.querySelector('input[name="publish_mode"]:checked').value === 'public' && !publicNameInput.value.trim()) {
+            publicNameInput.setCustomValidity('Укажите имя и фамилию для публикации.');
+        }
+
+        if (!form.checkValidity()) {
+            event.preventDefault();
+            form.reportValidity();
+        }
+    });
+
+    setRating(5);
+    syncPublishMode();
+    syncCourseFields();
+    syncTokenFromUrl();
+    selectCourseFromUrl(params.get('course') || params.get('service'));
 
     // Show success if redirected back
     if (params.get('sent') === '1') {

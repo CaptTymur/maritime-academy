@@ -71,6 +71,7 @@
         .review-empty { text-align: center; padding: 2rem; color: #8b95a8; background: #1a2236; border: 1px dashed #1e293b; border-radius: 12px; }
         .review-empty a { color: #3b82f6; text-decoration: none; }
     </style>
+    <link rel="stylesheet" href="academy-theme.css">
 </head>
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0e17; color: #e8edf5; margin: 0; line-height: 1.6;">
     <nav style="position: fixed; top: 0; width: 100%; background: rgba(10, 14, 23, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid #1e293b; z-index: 100; padding: 0 2rem;">
@@ -338,7 +339,7 @@
                 closeModal();
             } catch (e) {
                 console.error(e);
-                alert(currentLang === 'en' ? 'Could not send. Email broker@capt-tymur.com directly.' : 'Не удалось отправить. Напишите напрямую: broker@capt-tymur.com');
+                alert(currentLang === 'en' ? 'Could not send. Email consult@capt-tymur.com directly.' : 'Не удалось отправить. Напишите напрямую: consult@capt-tymur.com');
             } finally {
                 if (btn) btn.disabled = false;
             }
@@ -352,7 +353,7 @@
             var empty = document.getElementById('reviewsEmpty');
             if (!container) return;
 
-            var courseName = document.title.split('—')[0].trim().toLowerCase().replace(/[^a-z0-9]/g, '-');
+            var courseName = 'deck-officer';
 
             fetch('/reviews.json')
                 .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
@@ -361,7 +362,8 @@
                     if (reviews.length === 0) return;
                     empty.style.display = 'none';
                     reviews.forEach(function(rev) {
-                        var initials = (rev.name || '?')[0].toUpperCase();
+                        var displayName = rev.name || rev.displayName || rev.public_name || 'Анонимный слушатель';
+                        var initials = displayName[0].toUpperCase();
                         var stars = '';
                         for (var i = 0; i < (rev.rating || 5); i++) stars += '\u2605';
                         var card = '<div class="review-card">'
@@ -370,7 +372,7 @@
                             + '<div class="review-author">'
                             + '<div class="review-avatar">' + initials + '</div>'
                             + '<div class="review-info">'
-                            + '<div class="review-name">' + escapeHtml(rev.name) + '</div>'
+                            + '<div class="review-name">' + escapeHtml(displayName) + '</div>'
                             + '<div class="review-role">' + escapeHtml(rev.role || '') + '</div>'
                             + '</div></div></div>';
                         container.insertAdjacentHTML('beforeend', card);
@@ -379,7 +381,7 @@
                 .catch(function() {});
 
             function escapeHtml(s) {
-                return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+                return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
             }
         })();
     </script>
