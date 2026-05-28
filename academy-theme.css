@@ -834,6 +834,47 @@ footer a:hover {
         box-sizing: border-box !important;
     }
 
+    .course-header h1 {
+        max-width: 12ch;
+        font-size: 2rem !important;
+        line-height: 1.15 !important;
+        overflow-wrap: break-word;
+    }
+
+    .course-meta {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: .75rem !important;
+    }
+
+    .meta-tag {
+        display: block !important;
+        width: 100%;
+        box-sizing: border-box;
+        overflow-wrap: break-word;
+        white-space: normal !important;
+    }
+
+    .price-box {
+        width: 100% !important;
+        max-width: calc(100vw - 2.5rem) !important;
+        padding: 1.25rem !important;
+        box-sizing: border-box !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .price-box .price {
+        font-size: 2.35rem !important;
+    }
+
+    .price-box .note {
+        max-width: 28ch;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        overflow-wrap: break-word;
+    }
+
     .card {
         width: 100% !important;
         max-width: calc(100vw - 2rem) !important;

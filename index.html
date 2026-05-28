@@ -186,6 +186,72 @@
             line-height: 1.7;
         }
 
+        /* Launch */
+        .launch-section {
+            padding-top: 4.5rem;
+            padding-bottom: 4.5rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .launch-card {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .launch-card h2 {
+            text-align: left;
+            margin: 0 0 1rem;
+            max-width: 720px;
+        }
+
+        .launch-card p {
+            color: var(--text-secondary);
+            max-width: 760px;
+            margin-bottom: 1.25rem;
+        }
+
+        .launch-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .launch-meta span,
+        .launch-side span {
+            background: var(--accent-dim);
+            color: var(--text-secondary);
+            border-radius: 6px;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .launch-side {
+            border-left: 1px solid var(--border);
+            padding-left: 2rem;
+        }
+
+        .launch-date {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .launch-side p {
+            margin-bottom: 1.25rem;
+        }
+
         /* Courses Grid */
         .courses-grid {
             display: grid;
@@ -637,6 +703,18 @@
                 display: none;
             }
 
+            .launch-card {
+                grid-template-columns: 1fr;
+                padding: 1.25rem;
+            }
+
+            .launch-side {
+                border-left: 0;
+                border-top: 1px solid var(--border);
+                padding-left: 0;
+                padding-top: 1.25rem;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
@@ -705,6 +783,28 @@
         </div>
     </section>
 
+    <!-- Launch -->
+    <section class="launch-section" id="captain-june">
+        <div class="launch-card">
+            <div>
+                <span class="eyebrow" data-i18n="launch_eyebrow">Новый поток</span>
+                <h2 data-i18n="launch_title">Открыт набор в капитанскую группу</h2>
+                <p data-i18n="launch_desc">Старт 10 июня 2026. Группа для действующих старпомов и начинающих капитанов: управление судном, офисом, экипажем, рисками и сложными ситуациями без академической воды.</p>
+                <div class="launch-meta">
+                    <span data-i18n="launch_meta1">8 занятий</span>
+                    <span data-i18n="launch_meta2">Zoom онлайн</span>
+                    <span data-i18n="launch_meta3">5-8 человек</span>
+                    <span data-i18n="launch_meta4">Отбор по опыту</span>
+                </div>
+            </div>
+            <div class="launch-side">
+                <div class="launch-date" data-i18n="launch_date">10 июня</div>
+                <p data-i18n="launch_note">Заявка нужна не “для галочки”: сверяем должность, опыт и задачу, чтобы группа была рабочей.</p>
+                <a href="captain-course.html" class="cta-button" data-i18n="launch_cta">Подать заявку</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Courses -->
     <section id="courses">
         <span class="eyebrow" data-i18n="courses_eyebrow">Programs</span>
@@ -714,9 +814,9 @@
             <div class="course-card">
                 <h3 data-i18n="course1_title">Капитан гражданского судна</h3>
                 <div class="course-meta">
-                    <span class="meta-item" data-i18n="course1_start">Следующий поток</span>
+                    <span class="meta-item" data-i18n="course1_start">Старт 10 июня</span>
                 </div>
-                <p data-i18n="course1_desc">Комплексная программа подготовки к должности капитана. Коммерческий и технический менеджмент, администрирование, принятие решений, аварийные ситуации.</p>
+                <p data-i18n="course1_desc">Новая капитанская группа для старпомов и начинающих капитанов: управление судном, офисом, экипажем, рисками и нештатными ситуациями.</p>
                 <a href="captain-course.html" data-i18n="course1_link">Подробнее →</a>
             </div>
 
@@ -1044,6 +1144,16 @@
                 stat3_lbl: 'Капитанский опыт',
                 stat4_num: 'Online',
                 stat4_lbl: 'Формат обучения',
+                launch_eyebrow: 'Новый поток',
+                launch_title: 'Открыт набор в капитанскую группу',
+                launch_desc: 'Старт 10 июня 2026. Группа для действующих старпомов и начинающих капитанов: управление судном, офисом, экипажем, рисками и сложными ситуациями без академической воды.',
+                launch_meta1: '8 занятий',
+                launch_meta2: 'Zoom онлайн',
+                launch_meta3: '5-8 человек',
+                launch_meta4: 'Отбор по опыту',
+                launch_date: '10 июня',
+                launch_note: 'Заявка нужна не “для галочки”: сверяем должность, опыт и задачу, чтобы группа была рабочей.',
+                launch_cta: 'Подать заявку',
                 courses_eyebrow: 'Программы',
                 courses_title: 'Курсы / Групповое обучение',
                 reviews_eyebrow: 'Отзывы и доверие',
@@ -1093,8 +1203,8 @@
                 whitepaper3_desc: 'Пилотный формат: Zoom, транскрибация опыта, market scan, CV, LinkedIn и подготовка к первому интервью.',
                 whitepaper3_link: 'Посмотреть консультации →',
                 course1_title: 'Капитан гражданского судна',
-                course1_start: 'Следующий поток',
-                course1_desc: 'Комплексная программа подготовки к должности капитана. Коммерческий и технический менеджмент, администрирование, принятие решений, аварийные ситуации.',
+                course1_start: 'Старт 10 июня',
+                course1_desc: 'Новая капитанская группа для старпомов и начинающих капитанов: управление судном, офисом, экипажем, рисками и нештатными ситуациями.',
                 course1_link: 'Подробнее →',
                 course2_title: 'Старший палубный офицер',
                 course2_start: 'Группа идёт',
@@ -1180,6 +1290,16 @@
                 stat3_lbl: 'Command experience',
                 stat4_num: 'Online',
                 stat4_lbl: 'Training format',
+                launch_eyebrow: 'New cohort',
+                launch_title: 'Captain cohort enrollment is open',
+                launch_desc: 'Starts 10 June 2026. A cohort for active chief officers and newly promoted masters: vessel command, office communication, crew management, risk, and difficult cases without academic filler.',
+                launch_meta1: '8 sessions',
+                launch_meta2: 'Live on Zoom',
+                launch_meta3: '5-8 students',
+                launch_meta4: 'Experience-based selection',
+                launch_date: '10 June',
+                launch_note: 'Applications are screened by rank, background, and learning objective so the group stays practical.',
+                launch_cta: 'Apply now',
                 courses_eyebrow: 'Programs',
                 courses_title: 'Courses / Group Training',
                 reviews_eyebrow: 'Student proof',
@@ -1229,8 +1349,8 @@
                 whitepaper3_desc: 'Pilot format: Zoom, experience transcript, market scan, CV, LinkedIn, and first interview preparation.',
                 whitepaper3_link: 'View consultations →',
                 course1_title: 'Master Mariner',
-                course1_start: 'Next cohort',
-                course1_desc: 'Comprehensive program for captain position. Commercial and technical management, administration, decision making, emergency situations.',
+                course1_start: 'Starts 10 June',
+                course1_desc: 'New captain cohort for chief officers and newly promoted masters: command, office communication, crew, risk, and non-routine situations.',
                 course1_link: 'Learn More →',
                 course2_title: 'Chief Officer',
                 course2_start: 'Group in progress',
