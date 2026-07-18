@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Проверка сертификата | Мореходные классы</title>
+    <meta name="description" content="Проверка записи сертификата о прохождении авторской образовательной программы Мореходных классов.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://academy.capt-tymur.com/certificates/">
+    <link rel="stylesheet" href="./registry.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="shell">
+            <a class="brand" href="/">
+                <span class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" fill="none">
+                        <path d="M16 3v20M11 8h10M8 18c1.5 6 5.3 9 8 9s6.5-3 8-9M8 18l4 1M24 18l-4 1" stroke="#102f59" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="16" cy="5" r="2" stroke="#102f59" stroke-width="2"/>
+                    </svg>
+                </span>
+                <span>
+                    <strong>МОРЕХОДНЫЕ КЛАССЫ</strong>
+                    <small>Maritime Classes · Professional Development</small>
+                </span>
+            </a>
+            <a class="back-link" href="/">Вернуться на сайт</a>
+        </div>
+    </header>
+
+    <main class="shell">
+        <hr class="registry-rule">
+        <section class="lookup" aria-labelledby="lookup-title">
+            <p class="eyebrow">Внутренний реестр · Internal registry</p>
+            <h1 id="lookup-title">Проверка сертификата</h1>
+            <p class="lookup-lead">Введите номер с сертификата. Система откроет персональную реестровую запись и покажет её текущий статус.</p>
+
+            <form class="lookup-form" id="lookup-form" novalidate>
+                <label for="certificate-id" class="visually-hidden">Номер сертификата</label>
+                <input id="certificate-id" name="certificate-id" value="MK-CAP-GI-2026-001" autocomplete="off" spellcheck="false" aria-describedby="lookup-hint lookup-error">
+                <button type="submit">Проверить</button>
+            </form>
+            <p class="lookup-hint" id="lookup-hint">Формат номера: MK-CAP-GI-2026-001</p>
+            <p class="lookup-error" id="lookup-error" role="alert"></p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="shell">
+            <span>© 2026 Captain Tymur’s Maritime Academy</span>
+            <span>Реестр подтверждает прохождение авторских программ и не заменяет документы STCW.</span>
+        </div>
+    </footer>
+
+    <script>
+        const form = document.getElementById('lookup-form');
+        const input = document.getElementById('certificate-id');
+        const error = document.getElementById('lookup-error');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const id = input.value.trim().toUpperCase();
+            if (!/^MK-[A-Z0-9]+(?:-[A-Z0-9]+)*-\d{4}-\d{3}$/.test(id)) {
+                error.textContent = 'Проверьте формат номера сертификата.';
+                return;
+            }
+            error.textContent = '';
+            window.location.href = `./${encodeURIComponent(id)}/`;
+        });
+    </script>
+</body>
+</html>
