@@ -19,7 +19,7 @@
 
     const description = document.createElement("meta");
     description.name = "description";
-    description.content = `Действующая реестровая запись сертификата ${certificateId}, выданного Мореходными классами для ${record.holder}.`;
+    description.content = `Действующая реестровая запись сертификата ${certificateId}. Получатель: ${record.holder}.`;
     document.head.appendChild(description);
 
     const robots = document.createElement("meta");
