@@ -82,5 +82,17 @@ window.CERTIFICATE_RECORDS = Object.freeze({
         issueDate: "19 июля 2026",
         verificationKey: "2F71-6EED-5F22-9EFB",
         verificationSha256: "2f716eed5f229efb0f83b470511b5a65d3ba1c116acaec3ccc84b1cd35a33be4"
+    },
+    "MK-CAP-GE-2026-001": {
+        holder: "Евгений Валевский",
+        learnerId: "MK-L-2026-0008",
+        programme: "Капитан судна: управленческая подготовка",
+        group: "E",
+        format: "8 live-занятий",
+        volume: "8 live-занятий",
+        period: "16 января — 11 февраля 2026",
+        issueDate: "19 июля 2026",
+        verificationKey: "A919-AB98-CDCE-5863",
+        verificationSha256: "a919ab98cdce5863299a728ce1ea6b8975ebbcf2f37c8f8daf488b15d957adf5"
     }
 });
