@@ -417,6 +417,115 @@
         .review-role { color: #8b95a8; }
         .review-empty { text-align: center; padding: 2rem; color: #8b95a8; background: #1a2236; border: 1px dashed #1e293b; border-radius: 12px; }
         .review-empty a { color: #3b82f6; text-decoration: none; }
+
+        /* Public certificate proof */
+        .certificate-proof {
+            margin: 4rem 0;
+        }
+
+        .certificate-proof__eyebrow {
+            display: block;
+            margin-bottom: 0.75rem;
+            color: #0b5c75;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .certificate-proof__intro {
+            max-width: 760px;
+            margin-bottom: 1.5rem;
+        }
+
+        .certificate-proof__grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .certificate-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-height: 190px;
+            padding: 1.35rem;
+            background: #fff;
+            border: 1px solid #e1e6ee;
+            border-radius: 8px;
+        }
+
+        .certificate-card__top {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.75rem;
+            width: 100%;
+            margin-bottom: 0.85rem;
+        }
+
+        .certificate-card__badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.3rem 0.65rem;
+            color: #0b5c75;
+            background: #e5f1f3;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .certificate-card__group {
+            background: #f5f7fa;
+        }
+
+        .certificate-card h3 {
+            margin: 0 0 0.2rem;
+            color: #0a1628;
+            font-size: 1.15rem;
+        }
+
+        .certificate-card__id {
+            margin: 0 0 0.85rem;
+            color: #5d6b80;
+            font-size: 0.82rem;
+            letter-spacing: 0.01em;
+        }
+
+        .certificate-card__link {
+            margin-top: auto;
+            color: #0b5c75;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .certificate-card__link:hover {
+            color: #0a4d62;
+            text-decoration: underline;
+        }
+
+        .certificate-proof__note {
+            margin-top: 1rem;
+            padding: 1rem 1.1rem;
+            color: #5d6b80;
+            background: #f5f7fa;
+            border: 1px solid #e1e6ee;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 680px) {
+            .certificate-proof__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .certificate-card {
+                min-height: 170px;
+            }
+        }
     </style>
     <link rel="stylesheet" href="academy-theme.css">
 </head>
@@ -469,6 +578,96 @@
             <div class="highlight-box">
                 <strong>Важно:</strong> Курс не привязан к специфике конкретного типа судов. Изучаются универсальные навыки и знания, применимые на любых судах.
             </div>
+        </section>
+
+        <section class="certificate-proof" aria-labelledby="certificate-proof-title">
+            <span class="certificate-proof__eyebrow">Подтверждённый результат</span>
+            <h2 id="certificate-proof-title">Сертификаты выпускников</h2>
+            <p class="certificate-proof__intro">Открытые реестровые записи выпускников капитанской программы. Каждый номер можно проверить на сайте — QR-код на сертификате ведёт в тот же реестр.</p>
+
+            <div class="certificate-proof__grid">
+                <article class="certificate-card">
+                    <div class="certificate-card__top">
+                        <span class="certificate-card__badge">✓ Выдан</span>
+                        <span class="certificate-card__badge certificate-card__group">Группа B</span>
+                    </div>
+                    <h3>Дмитрий Матвеев</h3>
+                    <p class="certificate-card__id">MK-CAP-GB-2026-001</p>
+                    <a class="certificate-card__link" href="/certificates/MK-CAP-GB-2026-001/" target="_blank" rel="noopener">Проверить сертификат →</a>
+                </article>
+
+                <article class="certificate-card">
+                    <div class="certificate-card__top">
+                        <span class="certificate-card__badge">✓ Выдан</span>
+                        <span class="certificate-card__badge certificate-card__group">Группа B</span>
+                    </div>
+                    <h3>Сергей Ключников</h3>
+                    <p class="certificate-card__id">MK-CAP-GB-2026-002</p>
+                    <a class="certificate-card__link" href="/certificates/MK-CAP-GB-2026-002/" target="_blank" rel="noopener">Проверить сертификат →</a>
+                </article>
+
+                <article class="certificate-card">
+                    <div class="certificate-card__top">
+                        <span class="certificate-card__badge">✓ Выдан</span>
+                        <span class="certificate-card__badge certificate-card__group">Группа B</span>
+                    </div>
+                    <h3>Сергей Кордонский</h3>
+                    <p class="certificate-card__id">MK-CAP-GB-2026-003</p>
+                    <a class="certificate-card__link" href="/certificates/MK-CAP-GB-2026-003/" target="_blank" rel="noopener">Проверить сертификат →</a>
+                </article>
+
+                <article class="certificate-card">
+                    <div class="certificate-card__top">
+                        <span class="certificate-card__badge">✓ Выдан</span>
+                        <span class="certificate-card__badge certificate-card__group">Группа D</span>
+                    </div>
+                    <h3>Олег Мартыненко</h3>
+                    <p class="certificate-card__id">MK-CAP-GD-2026-001</p>
+                    <a class="certificate-card__link" href="/certificates/MK-CAP-GD-2026-001/" target="_blank" rel="noopener">Проверить сертификат →</a>
+                </article>
+
+                <article class="certificate-card">
+                    <div class="certificate-card__top">
+                        <span class="certificate-card__badge">✓ Выдан</span>
+                        <span class="certificate-card__badge certificate-card__group">Группа D</span>
+                    </div>
+                    <h3>Андрей Трифонов</h3>
+                    <p class="certificate-card__id">MK-CAP-GD-2026-002</p>
+                    <a class="certificate-card__link" href="/certificates/MK-CAP-GD-2026-002/" target="_blank" rel="noopener">Проверить сертификат →</a>
+                </article>
+
+                <article class="certificate-card">
+                    <div class="certificate-card__top">
+                        <span class="certificate-card__badge">✓ Выдан</span>
+                        <span class="certificate-card__badge certificate-card__group">Группа D</span>
+                    </div>
+                    <h3>Евгений Токарь</h3>
+                    <p class="certificate-card__id">MK-CAP-GD-2026-003</p>
+                    <a class="certificate-card__link" href="/certificates/MK-CAP-GD-2026-003/" target="_blank" rel="noopener">Проверить сертификат →</a>
+                </article>
+
+                <article class="certificate-card">
+                    <div class="certificate-card__top">
+                        <span class="certificate-card__badge">✓ Выдан</span>
+                        <span class="certificate-card__badge certificate-card__group">Группа D</span>
+                    </div>
+                    <h3>Кирилл Ковальчук</h3>
+                    <p class="certificate-card__id">MK-CAP-GD-2026-004</p>
+                    <a class="certificate-card__link" href="/certificates/MK-CAP-GD-2026-004/" target="_blank" rel="noopener">Проверить сертификат →</a>
+                </article>
+
+                <article class="certificate-card">
+                    <div class="certificate-card__top">
+                        <span class="certificate-card__badge">✓ Выдан</span>
+                        <span class="certificate-card__badge certificate-card__group">Группа I</span>
+                    </div>
+                    <h3>Александр Фокин</h3>
+                    <p class="certificate-card__id">MK-CAP-GI-2026-001</p>
+                    <a class="certificate-card__link" href="/certificates/MK-CAP-GI-2026-001/" target="_blank" rel="noopener">Проверить сертификат →</a>
+                </article>
+            </div>
+
+            <p class="certificate-proof__note">Сертификаты подтверждают прохождение авторской образовательной программы и не являются дипломами, свидетельствами STCW или документами о присвоении морской квалификации.</p>
         </section>
 
         <section>
