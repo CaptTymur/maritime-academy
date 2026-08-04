@@ -229,9 +229,11 @@
                 <input type="hidden" name="_subject" value="Course Review Token Submission">
                 <input type="hidden" name="_redirect" value="https://academy.capt-tymur.com/review.html?sent=1">
 
-                <label for="reviewToken">Одноразовый token *</label>
-                <input type="text" id="reviewToken" name="review_token" required autocomplete="off" placeholder="Например: RVW-2026-...">
-                <p class="field-note" id="tokenHint">Введите token, который вы получили после завершения курса.</p>
+                <div id="tokenFieldBlock">
+                    <label for="reviewToken">Одноразовый token *</label>
+                    <input type="text" id="reviewToken" name="review_token" required autocomplete="off" placeholder="Например: RVW-2026-...">
+                    <p class="field-note" id="tokenHint">Введите token, который вы получили после завершения курса.</p>
+                </div>
 
                 <fieldset class="choice-field">
                     <legend class="field-label">Как опубликовать отзыв *</legend>
@@ -382,6 +384,16 @@
             tokenInput.value = token;
             tokenHint.textContent = 'Token подставлен из персональной ссылки.';
             tokenHint.classList.remove('error');
+            // Hide token field for link-based invites (cleaner mobile UX)
+            var block = document.getElementById('tokenFieldBlock');
+            if (block) {
+                block.style.display = 'none';
+                tokenInput.type = 'hidden';
+            }
+            var panel = document.querySelector('.token-panel p');
+            if (panel) {
+                panel.textContent = 'Персональная ссылка подтверждена. Можно оставлять отзыв.';
+            }
         }
     }
 
