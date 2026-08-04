@@ -379,24 +379,91 @@
         .review-empty { text-align: center; padding: 2rem; color: #8b95a8; background: #1a2236; border: 1px dashed #1e293b; border-radius: 12px; }
         .review-empty a { color: #3b82f6; text-decoration: none; }
 
-        /* Public certificate proof */
+        /* Public certificate proof — collapsed by default via <details> */
         .certificate-proof {
             margin: 4rem 0;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--bg-card);
+            overflow: hidden;
+        }
+
+        .certificate-proof__summary {
+            list-style: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1.25rem 1.5rem;
+            user-select: none;
+        }
+
+        .certificate-proof__summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .certificate-proof__summary-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            min-width: 0;
         }
 
         .certificate-proof__eyebrow {
             display: block;
-            margin-bottom: 0.75rem;
-            color: #0b5c75;
+            margin-bottom: 0;
+            color: var(--accent);
             font-size: 0.75rem;
             font-weight: 700;
             letter-spacing: 0.12em;
             text-transform: uppercase;
         }
 
+        .certificate-proof__summary h2 {
+            margin: 0;
+            font-size: 1.35rem;
+            color: var(--text-primary);
+        }
+
+        .certificate-proof__summary-hint {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .certificate-proof__chevron {
+            flex-shrink: 0;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.1rem;
+            line-height: 1;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .certificate-proof[open] .certificate-proof__chevron {
+            transform: rotate(180deg);
+            background: var(--accent-dim);
+        }
+
+        .certificate-proof__summary:hover {
+            background: rgba(59, 130, 246, 0.06);
+        }
+
+        .certificate-proof__body {
+            padding: 0 1.5rem 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
         .certificate-proof__intro {
             max-width: 760px;
-            margin-bottom: 1.5rem;
+            margin: 1.25rem 0 1.5rem;
+            color: var(--text-secondary);
         }
 
         .certificate-proof__grid {
@@ -541,9 +608,16 @@
             </div>
         </section>
 
-        <section class="certificate-proof" aria-labelledby="certificate-proof-title">
-            <span class="certificate-proof__eyebrow">Подтверждённый результат</span>
-            <h2 id="certificate-proof-title">Сертификаты выпускников</h2>
+        <details class="certificate-proof" aria-labelledby="certificate-proof-title">
+            <summary class="certificate-proof__summary">
+                <span class="certificate-proof__summary-text">
+                    <span class="certificate-proof__eyebrow">Подтверждённый результат</span>
+                    <h2 id="certificate-proof-title">Сертификаты выпускников</h2>
+                    <span class="certificate-proof__summary-hint">9 открытых записей · нажмите, чтобы развернуть</span>
+                </span>
+                <span class="certificate-proof__chevron" aria-hidden="true">▼</span>
+            </summary>
+            <div class="certificate-proof__body">
             <p class="certificate-proof__intro">Открытые реестровые записи выпускников капитанской программы. Каждый номер можно проверить на сайте — QR-код на сертификате ведёт в тот же реестр.</p>
 
             <div class="certificate-proof__grid">
@@ -639,7 +713,8 @@
             </div>
 
             <p class="certificate-proof__note">Сертификаты подтверждают прохождение авторской образовательной программы и не являются дипломами, свидетельствами STCW или документами о присвоении морской квалификации.</p>
-        </section>
+            </div>
+        </details>
 
         <section>
             <h2>Программа курса</h2>
