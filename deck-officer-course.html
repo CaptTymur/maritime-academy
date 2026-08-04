@@ -208,13 +208,7 @@
                     <label for="background" data-i18n="form_bg">Бэкграунд</label>
                     <textarea id="background" name="background" placeholder="Расскажите о вашем опыте работы в море" required></textarea>
                 </div>
-                <div class="form-group file-upload">
-                    <label data-i18n="form_cv">Прикрепить CV</label>
-                    <label for="cvFile" class="file-upload-btn" data-i18n="form_choose">Выбрать файл</label>
-                    <input type="file" id="cvFile" name="cvFile" accept=".pdf,.doc,.docx">
-                    <span class="file-name" id="fileName"></span>
-                </div>
-                <button type="submit" class="submit-btn" data-i18n="form_submit">Отправить заявку</button>
+<button type="submit" class="submit-btn" data-i18n="form_submit">Отправить заявку</button>
             </form>
         </div>
     </div>
@@ -312,12 +306,13 @@
         }
 
         function openModal() { document.getElementById('registrationModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
-        function closeModal() { document.getElementById('registrationModal').classList.remove('active'); document.body.style.overflow = ''; document.getElementById('registrationForm').reset(); document.getElementById('fileName').textContent = ''; }
+        function closeModal() { document.getElementById('registrationModal').classList.remove('active'); document.body.style.overflow = ''; document.getElementById('registrationForm').reset();
+}
 
         document.addEventListener('DOMContentLoaded', () => {
             setLanguage(currentLang);
             document.querySelectorAll('.lang-toggle button').forEach(btn => { btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang'))); });
-            document.getElementById('cvFile').addEventListener('change', (e) => { document.getElementById('fileName').textContent = e.target.files.length > 0 ? e.target.files[0].name : ''; });
+});
         });
 
         async function handleSubmit(event) {

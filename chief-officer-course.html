@@ -583,13 +583,7 @@
                     <label for="background">Бэкграунд</label>
                     <textarea id="background" name="background" placeholder="Расскажите о вашем опыте работы в море" required></textarea>
                 </div>
-                <div class="form-group file-upload">
-                    <label>Прикрепить CV</label>
-                    <label for="cvFile" class="file-upload-btn">Выбрать файл</label>
-                    <input type="file" id="cvFile" name="cvFile" accept=".pdf,.doc,.docx">
-                    <span class="file-name" id="fileName"></span>
-                </div>
-                <button type="submit" class="submit-btn">Отправить заявку</button>
+<button type="submit" class="submit-btn">Отправить заявку</button>
             </form>
         </div>
     </div>
@@ -604,22 +598,8 @@
             document.getElementById('registrationModal').classList.remove('active');
             document.body.style.overflow = '';
             document.getElementById('registrationForm').reset();
-            document.getElementById('fileName').textContent = '';
-        }
-
-        // File upload handler
-        document.addEventListener('DOMContentLoaded', () => {
-            const fileInput = document.getElementById('cvFile');
-            const fileName = document.getElementById('fileName');
-
-            fileInput.addEventListener('change', (e) => {
-                if (e.target.files.length > 0) {
-                    fileName.textContent = e.target.files[0].name;
-                } else {
-                    fileName.textContent = '';
-                }
-            });
-        });
+}
+});
 
         // Form submission handler — POST to self-hosted form handler at /forms/submit
         async function handleSubmit(event) {
