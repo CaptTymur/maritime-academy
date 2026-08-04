@@ -342,36 +342,6 @@
             resize: vertical;
         }
 
-        .file-upload {
-            position: relative;
-        }
-
-        .file-upload input[type="file"] {
-            display: none;
-        }
-
-        .file-upload-btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: border-color 0.2s;
-        }
-
-        .file-upload-btn:hover {
-            border-color: var(--accent);
-        }
-
-        .file-name {
-            display: inline-block;
-            margin-left: 1rem;
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
-
         .submit-btn {
             width: 100%;
             padding: 1rem;
@@ -812,12 +782,6 @@
                     <label for="background">Бэкграунд</label>
                     <textarea id="background" name="background" placeholder="Расскажите о вашем опыте, типах судов и что хотите получить от капитанского курса" required></textarea>
                 </div>
-                <div class="form-group file-upload">
-                    <label>Прикрепить CV</label>
-                    <label for="cvFile" class="file-upload-btn">Выбрать файл</label>
-                    <input type="file" id="cvFile" name="cvFile" accept=".pdf,.doc,.docx">
-                    <span class="file-name" id="fileName"></span>
-                </div>
                 <button type="submit" class="submit-btn">Отправить заявку</button>
             </form>
         </div>
@@ -833,22 +797,7 @@
             document.getElementById('registrationModal').classList.remove('active');
             document.body.style.overflow = '';
             document.getElementById('registrationForm').reset();
-            document.getElementById('fileName').textContent = '';
         }
-
-        // File upload handler
-        document.addEventListener('DOMContentLoaded', () => {
-            const fileInput = document.getElementById('cvFile');
-            const fileName = document.getElementById('fileName');
-
-            fileInput.addEventListener('change', (e) => {
-                if (e.target.files.length > 0) {
-                    fileName.textContent = e.target.files[0].name;
-                } else {
-                    fileName.textContent = '';
-                }
-            });
-        });
 
         // Form submission handler — POST to self-hosted form handler at /forms/submit
         async function handleSubmit(event) {
