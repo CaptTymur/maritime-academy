@@ -643,10 +643,6 @@
                     <label for="fullName" data-i18n="form_name">Имя и фамилия</label>
                     <input type="text" id="fullName" name="fullName" required>
                 </div>
-                <div class="form-group" id="companyGroup" style="display: none;">
-                    <label for="company" data-i18n="form_company">Компания</label>
-                    <input type="text" id="company" name="company">
-                </div>
                 <div class="form-group">
                     <label for="format" data-i18n="form_format">Формат</label>
                     <select id="format" name="format">
@@ -752,7 +748,7 @@
                 modal_title: 'Записаться на консультацию',
                 modal_title_owner: 'Запрос от судовладельца',
                 modal_title_crewing: 'Запрос от крюинговой компании',
-                form_name: 'Имя и фамилия', form_company: 'Компания', form_format: 'Формат', form_topic: 'Тема / вопросы', form_email: 'Ваш email', form_submit: 'Отправить заявку',
+                form_name: 'Имя и фамилия', form_format: 'Формат', form_topic: 'Тема / вопросы', form_email: 'Ваш email', form_submit: 'Отправить заявку',
                 form_topic_business: 'Опишите задачу и контекст (суда, тип бизнеса, что нужно оценить)',
                 form_topic_linkedin: 'Кратко: кто вы и какую цель преследуете',
                 form_topic_shore: 'На какие shore-роли смотрите (ship management / crewing / operations / QHSE / chartering / brokerage) и какой опыт за плечами',
@@ -835,7 +831,7 @@
                 modal_title: 'Book a consultation',
                 modal_title_owner: 'Request from a shipowner',
                 modal_title_crewing: 'Request from a crewing company',
-                form_name: 'Full name', form_company: 'Company', form_format: 'Format', form_topic: 'Topic / questions', form_email: 'Your email', form_submit: 'Submit application',
+                form_name: 'Full name', form_format: 'Format', form_topic: 'Topic / questions', form_email: 'Your email', form_submit: 'Submit application',
                 form_topic_business: 'Describe the task and context (vessels, business type, what to assess)',
                 form_topic_linkedin: 'Briefly: who you are and what you\'re looking for',
                 form_topic_shore: 'Which shore roles are you targeting (ship management / crewing / operations / QHSE / chartering / brokerage) and what is your background',
@@ -889,7 +885,6 @@
             const isBusiness = BUSINESS_FORMATS.has(format);
 
             document.getElementById('cvNote').style.display = (isLinkedin || isShore) ? 'block' : 'none';
-            document.getElementById('companyGroup').style.display = isBusiness ? 'block' : 'none';
 
             const label = document.getElementById('topicLabel');
             const title = document.getElementById('modalTitle');
