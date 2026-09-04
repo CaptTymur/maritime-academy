@@ -94,5 +94,18 @@ window.CERTIFICATE_RECORDS = Object.freeze({
         issueDate: "19 июля 2026",
         verificationKey: "A919-AB98-CDCE-5863",
         verificationSha256: "a919ab98cdce5863299a728ce1ea6b8975ebbcf2f37c8f8daf488b15d957adf5"
+    },
+    "MK-CAP-GJ-2026-001": {
+        holder: "Денис Калашник",
+        learnerId: "MK-L-2026-0015",
+        programme: "Капитан судна: управленческая подготовка",
+        group: "J",
+        format: "8 live-занятий",
+        volume: "8 live-занятий",
+        period: "11 августа — 4 сентября 2026",
+        issueDate: "4 сентября 2026",
+        publicationDate: "4 сентября 2026 года",
+        verificationKey: "C4A2-A141-4E9A-58CC",
+        verificationSha256: "c4a2a1414e9a58ccf40543060f671ba76e8361f80c0238ec773179ed62c294c6"
     }
 });
