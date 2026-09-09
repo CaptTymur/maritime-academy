@@ -377,6 +377,22 @@
         .review-name { color: var(--text-primary); font-weight: 600; }
         .review-role { color: var(--text-secondary); }
 
+        .certificate-review-card {
+            grid-column: 1 / -1;
+            border-color: rgba(11, 92, 117, 0.28);
+            border-left: 4px solid #0b5c75;
+            background: #f8fbfc;
+        }
+
+        .certificate-review-card__label {
+            margin-bottom: 0.8rem;
+            color: #0b5c75;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
         /* Public certificate proof — collapsed by default via <details> */
         .certificate-proof {
             margin: 4rem 0;
@@ -919,7 +935,8 @@
             }
         });
 
-        // Reviews: show block only if published reviews exist
+        // Reviews linked to a certificate are rendered next to that certificate.
+        // Reviews without a matching public certificate stay in the general block.
         (function() {
             var wrap = document.getElementById('reviewsWrap');
             var container = document.getElementById('reviewsContainer');
@@ -927,28 +944,54 @@
             function esc(s) {
                 return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
             }
+            function findCertificateCard(certificateId) {
+                if (!certificateId) return null;
+                var cards = document.querySelectorAll('.certificate-card');
+                for (var i = 0; i < cards.length; i++) {
+                    var id = cards[i].querySelector('.certificate-card__id');
+                    if (id && id.textContent.trim() === certificateId) return cards[i];
+                }
+                return null;
+            }
+            function reviewMarkup(rev, linked) {
+                var displayName = rev.name || 'Анонимный слушатель';
+                var initials = displayName.charAt(0).toUpperCase();
+                var rating = Math.max(1, Math.min(5, Number(rev.rating) || 5));
+                var stars = '';
+                for (var i = 0; i < rating; i++) stars += '\u2605';
+                return '<article class="review-card' + (linked ? ' certificate-review-card' : '') + '">'
+                    + (linked ? '<div class="certificate-review-card__label">Отзыв к сертификату ' + esc(rev.certificate_id) + '</div>' : '')
+                    + '<div class="review-stars" aria-label="Оценка ' + rating + ' из 5">' + stars + '</div>'
+                    + '<div class="review-text">\u00ab' + esc(rev.text) + '\u00bb</div>'
+                    + '<div class="review-author">'
+                    + '<div class="review-avatar">' + esc(initials) + '</div>'
+                    + '<div class="review-info">'
+                    + '<div class="review-name">' + esc(displayName) + '</div>'
+                    + '<div class="review-role">' + esc(rev.role || '') + '</div>'
+                    + '</div></div></article>';
+            }
             fetch('/reviews.json')
                 .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
                 .then(function(data) {
                     var reviews = (data && data.captain) || [];
                     if (!reviews.length) return;
-                    wrap.hidden = false;
+                    var linkedCount = 0;
+                    var unmatchedCount = 0;
                     reviews.forEach(function(rev) {
-                        var displayName = rev.name || 'Анонимный слушатель';
-                        var initials = displayName.charAt(0).toUpperCase();
-                        var stars = '';
-                        for (var i = 0; i < (rev.rating || 5); i++) stars += '\u2605';
-                        container.insertAdjacentHTML('beforeend',
-                            '<div class="review-card">'
-                            + '<div class="review-stars">' + stars + '</div>'
-                            + '<div class="review-text">\u00ab' + esc(rev.text) + '\u00bb</div>'
-                            + '<div class="review-author">'
-                            + '<div class="review-avatar">' + esc(initials) + '</div>'
-                            + '<div class="review-info">'
-                            + '<div class="review-name">' + esc(displayName) + '</div>'
-                            + '<div class="review-role">' + esc(rev.role || '') + '</div>'
-                            + '</div></div></div>');
+                        var card = findCertificateCard(rev.certificate_id);
+                        if (card) {
+                            card.insertAdjacentHTML('afterend', reviewMarkup(rev, true));
+                            linkedCount += 1;
+                        } else {
+                            container.insertAdjacentHTML('beforeend', reviewMarkup(rev, false));
+                            unmatchedCount += 1;
+                        }
                     });
+                    if (unmatchedCount) wrap.hidden = false;
+                    if (linkedCount) {
+                        var hint = document.querySelector('.certificate-proof__summary-hint');
+                        if (hint) hint.textContent = '10 открытых записей · ' + linkedCount + ' отзыв · нажмите, чтобы развернуть';
+                    }
                 })
                 .catch(function() {});
         })();

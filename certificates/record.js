@@ -54,7 +54,8 @@
         <main class="shell">
             <hr class="registry-rule">
             <div class="verification-layout">
-                <article class="record-card">
+                <div class="record-stack">
+                    <article class="record-card">
                     <div class="status"><span class="status-dot">✓</span> Запись действительна</div>
                     <p class="eyebrow">Сертификат о прохождении программы</p>
                     <h1>${record.holder}</h1>
@@ -94,7 +95,10 @@
                     </dl>
 
                     <p class="scope-note">Запись подтверждает прохождение авторской образовательной программы. Сертификат не является дипломом, свидетельством STCW или документом о присвоении морской квалификации.</p>
-                </article>
+                    </article>
+
+                    <section class="graduate-review" id="graduateReview" aria-labelledby="graduateReviewTitle" hidden></section>
+                </div>
 
                 <aside class="side-stack" aria-label="Реестровые данные">
                     <section class="registry-card">
@@ -125,4 +129,33 @@
                 <span>Internal registry · First issue</span>
             </div>
         </footer>`;
+
+    const reviewCard = document.getElementById("graduateReview");
+    const escapeHtml = (value) => String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+
+    fetch("/reviews.json", { cache: "no-store" })
+        .then((response) => response.ok ? response.json() : Promise.reject())
+        .then((data) => {
+            const reviews = Array.isArray(data?.captain) ? data.captain : [];
+            const review = reviews.find((item) => item?.certificate_id === certificateId);
+            if (!review || !reviewCard) return;
+
+            const rating = Math.max(1, Math.min(5, Number(review.rating) || 5));
+            const displayName = review.name || "Анонимный слушатель";
+            reviewCard.innerHTML = `
+                <p class="eyebrow">Отзыв выпускника</p>
+                <h2 id="graduateReviewTitle">Отзыв о курсе</h2>
+                <div class="graduate-review__stars" aria-label="Оценка ${rating} из 5">${"★".repeat(rating)}</div>
+                <blockquote>«${escapeHtml(review.text)}»</blockquote>
+                <div class="graduate-review__author">
+                    <strong>${escapeHtml(displayName)}</strong>
+                    <span>${escapeHtml(review.role || "")}</span>
+                </div>`;
+            reviewCard.hidden = false;
+        })
+        .catch(() => {});
 })();

@@ -126,6 +126,12 @@ a {
     min-width: 0;
 }
 
+.record-stack {
+    display: grid;
+    min-width: 0;
+    gap: 20px;
+}
+
 .record-card,
 .registry-card {
     overflow: hidden;
@@ -252,6 +258,52 @@ h1 {
 .side-stack {
     display: grid;
     gap: 20px;
+}
+
+.graduate-review {
+    overflow: hidden;
+    padding: clamp(24px, 4vw, 38px);
+    border: 1px solid rgba(182, 135, 54, .5);
+    border-left: 4px solid var(--gold);
+    border-radius: 4px;
+    background: rgba(255, 253, 248, .94);
+    box-shadow: 0 26px 72px rgba(20, 42, 70, .11);
+}
+
+.graduate-review h2 {
+    margin: 0;
+    color: var(--navy);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(28px, 3vw, 38px);
+    line-height: 1.1;
+}
+
+.graduate-review__stars {
+    margin: 16px 0;
+    color: var(--gold);
+    font-size: 18px;
+    letter-spacing: .14em;
+}
+
+.graduate-review blockquote {
+    margin: 0;
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(20px, 2.2vw, 25px);
+    line-height: 1.55;
+}
+
+.graduate-review__author {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-top: 22px;
+    color: var(--navy);
+    font-size: 13px;
+}
+
+.graduate-review__author span {
+    color: var(--muted);
 }
 
 .registry-card {
