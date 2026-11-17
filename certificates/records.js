@@ -117,6 +117,7 @@ window.CERTIFICATE_RECORDS = Object.freeze({
         volume: "8 live-занятий",
         period: "23 октября — 17 ноября 2026",
         issueDate: "17 ноября 2026",
+        publicationDate: "17 ноября 2026 года",
         verificationKey: "C090-A557-461B-50A0",
         verificationSha256: "c090a557461b50a067935ebe3bd19d38a13551d2c9b4ec38fc3d48d09ba1b6f4"
     }
