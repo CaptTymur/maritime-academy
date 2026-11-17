@@ -108,4 +108,16 @@ window.CERTIFICATE_RECORDS = Object.freeze({
         verificationKey: "C4A2-A141-4E9A-58CC",
         verificationSha256: "c4a2a1414e9a58ccf40543060f671ba76e8361f80c0238ec773179ed62c294c6"
     }
+    ,"MK-CAP-GL-2026-001": {
+        holder: "Александр Изуита",
+        learnerId: "MK-L-2026-0016",
+        programme: "Капитан судна: управленческая подготовка",
+        group: "L",
+        format: "8 live-занятий",
+        volume: "8 live-занятий",
+        period: "23 октября — 17 ноября 2026",
+        issueDate: "17 ноября 2026",
+        verificationKey: "C090-A557-461B-50A0",
+        verificationSha256: "c090a557461b50a067935ebe3bd19d38a13551d2c9b4ec38fc3d48d09ba1b6f4"
+    }
 });
